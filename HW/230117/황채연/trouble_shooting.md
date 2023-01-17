@@ -16,6 +16,7 @@
     - Python 시리얼 통신 중 밀림 현상 발생 
         - 파이썬에서 제공하는 라이브러리가 많고 아두이노 입출력이 용이하게에 테스트
         - read, write, print의 각 기능에 대한 정확한 이해가 필요
+        ![image.png](./image.png)
 
 - 구현 동작
     - RPI4 : Arduino에게 TEST CODE 송신, Arduino에게 받은 데이터 출력
