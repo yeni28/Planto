@@ -12,8 +12,10 @@
             → wiringpi 완전 제거 후 해당 블로그 참조하여 git clone하여 직접설치
             
 2. 시리얼 통신 간 원하지 문자열 밀림 발생
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6ce24e5a-2fe8-40f8-ba23-444d2b41245c/Untitled.png)
+    - C언어 시리얼 통신은 이상없음
+    - Python 시리얼 통신 중 밀림 현상 발생 
+        - 파이썬에서 제공하는 라이브러리가 많고 아두이노 입출력이 용이하게에 테스트
+        - read, write, print의 각 기능에 대한 정확한 이해가 필요
 
 - 구현 동작
     - RPI4 : Arduino에게 TEST CODE 송신, Arduino에게 받은 데이터 출력
