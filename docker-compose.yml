@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    # volumes:
+    #   - dbdata:/var/lib/mysql
+    ports:
+      - 3309:3306
+    cap_add:
+      - SYS_NICE
+    environment:
+      - MYSQL_DATABASE=c202
+      - MYSQL_ROOT_PASSWORD=c202
+      - MYSQL_USER=c202
+      - MYSQL_PASSWORD=c202
+
+  redis:
+    image: redis:alpine
+    container_name: redis_boot
+    hostname: redis_boot
+    volumes:
+      - ./redis/redis.conf:/etc/redis/redis.conf
+      - ./redis/data:/var/lib/redis/
+      - ./redis/logs:/var/log/redis/
+    ports:
+      - 6379:6379
+  
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    container_name: spring-boot
+    depends_on:
+      - mysql
+      - redis
+  
+  front:
+    build:
+      context: ./frontend/planto
+      dockerfile: Dockerfile
+    container_name: "react"
+    working_dir: "/app/front"
+    ports:
+      - 3000:3000
+    
+  # my-jenkins:
+  #   image: jenkins/jenkins:lts
+  #   container_name: "my-jenkins"
+  #   ports:
+  #     - 9090:8080
+  #     - 50000:50000
+  #   volumes:
+  #     - /home/opendocs/jenkins:/var/jenkins_home
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   user: root 
