@@ -14,6 +14,8 @@
             
             Serial 통신으로 Raspberry Pi가 받은 데이터 출력
 
+![image.png](./image.png)
+
 중간 발표 화면전환 초안 완성
 
 
