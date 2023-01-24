@@ -16,7 +16,7 @@ import org.springframework.messaging.MessageHandler;
 public class MqttConfigSub {
     private static final String BROKER_URL = "tcp://localhost:1883";
     private static final String MQTT_CLIENT_ID = MqttAsyncClient.generateClientId();
-    private static final String TOPIC_FILTER = "my_topic";
+    private static final String TOPIC_FILTER = "MTS";
 
     @Bean
     public MessageChannel mqttInputChannel() {
