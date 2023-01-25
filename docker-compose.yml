@@ -61,13 +61,13 @@ services:
       # - /${USER_DIR}/${MOSQUITTO_DIR}/data:/mosquitto/data
       # - /${USER_DIR}/${MOSQUITTO_DIR}/log:/mosquitto/log
 
-  # my-jenkins:
-  #   image: jenkins/jenkins:lts
-  #   container_name: "my-jenkins"
-  #   ports:
-  #     - 9090:8080
-  #     - 50000:50000
-  #   volumes:
-  #     - /home/opendocs/jenkins:/var/jenkins_home
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #   user: root 
+  my-jenkins:
+    image: jenkins/jenkins:lts
+    container_name: "my-jenkins"
+    ports:
+      - 9090:8080
+      - 50000:50000
+    volumes:
+      - /home/opendocs/jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: root 
