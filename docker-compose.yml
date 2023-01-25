@@ -11,10 +11,10 @@ services:
     cap_add:
       - SYS_NICE
     environment:
-      - MYSQL_DATABASE=c202
-      - MYSQL_ROOT_PASSWORD=c202
-      - MYSQL_USER=c202
-      - MYSQL_PASSWORD=c202
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
   redis:
     image: redis:alpine
