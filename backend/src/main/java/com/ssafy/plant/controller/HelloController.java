@@ -3,6 +3,7 @@ package com.ssafy.plant.controller;
 import com.ssafy.plant.config.mqtt.MqttConfigSend;
 import com.ssafy.plant.service.BoardService;
 import com.ssafy.plant.dto.Board;
+import com.ssafy.plant.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,9 @@ public class HelloController {
 
     @Autowired
     BoardService boardService;
+
+    @Autowired
+    WeatherService weatherService;
 
     @GetMapping("/hello")
     public String hello(){
@@ -37,4 +41,9 @@ public class HelloController {
         return BoardService.getDbCount();
     }
 //    redis cache test
+
+    @GetMapping("weather")
+    public void getWeather(){
+        weatherService.getWeather();
+    }
 }
