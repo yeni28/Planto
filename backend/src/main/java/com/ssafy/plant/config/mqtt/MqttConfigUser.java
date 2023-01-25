@@ -1,14 +1,18 @@
 package com.ssafy.plant.config.mqtt;
 
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
 
 @Configuration
 public class MqttConfigUser {
-    private static final String MQTT_USERNAME = "username";
-    private static final String MQTT_PASSWORD = "password";
+
+    @Value("${java.mqtt.username}")
+    private String MQTT_USERNAME;
+    @Value("${java.mqtt.password}")
+    private String MQTT_PASSWORD;
 
     private MqttConnectOptions connectOptions() {
         MqttConnectOptions options = new MqttConnectOptions();

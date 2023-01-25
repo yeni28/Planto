@@ -2,6 +2,7 @@ package com.ssafy.plant.config.mqtt;
 
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -15,7 +16,8 @@ import org.springframework.messaging.MessageHandler;
 @Configuration
 public class MqttConfigPub {
 
-    private static final String BROKER_URL = "tcp://localhost:1883";
+    @Value("${java.mqtt.url}")
+    private String BROKER_URL;
     private static final String MQTT_CLIENT_ID = MqttAsyncClient.generateClientId();
     private static final String TOPIC_FILTER = "STM";
 
