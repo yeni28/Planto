@@ -13,11 +13,14 @@
 #### 2. Python MQTT 및 multi-threading 구현
 
 ##### 1) 라이브러리 추가
+
 ![image-1.png](./image-1.png)
 
 ##### 2) 라이브러리 추가
 - 서버에서 들어오는 데이터를 확인하기 위해 on-message() 함수안에 예비구문 실행
+
 ![image-2.png](./image-2.png)
+
 - loop_forever() 함수안에서 on_message() 함수가 실행되기 때문에 인터럽트로 활용가능
 - STM -> Server to Machine, MTS -> Machine to Server로 MQTT topic 설정
 - Raspberry Pi가 Arduino로 부터 센서데이터값을 수신받고, Server로 부터 날씨 데이터를 수신받기 때문에 multi-thread로 동작해야 함
