@@ -2,7 +2,7 @@
 
 #### 1. 3D-printing (at. SSAFY)
 
-![image-5.png](./image-5.png)
+![image-6.png](./image-6.png)
 
 - 화분 제작을 위해 3D-printing 진행
 - Printing 시 기본 (160.0mm * 160.0mm * 150.0mm) 규약이 있기 때문에 화분을 8분할하여 조립식으로 제작
