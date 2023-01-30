@@ -5,6 +5,7 @@ import com.ssafy.plant.config.mqtt.MqttConfigSend;
 import com.ssafy.plant.domain.WeatherEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -25,7 +26,8 @@ public class WeatherService {
     @Value("${java.weather.secretKey}")
     private String secretKey;
 
-    public void getWeather() {
+    @Cacheable(value = "getWeathers")
+    public String getWeather() {
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String formatedNow = now.format(formatter);
@@ -96,15 +98,13 @@ public class WeatherService {
                 }
             }
 
-//            for (WeatherEntity weather : weathers) {
-//                System.out.println(weather);
-//            }
-
             String weathersJson = objectMapper.writeValueAsString(weathers);
-            outboundGateway.sendToMqtt(weathersJson, "STM");
-            
+
+            return weathersJson;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "0";
     }
 }
