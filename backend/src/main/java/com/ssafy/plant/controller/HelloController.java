@@ -19,9 +19,6 @@ public class HelloController {
     @Autowired
     BoardService boardService;
 
-    @Autowired
-    WeatherService weatherService;
-
     @GetMapping("/hello")
     public String hello(){
 //    mqtt publish test
@@ -40,10 +37,5 @@ public class HelloController {
     public int count() {
         return BoardService.getDbCount();
     }
-//    redis cache test
 
-    @GetMapping("weather")
-    public void getWeather(){
-        weatherService.getWeather();
-    }
 }
