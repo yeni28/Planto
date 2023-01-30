@@ -60,7 +60,6 @@ public class WeatherService {
             conn.disconnect();
 
             Map<String, Object> map = new HashMap<>();
-
             ObjectMapper objectMapper = new ObjectMapper();
             map = objectMapper.readValue(sb.toString(), map.getClass());
             map = (Map<String, Object>) map.get("response");
@@ -103,7 +102,7 @@ public class WeatherService {
 
             String weathersJson = objectMapper.writeValueAsString(weathers);
             outboundGateway.sendToMqtt(weathersJson, "STM");
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
