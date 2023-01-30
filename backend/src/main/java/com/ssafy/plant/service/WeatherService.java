@@ -1,6 +1,9 @@
 package com.ssafy.plant.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.plant.config.mqtt.MqttConfigSend;
+import com.ssafy.plant.domain.WeatherEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,22 +15,28 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class WeatherService {
-
+    @Autowired
+    MqttConfigSend.OutboundGateway outboundGateway;
     @Value("${java.weather.secretKey}")
     private String secretKey;
 
     public void getWeather() {
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String formatedNow = now.format(formatter);
+
         try {
             StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
             urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + secretKey); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
             urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
             urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
-            urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode("20230127", "UTF-8")); /*‘21년 6월 28일발표*/
+            urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(formatedNow, "UTF-8")); /*‘21년 6월 28일발표*/
             urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0500", "UTF-8")); /*05시 발표*/
             urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("35", "UTF-8")); /*예보지점의 X 좌표값*/
             urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("126", "UTF-8")); /*예보지점의 Y 좌표값*/
@@ -57,10 +66,44 @@ public class WeatherService {
             map = (Map<String, Object>) map.get("response");
             map = (Map<String, Object>) map.get("body");
             map = (Map<String, Object>) map.get("items");
-            ArrayList<Object> res = (ArrayList<Object>) map.get("item");
-            for (Object weather:res) {
-                System.out.println(weather);
+            ArrayList<Map<String, String>> res = (ArrayList<Map<String, String>>) map.get("item");
+
+            String baseTime = formatedNow;
+            String fcstTime = "0600";
+            String fcstDate = formatedNow;
+            String SNO = "적설없음";
+            String PCP = "강수없음";
+            String TMP = "0";
+
+            ArrayList<WeatherEntity> weathers = new ArrayList<>();
+
+            for (Map<String, String> weather:res) {
+                if (weather.get("fcstTime").equals(fcstTime)) {
+                    if (weather.get("category").equals("TMP")){
+                        TMP = weather.get("fcstValue");
+                    } else if (weather.get("category").equals("SNO")){
+                        SNO = weather.get("fcstValue");
+                    } else if (weather.get("category").equals("PCP")){
+                        PCP = weather.get("fcstValue");
+                    }
+                    fcstDate = weather.get("fcstDate");
+                } else {
+                    WeatherEntity weatherEntity = new WeatherEntity(baseTime, fcstDate, fcstTime, PCP, SNO, TMP);
+                    if (weather.get("category").equals("TMP")) {
+                        TMP = weather.get("fcstValue");
+                    }
+                    fcstTime = weather.get("fcstTime");
+                    weathers.add(weatherEntity);
+                }
             }
+
+//            for (WeatherEntity weather : weathers) {
+//                System.out.println(weather);
+//            }
+
+            String weathersJson = objectMapper.writeValueAsString(weathers);
+            outboundGateway.sendToMqtt(weathersJson, "STM");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
