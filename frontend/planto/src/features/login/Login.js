@@ -1,5 +1,5 @@
 import { KAKAO_AUTH_URL } from "./OAuth";
-
+import LoginImg from "../../assets/banner/kakao_large.png"
 export default function Login(){
 
     function KakaoLogin(){
@@ -7,10 +7,14 @@ export default function Login(){
     }
     
     return(
-        <div>
+        <div> 
             <button onClick={KakaoLogin}>
-            <span>카카오계정 로그인</span>
-            </button>
+            <img
+            style={{
+                width:300,
+            }} 
+            src={LoginImg} alt="카카오로그인"></img>
+    </button>
         </div>
     )
 }

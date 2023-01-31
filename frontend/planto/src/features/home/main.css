@@ -1,0 +1,32 @@
+.Myplanto_title{
+    margin-left: 1.5rem;
+    margin-top:2rem;
+    font-size:30px;
+}
+
+.Myplanto_name{
+    margin-left: 1.5rem;
+    margin-top: -0.5rem;
+    font-size:20px;
+
+}
+
+.main_back_img{
+    margin-top: 10px;
+    width:100%;
+    text-align: center;
+    /* background: url(/src/assets/background/backimg.png); */
+    position:relative;
+
+}
+.main_btn{
+    position:absolute;
+    width:200px;
+    height:50px;
+    left: 27%;
+    border-radius:50px;
+    top:40rem;
+    margin: auto;
+    background-color: #FDDC3F;
+    
+}
