@@ -1,14 +1,10 @@
 package com.ssafy.plant.controller;
 
 import com.ssafy.plant.config.mqtt.MqttConfigSend;
-import com.ssafy.plant.service.BoardService;
-import com.ssafy.plant.dto.Board;
-import com.ssafy.plant.service.WeatherService;
+import com.ssafy.plant.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class HelloController {
@@ -17,7 +13,7 @@ public class HelloController {
     MqttConfigSend.OutboundGateway outboundGateway;
 
     @Autowired
-    BoardService boardService;
+    PlantService plantService;
 
     @GetMapping("/hello")
     public String hello(){
@@ -26,16 +22,8 @@ public class HelloController {
         return "Hello #1";
     }
 
-//    redis cache test
-    @GetMapping()
-    public List<Board> boards(String size) {
-        List<Board> boards = boardService.getBoards(size);
-        return boards;
+    @GetMapping("nongsaro")
+    public void getPlant(){
+        plantService.getPlant();
     }
-
-    @GetMapping("count")
-    public int count() {
-        return BoardService.getDbCount();
-    }
-
 }
