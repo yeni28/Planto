@@ -116,7 +116,7 @@ public class PlantService {
             XmlPlantDetailResponse apiResponse = (XmlPlantDetailResponse) unmarshaller.unmarshal(new StringReader(detailXml)); // unmarshall 메서드 호출
             XmlPlantDetailResponse.Body.Item detail = apiResponse.getBody().getItem();
 
-            System.out.println(detail);
+            System.out.println(detailXml);
 
             String [] temperature = detail.getGrwhTpCodeNm().split("~");
 
@@ -175,16 +175,18 @@ public class PlantService {
                     .plant_dict_id(Long.parseLong(cntntsNo))
                     .name(plant.getCntntsSj())
                     .manage_level(detail.getManagelevelCodeNm())
-                    .tip(detail.getFncltyInfo())
+                    .function_info(detail.getFncltyInfo())
                     .temperature_max(temperature_max)
                     .temperature_min(temperature_min)
                     .light_max(light_max)
                     .light_min(light_min)
                     .humidity_max(humidity_max)
                     .humidity_min(humidity_min)
+                    .manage_info(detail.getSpeclmanageInfo())
+                    .advice_info(detail.getAdviseInfo())
                     .image_path(images[0])
                     .build();
-            plantDictRepository.save(plantDictEntity);
+//            plantDictRepository.save(plantDictEntity);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
