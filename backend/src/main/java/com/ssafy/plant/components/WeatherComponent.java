@@ -14,9 +14,9 @@ public class WeatherComponent {
     @Autowired
     WeatherService weatherService;
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void getWeather(){
         String weathers = weatherService.getWeather();
-        outboundGateway.sendToMqtt(weathers, "SMT");
+        outboundGateway.sendToMqtt(weathers, "STM");
     }
 }

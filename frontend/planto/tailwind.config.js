@@ -1,3 +1,4 @@
+
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
@@ -12,18 +13,15 @@ module.exports = {
         PreSB:["SB"],
         PreB:['B'],
         PreEB:["EB"],
-        
+      
+      },
+      colors: {
+        transparent:'transparent',
+        current:'currentColor',
+          
       },
     },
-    colors: {
-      transparent:'transparent',
-      current:'currentColor',
-      'kakao': {
-        container: '#FEE500',
-        lable: '#191919',
-            }
-    },
+  
 
   },
-  plugins: [],
 }

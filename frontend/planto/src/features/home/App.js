@@ -1,9 +1,9 @@
 import './App.css';
 import Login from '../login/Login';
-import BottomNav from '../nav/BottomNav';
+
 
 function App() {
-  const name = "KAKAO NAME"
+  // const name = "KAKAO NAME"
   // const user = {
   //   name: "네이버로 이동",
   //   url:"https://naver.com",
@@ -18,7 +18,6 @@ function App() {
     {/* <a href={user.url}>{user.name}</a> */}
 
     <Login/>
-    <BottomNav/>
   </div>
   );
   
