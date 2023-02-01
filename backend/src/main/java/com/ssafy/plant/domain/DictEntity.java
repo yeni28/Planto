@@ -17,81 +17,81 @@ import javax.persistence.Table;
 public class DictEntity {
     @Id
     @Column(name = "plant_dict_id", unique = true, nullable = false, columnDefinition = "INT UNSIGNED")
-    private long plant_dict_id;
+    private long plantDictId;
 
     @Column(name = "name", nullable = false, length = 200)
     private String name;
 
     @Column(name = "manage_level", length = 100)
-    private String manage_level;
+    private String manageLevel;
 
     @Column(name = "function_info", length = 5000)
-    private String function_info;
+    private String functionInfo;
 
     @Column(name = "temperature_max")
-    private int temperature_max;
+    private int temperatureMax;
 
     @Column(name = "temperature_min")
-    private int temperature_min;
+    private int temperatureMin;
 
     @Column(name = "light_max")
-    private int light_max;
+    private int lightMax;
 
     @Column(name = "light_min")
-    private int light_min;
+    private int lightMin;
 
     @Column(name = "humidity_max")
-    private int humidity_max;
+    private int humidityMax;
 
     @Column(name = "humidity_min")
-    private int humidity_min;
+    private int humidityMin;
 
     @Column(name = "manage_info", length = 5000)
-    private String manage_info;
+    private String manageInfo;
 
     @Column(name = "advice_info", length = 5000)
-    private String advice_info;
+    private String adviceInfo;
     @Column(name = "image_path", length = 200)
-    private String image_path;
+    private String imagePath;
 
     @Column(name = "plant_eng", length = 200)
     private String plantEng;
 
     @Builder
-    public DictEntity(long plant_dict_id, String name, String manage_level, String function_info, int temperature_max, int temperature_min,
-                      int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path,
+    public DictEntity(long plantDictId, String name, String manageLevel, String functionInfo, int temperatureMax, int temperatureMin,
+                      int lightMax, int lightMin, int humidityMax, int humidityMin, String manageInfo, String adviceInfo, String imagePath,
                       String plantEng) {
-        this.plant_dict_id = plant_dict_id;
+        this.plantDictId = plantDictId;
         this.name = name;
-        this.manage_level = manage_level;
-        this.function_info = function_info;
-        this.temperature_max = temperature_max;
-        this.temperature_min = temperature_min;
-        this.light_max = light_max;
-        this.light_min = light_min;
-        this.humidity_max = humidity_max;
-        this.humidity_min = humidity_min;
-        this.manage_info = manage_info;
-        this.advice_info = advice_info;
-        this.image_path = image_path;
+        this.manageLevel = manageLevel;
+        this.functionInfo = functionInfo;
+        this.temperatureMax = temperatureMax;
+        this.temperatureMin = temperatureMin;
+        this.lightMax = lightMax;
+        this.lightMin = lightMin;
+        this.humidityMax = humidityMax;
+        this.humidityMin = humidityMin;
+        this.manageInfo = manageInfo;
+        this.adviceInfo = adviceInfo;
+        this.imagePath = imagePath;
         this.plantEng = plantEng;
     }
 
     public DictDTO entityToDto(){
         return DictDTO.builder()
-                .plant_dict_id(plant_dict_id)
+                .plantDictId(plantDictId)
                 .name(name)
-                .manage_level(manage_level)
-                .function_info(function_info)
-                .temperature_max(temperature_max)
-                .temperature_min(temperature_min)
-                .light_max(light_max)
-                .light_min(light_min)
-                .humidity_max(humidity_max)
-                .humidity_min(humidity_min)
-                .manage_info(manage_info)
-                .advice_info(advice_info)
-                .image_path(image_path)
+                .manageLevel(manageLevel)
+                .functionInfo(functionInfo)
+                .temperatureMax(temperatureMax)
+                .temperatureMin(temperatureMin)
+                .lightMax(lightMax)
+                .lightMin(lightMin)
+                .humidityMax(humidityMax)
+                .humidityMin(humidityMin)
+                .manageInfo(manageInfo)
+                .adviceInfo(adviceInfo)
+                .imagePath(imagePath)
                 .plantEng(plantEng)
                 .build();
     }

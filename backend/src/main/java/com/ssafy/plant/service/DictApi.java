@@ -112,71 +112,71 @@ public class DictApi {
 
             String [] temperature = detail.getGrwhTpCodeNm().split("~");
 
-            int temperature_min = Integer.parseInt(temperature[0]);
-            int temperature_max = Integer.parseInt(temperature[1].substring(0, 2));
+            int temperatureMin = Integer.parseInt(temperature[0]);
+            int temperatureMax = Integer.parseInt(temperature[1].substring(0, 2));
 
             String lights = detail.getLighttdemanddoCodeNm();
-            int light_num = 0;
+            int lightNum = 0;
 
             if (lights.contains("낮은 광도")) {
-                light_num += 1;
+                lightNum += 1;
             }
             if(lights.contains("중간 광도")){
-                light_num += 2;
+                lightNum += 2;
             }
             if(lights.contains("높은 광도")) {
-                light_num += 4;
+                lightNum += 4;
             }
 
-            int light_min = 300;
-            int light_max = 800;
+            int lightMin = 300;
+            int lightMax = 800;
 
-            if (light_num == 2){
-                light_min = 800;
-                light_max = 1500;
-            } else if (light_num == 3){
-                light_min = 300;
-                light_max = 1500;
-            } else if (light_num == 4){
-                light_min = 1500;
-                light_max = 10000;
-            } else if (light_num == 5){
-                light_max = 10000;
-            } else if (light_num == 6){
-                light_min = 800;
-                light_max = 10000;
-            } else if (light_num == 3){
-                light_max = 10000;
+            if (lightNum == 2){
+                lightMin = 800;
+                lightMax = 1500;
+            } else if (lightNum == 3){
+                lightMin = 300;
+                lightMax = 1500;
+            } else if (lightNum == 4){
+                lightMin = 1500;
+                lightMax = 10000;
+            } else if (lightNum == 5){
+                lightMax = 10000;
+            } else if (lightNum == 6){
+                lightMin = 800;
+                lightMax = 10000;
+            } else if (lightNum == 3){
+                lightMax = 10000;
             }
 
-            int humidity_min = 0;
-            int humidity_max = 100;
+            int humidityMin = 0;
+            int humidityMax = 100;
 
             String [] humidity = detail.getHdCodeNm().split(" ~ ");
             if (detail.getHdCodeNm().contains("이상")) {
-                humidity_min = Integer.parseInt(humidity[0].substring(0, 2));
+                humidityMin = Integer.parseInt(humidity[0].substring(0, 2));
             } else if (detail.getHdCodeNm().contains("미만")){
-                humidity_max = Integer.parseInt(humidity[0].substring(0, 2));
+                humidityMax = Integer.parseInt(humidity[0].substring(0, 2));
             } else if(!detail.getHdCodeNm().equals("")){
-                humidity_min = Integer.parseInt(humidity[0]);
-                humidity_max = Integer.parseInt(humidity[1].substring(0, 2));
+                humidityMin = Integer.parseInt(humidity[0]);
+                humidityMax = Integer.parseInt(humidity[1].substring(0, 2));
             }
             String [] images = plant.getRtnThumbFileNm().split("\\|");
 
             DictEntity dictEntity = DictEntity.builder()
-                    .plant_dict_id(Long.parseLong(cntntsNo))
+                    .plantDictId(Long.parseLong(cntntsNo))
                     .name(plant.getCntntsSj())
-                    .manage_level(detail.getManagelevelCodeNm())
-                    .function_info(detail.getFncltyInfo())
-                    .temperature_max(temperature_max)
-                    .temperature_min(temperature_min)
-                    .light_max(light_max)
-                    .light_min(light_min)
-                    .humidity_max(humidity_max)
-                    .humidity_min(humidity_min)
-                    .manage_info(detail.getSpeclmanageInfo())
-                    .advice_info(detail.getAdviseInfo())
-                    .image_path(images[0])
+                    .manageLevel(detail.getManagelevelCodeNm())
+                    .functionInfo(detail.getFncltyInfo())
+                    .temperatureMax(temperatureMax)
+                    .temperatureMin(temperatureMin)
+                    .lightMax(lightMax)
+                    .lightMin(lightMin)
+                    .humidityMax(humidityMax)
+                    .humidityMin(humidityMin)
+                    .manageInfo(detail.getSpeclmanageInfo())
+                    .adviceInfo(detail.getAdviseInfo())
+                    .imagePath(images[0])
                     .plantEng(detail.getPlntbneNm())
                     .build();
             dictRepository.save(dictEntity);

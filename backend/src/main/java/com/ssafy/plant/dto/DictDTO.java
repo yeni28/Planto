@@ -1,60 +1,55 @@
 package com.ssafy.plant.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
-
 @Getter
 @NoArgsConstructor
 public class DictDTO {
-    private long plant_dict_id;
+    private long plantDictId;
 
     private String name;
 
-    private String manage_level;
+    private String manageLevel;
 
-    private String function_info;
+    private String functionInfo;
 
-    private int temperature_max;
+    private int temperatureMax;
 
-    private int temperature_min;
+    private int temperatureMin;
 
-    private int light_max;
+    private int lightMax;
 
-    private int light_min;
+    private int lightMin;
 
-    private int humidity_max;
+    private int humidityMax;
 
-    private int humidity_min;
+    private int humidityMin;
 
-    private String manage_info;
+    private String manageInfo;
 
-    private String advice_info;
-    private String image_path;
+    private String adviceInfo;
+    private String imagePath;
 
     private String plantEng;
     @Builder
-    public DictDTO(long plant_dict_id, String name, String manage_level, String function_info, int temperature_max, int temperature_min,
-                   int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path,
+    public DictDTO(long plantDictId, String name, String manageLevel, String functionInfo, int temperatureMax, int temperatureMin,
+                   int lightMax, int lightMin, int humidityMax, int humidityMin, String manageInfo, String adviceInfo, String imagePath,
                    String plantEng){
-        this.plant_dict_id = plant_dict_id;
+        this.plantDictId = plantDictId;
         this.name = name;
-        this.manage_level = manage_level;
-        this.temperature_max = temperature_max;
-        this.temperature_min = temperature_min;
-        this.light_max = light_max;
-        this.light_min = light_min;
-        this.humidity_max = humidity_max;
-        this.humidity_min = humidity_min;
-        this.function_info = function_info;
-        this.manage_info = manage_info;
-        this.advice_info = advice_info;
-        this.image_path = image_path;
+        this.manageLevel = manageLevel;
+        this.temperatureMax = temperatureMax;
+        this.temperatureMin = temperatureMin;
+        this.lightMax = lightMax;
+        this.lightMin = lightMin;
+        this.humidityMax = humidityMax;
+        this.humidityMin = humidityMin;
+        this.functionInfo = functionInfo;
+        this.manageInfo = manageInfo;
+        this.adviceInfo = adviceInfo;
+        this.imagePath = imagePath;
         this.plantEng = plantEng;
     }
 }
