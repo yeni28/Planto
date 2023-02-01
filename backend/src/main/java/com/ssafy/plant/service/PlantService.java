@@ -169,12 +169,7 @@ public class PlantService {
                 humidity_min = Integer.parseInt(humidity[0]);
                 humidity_max = Integer.parseInt(humidity[1].substring(0, 2));
             }
-            String [] images = plant.getRtnThumbFileNm().split("|");
-            System.out.println(plant.getRtnThumbFileNm());
-//            for (String img : images) {
-//                System.out.println(img);
-//            }
-
+            String [] images = plant.getRtnThumbFileNm().split("\\|");
 
             PlantDictEntity plantDictEntity = PlantDictEntity.builder()
                     .plant_dict_id(Long.parseLong(cntntsNo))
@@ -189,7 +184,7 @@ public class PlantService {
                     .humidity_min(humidity_min)
                     .image_path(images[0])
                     .build();
-//            plantDictRepository.save(plantDictEntity);
+            plantDictRepository.save(plantDictEntity);
         } catch (JAXBException e) {
             e.printStackTrace();
         }

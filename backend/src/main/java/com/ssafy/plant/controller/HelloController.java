@@ -22,8 +22,9 @@ public class HelloController {
         return "Hello #1";
     }
 
-    @GetMapping("nongsaro")
-    public void getPlant(){
-        plantService.getPlant();
-    }
+//    식물 데이터 저장 api
+//    @GetMapping("nongsaro")
+//    public void getPlant(){
+//        plantService.getPlant();
+//    }
 }
