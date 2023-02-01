@@ -24,7 +24,7 @@ public class PlantDictEntity {
     @Column(name = "manage_level", length = 100)
     private String manage_level;
 
-    @Column(name = "tip", length = 500)
+    @Column(name = "tip", length = 5000)
     private String tip;
 
     @Column(name = "temperature_max")
