@@ -1,7 +1,7 @@
 package com.ssafy.plant.controller;
 
 import com.ssafy.plant.config.mqtt.MqttConfigSend;
-import com.ssafy.plant.service.PlantService;
+import com.ssafy.plant.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +13,7 @@ public class HelloController {
     MqttConfigSend.OutboundGateway outboundGateway;
 
     @Autowired
-    PlantService plantService;
+    DictService dictService;
 
     @GetMapping("/hello")
     public String hello(){
@@ -25,6 +25,6 @@ public class HelloController {
 //    식물 데이터 저장 api
 //    @GetMapping("nongsaro")
 //    public void getPlant(){
-//        plantService.getPlant();
+//        plantService.getDictApi();
 //    }
 }
