@@ -21,11 +21,16 @@ services:
     container_name: redis_boot
     hostname: redis_boot
     volumes:
-      - ./redis/redis.conf:/etc/redis/redis.conf
-      - ./redis/data:/var/lib/redis/
-      - ./redis/logs:/var/log/redis/
+      - ./redis/data:/data
+      - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
+      # 컨테이너에 docker label을 이용해서 메타데이터 추가
+    labels:
+      - "name=redis"
+      - "mode=standalone"
     ports:
       - 6379:6379
+    # 컨테이너 종료시 재시작 여부 설정
+    restart: always
   
   backend:
     build:
