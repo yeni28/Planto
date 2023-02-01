@@ -37,9 +37,11 @@ public class DictDTO {
     private String advice_info;
     private String image_path;
 
+    private String plantEng;
     @Builder
     public DictDTO(long plant_dict_id, String name, String manage_level, String function_info, int temperature_max, int temperature_min,
-                   int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path){
+                   int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path,
+                   String plantEng){
         this.plant_dict_id = plant_dict_id;
         this.name = name;
         this.manage_level = manage_level;
@@ -53,5 +55,6 @@ public class DictDTO {
         this.manage_info = manage_info;
         this.advice_info = advice_info;
         this.image_path = image_path;
+        this.plantEng = plantEng;
     }
 }

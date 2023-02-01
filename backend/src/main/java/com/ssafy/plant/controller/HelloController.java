@@ -23,8 +23,8 @@ public class HelloController {
     }
 
 //    식물 데이터 저장 api
-//    @GetMapping("nongsaro")
-//    public void getPlant(){
-//        plantService.getDictApi();
-//    }
+    @GetMapping("nongsaro")
+    public void getPlant(){
+        dictService.getDictApi();
+    }
 }

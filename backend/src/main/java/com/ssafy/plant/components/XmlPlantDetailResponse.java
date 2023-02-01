@@ -49,6 +49,7 @@ public class XmlPlantDetailResponse {
             private String fncltyInfo;
             private String speclmanageInfo;
             private String adviseInfo;
+            private String plntbneNm;
 
         }
     }

@@ -54,9 +54,13 @@ public class DictEntity {
     @Column(name = "image_path", length = 200)
     private String image_path;
 
+    @Column(name = "plant_eng", length = 200)
+    private String plantEng;
+
     @Builder
     public DictEntity(long plant_dict_id, String name, String manage_level, String function_info, int temperature_max, int temperature_min,
-                      int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path) {
+                      int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path,
+                      String plantEng) {
         this.plant_dict_id = plant_dict_id;
         this.name = name;
         this.manage_level = manage_level;
@@ -70,6 +74,7 @@ public class DictEntity {
         this.manage_info = manage_info;
         this.advice_info = advice_info;
         this.image_path = image_path;
+        this.plantEng = plantEng;
     }
 
     public DictDTO entityToDto(){
@@ -87,6 +92,7 @@ public class DictEntity {
                 .manage_info(manage_info)
                 .advice_info(advice_info)
                 .image_path(image_path)
+                .plantEng(plantEng)
                 .build();
     }
 }

@@ -177,6 +177,7 @@ public class DictApi {
                     .manage_info(detail.getSpeclmanageInfo())
                     .advice_info(detail.getAdviseInfo())
                     .image_path(images[0])
+                    .plantEng(detail.getPlntbneNm())
                     .build();
             dictRepository.save(dictEntity);
         } catch (JAXBException e) {
