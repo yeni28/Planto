@@ -1,6 +1,6 @@
 import './main.css';
 import backImg from "../../assets/background/backimg.png"
-
+import BottomNav from '../nav/BottomNav';
 
 function Main(){
     const user ={
@@ -23,6 +23,9 @@ function Main(){
                 </div>
                 <button className="main_btn font-PreSB "> + 플랜토 등록하기! </button>
             </div>
+
+            <BottomNav/>
+
         </div>
     );
 
