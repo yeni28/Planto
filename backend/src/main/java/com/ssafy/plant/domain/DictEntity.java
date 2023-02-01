@@ -1,5 +1,6 @@
 package com.ssafy.plant.domain;
 
+import com.ssafy.plant.dto.DictDTO;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @ToString
 @Table(name = "plant_dict")
-public class PlantDictEntity {
+public class DictEntity {
     @Id
     @Column(name = "plant_dict_id", unique = true, nullable = false, columnDefinition = "INT UNSIGNED")
     private long plant_dict_id;
@@ -54,8 +55,8 @@ public class PlantDictEntity {
     private String image_path;
 
     @Builder
-    public PlantDictEntity(long plant_dict_id, String name, String manage_level, String function_info, int temperature_max, int temperature_min,
-                           int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path) {
+    public DictEntity(long plant_dict_id, String name, String manage_level, String function_info, int temperature_max, int temperature_min,
+                      int light_max, int light_min, int humidity_max, int humidity_min, String manage_info, String advice_info, String image_path) {
         this.plant_dict_id = plant_dict_id;
         this.name = name;
         this.manage_level = manage_level;
@@ -69,5 +70,23 @@ public class PlantDictEntity {
         this.manage_info = manage_info;
         this.advice_info = advice_info;
         this.image_path = image_path;
+    }
+
+    public DictDTO entityToDto(){
+        return DictDTO.builder()
+                .plant_dict_id(plant_dict_id)
+                .name(name)
+                .manage_level(manage_level)
+                .function_info(function_info)
+                .temperature_max(temperature_max)
+                .temperature_min(temperature_min)
+                .light_max(light_max)
+                .light_min(light_min)
+                .humidity_max(humidity_max)
+                .humidity_min(humidity_min)
+                .manage_info(manage_info)
+                .advice_info(advice_info)
+                .image_path(image_path)
+                .build();
     }
 }

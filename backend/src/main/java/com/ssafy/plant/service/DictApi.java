@@ -2,8 +2,8 @@ package com.ssafy.plant.service;
 
 import com.ssafy.plant.components.XmlPlantDetailResponse;
 import com.ssafy.plant.components.XmlPlantResponse;
-import com.ssafy.plant.domain.PlantDictEntity;
-import com.ssafy.plant.repository.PlantDictRepository;
+import com.ssafy.plant.domain.DictEntity;
+import com.ssafy.plant.repository.DictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,20 +19,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 @Service
-public class PlantService {
+public class DictApi {
     @Value("${java.plant.secretKey}")
     private String secretKey;
 
     @Autowired
-    private PlantDictRepository plantDictRepository;
-
-    public void getPlant(){
-//        page 가져오기
-        for (int i = 1; i <= 22; i++) {
-            callApi(Integer.toString(i), "", "gardenList", "list");
-        }
-    }
-
+    private DictRepository dictRepository;
     public String callApi(String page, String cntntsNo, String api, String type) {
         try {
             StringBuilder urlBuilder = new StringBuilder("http://api.nongsaro.go.kr/service/garden/" + api); /*URL*/
@@ -171,7 +163,7 @@ public class PlantService {
             }
             String [] images = plant.getRtnThumbFileNm().split("\\|");
 
-            PlantDictEntity plantDictEntity = PlantDictEntity.builder()
+            DictEntity dictEntity = DictEntity.builder()
                     .plant_dict_id(Long.parseLong(cntntsNo))
                     .name(plant.getCntntsSj())
                     .manage_level(detail.getManagelevelCodeNm())
@@ -186,7 +178,7 @@ public class PlantService {
                     .advice_info(detail.getAdviseInfo())
                     .image_path(images[0])
                     .build();
-//            plantDictRepository.save(plantDictEntity);
+            dictRepository.save(dictEntity);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
