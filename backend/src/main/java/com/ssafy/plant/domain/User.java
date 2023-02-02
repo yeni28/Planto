@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.security.Timestamp;
 
@@ -18,18 +19,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name = "user_id")
     private String userId;
 
     @Column(nullable = false)
     private String name;
 
+    @Column(name = "profile_image_url")
     private String profileImageUrl;
 
     private String role;
 
-    @CreationTimestamp
-    private Timestamp createTime;
+    @CreatedDate
+    @Column(name = "create_date")
+    private Timestamp createdDate;
 
     @Builder
     public User(String userId, String name, String profileImageUrl, String role) {

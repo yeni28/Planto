@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${properties.mysql.username}
+    url: ${properties.mysql.url}
+    password: ${properties.mysql.password}
+
+  jpa:
+    generate-ddl: 'true'
+    properties:
+      hibernate:
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: create
+    show-sql: 'true'
+
+  redis:
+    host: ${properties.redis.host}
+    port: ${properties.redis.port}
+
+logging:
+  level:
+    rog:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
