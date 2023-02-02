@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .addFilter(corsFilter); // @CrossOrigin(인증X), 시큐리티 필터에 등록 인증(O)
 
         http.authorizeRequests()
-                .antMatchers(FRONT_URL+"/main/**")
+                .antMatchers(FRONT_URL+"/**")
                 .authenticated()
                 .anyRequest().permitAll()
 

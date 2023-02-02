@@ -54,4 +54,8 @@ public class UserService {
         // .readValue(Json 데이터, 변환할 클래스) 메소드를 이용해 바디값 읽어오기
         return oauthToken;
     }
+
+    public String saveUser(String access_token) {
+        return null;
+    }
 }

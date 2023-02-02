@@ -21,6 +21,19 @@ public class UserController {
 
         // 넘어온 인가코드로 accesstoken
         OauthToken oauthToken = userService.getAccessToken(code);
+
+        // 발급 받은 accessToken으로 카카오 회원 정보 저장
+        String User = userService.saveUser(oauthToken.getAccess_token());
+
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+        System.out.println(oauthToken);
+        System.out.println(User);
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+
         return oauthToken;
     }
 }
