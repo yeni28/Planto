@@ -27,8 +27,8 @@ services:
     labels:
       - "name=redis"
       - "mode=standalone"
-    expose:
-      - 6379
+    ports:
+      - 6379:6379
     # 컨테이너 종료시 재시작 여부 설정
     restart: always
   
