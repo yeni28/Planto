@@ -1,9 +1,15 @@
 import { KAKAO_AUTH_URL } from "./OAuth";
 import LoginImg from "../../assets/banner/kakao_large.png"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+
 export default function Login(){
 
     function KakaoLogin(){
+        
         window.location.href=KAKAO_AUTH_URL
+ 
     }
     
     return(
@@ -14,7 +20,11 @@ export default function Login(){
                 width:300,
             }} 
             src={LoginImg} alt="카카오로그인"></img>
-    </button>
+        </button>
+
+
+        <br></br>
+            <a href={KAKAO_AUTH_URL}>카카오로 시작하기</a>
         </div>
     )
 }
