@@ -34,4 +34,9 @@ public class DictController {
     public ResponseEntity<List<DictDTO>> dictListLeve(@PathVariable("level") String level){
         return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictListLevel(level));
     }
+
+    @GetMapping("/detail/{plantDictId}")
+    public ResponseEntity<DictDTO> dictDetail(@PathVariable("plantDictId") String plantDictId) {
+        return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictDetail(plantDictId));
+    }
 }

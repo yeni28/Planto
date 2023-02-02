@@ -55,4 +55,9 @@ public class DictService {
         return dictDTOs;
     }
 
+    public DictDTO getDictDetail(String plantDictId) {
+        long id = Integer.parseInt(plantDictId);
+        return dictRepository.findById(id).get().entityToDto();
+    }
+
 }
