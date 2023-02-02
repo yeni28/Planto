@@ -28,7 +28,6 @@ public class DictService {
 
     public List<DictDTO> getDictList() {
         List<DictEntity> dictEntities = dictRepository.findAll();
-
         List<DictDTO> dictDTOs = new ArrayList<>();
 
         for (DictEntity entity : dictEntities) {
@@ -36,6 +35,29 @@ public class DictService {
             dictDTOs.add(dictDTO);
         }
         return dictDTOs;
+    }
+
+    public List<DictDTO> getDictListLevel(String level) {
+        if (level.equals("beginner")){
+            level = "초보자";
+        } else if (level.equals("intermediate")){
+            level = "경험자";
+        } else if (level.equals("advanced")) {
+            level = "전문가";
+        }
+        List<DictDTO> dictDTOs = new ArrayList<>();
+        List<DictEntity> dictEntities = dictRepository.findByManageLevel(level);
+
+        for (DictEntity dictEntity : dictEntities) {
+            dictDTOs.add(dictEntity.entityToDto());
+        }
+
+        return dictDTOs;
+    }
+
+    public DictDTO getDictDetail(String plantDictId) {
+        long id = Integer.parseInt(plantDictId);
+        return dictRepository.findById(id).get().entityToDto();
     }
 
 }
