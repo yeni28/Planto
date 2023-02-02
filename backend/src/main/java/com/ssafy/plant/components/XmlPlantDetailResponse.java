@@ -47,6 +47,10 @@ public class XmlPlantDetailResponse {
             private String ignSeasonCodeNm;
             private String managelevelCodeNm;
             private String fncltyInfo;
+            private String speclmanageInfo;
+            private String adviseInfo;
+            private String plntbneNm;
+
         }
     }
 }
