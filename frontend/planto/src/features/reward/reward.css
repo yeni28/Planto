@@ -1,0 +1,18 @@
+.reward_top_wrapped{
+    margin: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.reward_text{
+
+}
+
+.reward_img{
+
+}
+.profile_img{
+    width:12rem;
+    height: 12rem;
+    border-radius: 50%;
+
+}
