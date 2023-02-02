@@ -9,6 +9,8 @@ function reward() {
   }
   return (
     <div>
+      {/* 업적 상단 블록 */}
+      {/* 상위 정보 */}
       <div className='reward_top_wrapped'>
         <div className='reward_text'>
           <div className="Myplanto_title">
@@ -23,7 +25,7 @@ function reward() {
             <p className='font-PreR reward_message'> 업적을 달성해서 
             <br></br>컬렉션을 완성해보세요!</p>
           </div>
-          
+
         </div>
 
         <div className='reward_img'>
@@ -31,6 +33,11 @@ function reward() {
           <img src="https://i.pinimg.com/564x/93/ff/82/93ff82add0a65ce3b24f2aa0b639cb50.jpg" alt=""
          />
         </div>
+      {/* 업적 로그 */}
+      <div>
+        
+      </div>
+      {/* 업적 하단 블록 */}
 
       </div>
       <BottomNav/>
