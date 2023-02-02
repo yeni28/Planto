@@ -12,15 +12,12 @@ function KakaoLogin() {
         const PARAMS = new URL(document.location).searchParams;
         const KAKAO_CODE = PARAMS.get('code');
 
+        console.log({KAKAO_CODE})
+        const backHost = `http://localhost:8080/api/v1/oauth/token&code=${KAKAO_CODE}`
+
         await axios({
-            url: 'https://kauth.kakao.com/oauth/token',
-            method: 'post',
-            data: {
-                grant_type: 'authorization_code', 
-                redirect_uri: REDIRECT_URI,
-                code: KAKAO_CODE,
-                client_id: CLIENT_ID
-            }
+            url: backHost,
+            method: 'GET',
         })
         .then((res) =>{
             console.log(res)

@@ -20,14 +20,16 @@ function reward() {
               <span className="font-PreEB"> {user.name}</span><span className="font-PreR">님!</span>
           </div>
           <div>
-            <span> 업적을 달성해서 <br></br> 컬렉션을 완성해보세요!</span>
+            <p className='font-PreR reward_message'> 업적을 달성해서 
+            <br></br>컬렉션을 완성해보세요!</p>
           </div>
+          
         </div>
 
         <div className='reward_img'>
           
-          <img src="https://i.pinimg.com/736x/a3/47/be/a347be2590c1e6266342f3bfbb2f9e06.jpg" alt=""
-          className='profile_img' />
+          <img src="https://i.pinimg.com/564x/93/ff/82/93ff82add0a65ce3b24f2aa0b639cb50.jpg" alt=""
+         />
         </div>
 
       </div>
