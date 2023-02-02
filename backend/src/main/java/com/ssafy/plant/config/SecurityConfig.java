@@ -23,7 +23,7 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig {
     private final UserRepository userRepository;
     private final CorsFilter corsFilter;
-    public static final String FRONT_URL = "http://13.125.75.241/";
+//    public static final String FRONT_URL = "http://localhost:3000/";
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .addFilter(corsFilter); // @CrossOrigin(인증X), 시큐리티 필터에 등록 인증(O)
 
         http.authorizeRequests()
-                .antMatchers(FRONT_URL+"/**")
+                .antMatchers("/main")
                 .authenticated()
                 .anyRequest().permitAll()
 
