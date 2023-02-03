@@ -1,7 +1,10 @@
 package com.ssafy.plant.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.plant.config.jwt.JwtProperties;
 import com.ssafy.plant.config.oauth.OauthToken;
 import com.ssafy.plant.config.oauth.Profile.KakaoProfile;
 import com.ssafy.plant.domain.User;
@@ -18,6 +21,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -56,25 +60,36 @@ public class UserService {
         return oauthToken;
     }
 
-    public User saveUser(String token) throws JsonProcessingException {
+    public String saveUser(String token) throws JsonProcessingException {
         KakaoProfile profile = searchProfile(token);
 
         String userId = "kakao" + profile.getId();
         String name = profile.properties.getNickname();
         String profileImageUrl = profile.kakao_account.getProfile().getProfile_image_url();
 
-        User userEntity = userRepository.findByUserId(userId);  // db에 저장 되어 있는 유저인지 확인
+        User user = userRepository.findByUserId(userId);  // db에 저장 되어 있는 유저인지 확인
 
-        if (userEntity == null) {
-            User user = User.builder()
+        if (user == null) {
+            user = User.builder()
                     .userId(userId)
                     .name(name)
                     .profileImageUrl(profileImageUrl)
                     .role("ROLE_USER")
                     .build();
-            return userRepository.save(user);
+            userRepository.save(user);
         }
-        return userEntity;
+        return createToken(user);
+    }
+
+    public String createToken(User user) {
+        String jwtToken = JWT.create()
+                .withSubject(user.getUserId())
+                .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
+                .withClaim("id", user.getId())
+                .withClaim("name", user.getName())
+                .withClaim("profileImageUrl", user.getProfileImageUrl())
+                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+        return jwtToken;
     }
 
     private KakaoProfile searchProfile(String token) throws JsonProcessingException {
