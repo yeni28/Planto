@@ -28,13 +28,24 @@ public class UserService {
     private String redirectId;
     public OauthToken getAccessToken(String code) throws JsonProcessingException {
         RestTemplate rt = new RestTemplate();
+<<<<<<< HEAD
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+=======
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+>>>>>>> aabf9581c2f0b6c194091171524aadb2540c63fd
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
         params.add("client_id", clientId);
         params.add("redirect_uri", redirectId);
         params.add("code", code);
+<<<<<<< HEAD
+=======
+
+>>>>>>> aabf9581c2f0b6c194091171524aadb2540c63fd
         // HttpHeader 와 HttpBody 정보를 하나의 객체에 담기
         HttpEntity<MultiValueMap<String, String>> TokenRequest =
                 new HttpEntity<>(params, headers);
