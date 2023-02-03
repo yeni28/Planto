@@ -1,15 +1,25 @@
 import './pot_enroll.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { QrReader } from 'react-qr-reader';
+import { useNavigate } from "react-router-dom";
 import BottomNav from '../../features/nav/BottomNav';
 
 function Pot_enroll() {
-  const [data, setData] = useState('No result');
+  const navigate = useNavigate();
+
+  const PARAMS = new URL(document.location).searchParams;
+  const SECRET_KEY = PARAMS.get('serialNo');
 
   const previewStyle = {
     height:825,
     width: 1100
   };
+
+  if (SECRET_KEY) {
+    alert("화분을 등록하시겠습니까?")
+    console.log(SECRET_KEY)
+  }
+  
 
   return (
     <div id='Pot_enroll'>
@@ -17,7 +27,7 @@ function Pot_enroll() {
         <QrReader
           onResult={(result, error) => {
             if (!!result) {
-              setData(result?.text);
+              navigate(result?.text)
             }
 
             if (!!error) {
@@ -29,9 +39,7 @@ function Pot_enroll() {
           videoStyle={{ width: '100%' }}
         />
       </div>
-      
-      <p>{data}</p>
-        <BottomNav />
+      <BottomNav />
       
     </div>
   );
