@@ -9,7 +9,6 @@ import Enroll from './features/enrollment/Pot_enroll';
 import Reward from './features/reward/reward';
 import PlantData from './data/PlantData';
 import KakaoLogin from './features/login/KakaoLogin';
-import adapter from 'webrtc-adapter';
 
 
 
