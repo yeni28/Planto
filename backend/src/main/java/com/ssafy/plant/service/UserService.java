@@ -3,6 +3,8 @@ package com.ssafy.plant.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.plant.config.oauth.OauthToken;
+import com.ssafy.plant.config.oauth.Profile.KakaoProfile;
+import com.ssafy.plant.domain.User;
 import com.ssafy.plant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.StandardCharsets;
 
 @Service
 @RequiredArgsConstructor
@@ -52,7 +56,44 @@ public class UserService {
         return oauthToken;
     }
 
-    public String saveUser(String access_token) {
-        return null;
+    public User saveUser(String token) throws JsonProcessingException {
+        KakaoProfile profile = searchProfile(token);
+
+        String userId = "kakao" + profile.getId();
+        String name = profile.properties.getNickname();
+        String profileImageUrl = profile.kakao_account.getProfile().getProfile_image_url();
+
+        User userEntity = userRepository.findByUserId(userId);  // db에 저장 되어 있는 유저인지 확인
+
+        if (userEntity == null) {
+            User user = User.builder()
+                    .userId(userId)
+                    .name(name)
+                    .profileImageUrl(profileImageUrl)
+                    .role("ROLE_USER")
+                    .build();
+            return userRepository.save(user);
+        }
+        return userEntity;
+    }
+
+    private KakaoProfile searchProfile(String token) throws JsonProcessingException {
+        RestTemplate rt = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token);
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        HttpEntity<MultiValueMap<String, String>> profileRequest = new HttpEntity<>(headers);
+        ResponseEntity<String> profileResponse = rt.exchange(
+                "https://kapi.kakao.com/v2/user/me",
+                HttpMethod.POST,
+                profileRequest,
+                String.class
+        );
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        KakaoProfile kakaoProfile = objectMapper.readValue(profileResponse.getBody(), KakaoProfile.class);
+        return kakaoProfile;
+
     }
 }

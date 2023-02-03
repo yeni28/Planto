@@ -2,6 +2,7 @@ package com.ssafy.plant.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ssafy.plant.config.oauth.OauthToken;
+import com.ssafy.plant.domain.User;
 import com.ssafy.plant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,24 +18,15 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/token") // 프론트에서 인가코드 받아오는 url
-    public OauthToken getLogin(@RequestParam("code") String code) throws JsonProcessingException {
+    public User getLogin(@RequestParam("code") String code) throws JsonProcessingException {
         System.out.println("인가코드받아왔어요");
         System.out.println(code);
         // 넘어온 인가코드로 accesstoken
         OauthToken oauthToken = userService.getAccessToken(code);
 
         // 발급 받은 accessToken으로 카카오 회원 정보 저장
-        String User = userService.saveUser(oauthToken.getAccess_token());
-
-        System.out.println("==========================================");
-        System.out.println("==========================================");
-        System.out.println("==========================================");
-        System.out.println(oauthToken);
-        System.out.println(User);
-        System.out.println("==========================================");
-        System.out.println("==========================================");
-        System.out.println("==========================================");
-
-        return oauthToken;
+        User user = userService.saveUser(oauthToken.getAccess_token());
+        System.out.println(user);
+        return user;
     }
 }
