@@ -10,15 +10,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+<<<<<<< HEAD
+@RequestMapping("/api/v1/oauth")
+=======
 @RequestMapping("/api")
+>>>>>>> aabf9581c2f0b6c194091171524aadb2540c63fd
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
+<<<<<<< HEAD
+    @GetMapping("/token") // 프론트에서 인가코드 받아오는 url
+    public OauthToken getLogin(@RequestParam("code") String code) throws JsonProcessingException {
+        System.out.println("인가코드받아왔어요");
+        System.out.println(code);
+=======
     @GetMapping("/oauth/token") // 프론트에서 인가코드 받아오는 url
     public OauthToken getLogin(@RequestParam("code") String code) throws JsonProcessingException {
 
+>>>>>>> aabf9581c2f0b6c194091171524aadb2540c63fd
         // 넘어온 인가코드로 accesstoken
         OauthToken oauthToken = userService.getAccessToken(code);
 

@@ -23,7 +23,6 @@ function reward() {
             <p className='font-PreR reward_message'> 업적을 달성해서 
             <br></br>컬렉션을 완성해보세요!</p>
           </div>
-          
         </div>
 
         <div className='reward_img'>
