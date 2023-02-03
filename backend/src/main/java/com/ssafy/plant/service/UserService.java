@@ -20,6 +20,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
@@ -85,7 +86,7 @@ public class UserService {
         String jwtToken = JWT.create()
                 .withSubject(user.getUserId())
                 .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-                .withClaim("id", user.getId())
+                .withClaim("userId", user.getUserId())
                 .withClaim("name", user.getName())
                 .withClaim("profileImageUrl", user.getProfileImageUrl())
                 .sign(Algorithm.HMAC512(JwtProperties.SECRET));
@@ -109,6 +110,11 @@ public class UserService {
         ObjectMapper objectMapper = new ObjectMapper();
         KakaoProfile kakaoProfile = objectMapper.readValue(profileResponse.getBody(), KakaoProfile.class);
         return kakaoProfile;
+    }
 
+    public User getUser(HttpServletRequest request) {   // 인증된 사용자 정보 가져오기
+        String userId = (String) request.getAttribute("userId");
+        User user = userRepository.findByUserId(userId);
+        return user;
     }
 }
