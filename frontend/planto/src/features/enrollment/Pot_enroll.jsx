@@ -1,34 +1,67 @@
 import './pot_enroll.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
-import { useNavigate } from "react-router-dom";
 import BottomNav from '../../features/nav/BottomNav';
+import { AiFillLeftCircle } from "react-icons/ai";
+import { BsArrowRightCircleFill } from "react-icons/bs";
+import QrReaderImg from "../../assets/background/qr_scan_img.png"
+import axios from 'axios'
+
 
 function Pot_enroll() {
-  const navigate = useNavigate();
 
-  const PARAMS = new URL(document.location).searchParams;
-  const SECRET_KEY = PARAMS.get('serialNo');
+  const [qrLoading, setQrLoading] = useState(false)
+  const [serialNo, setSerialNo] = useState()
 
   const previewStyle = {
     height:825,
     width: 1100
   };
 
-  if (SECRET_KEY) {
-    alert("화분을 등록하시겠습니까?")
-    console.log(SECRET_KEY)
+  function setPlant(){
+    axios({
+
+    })  
+    console.log(serialNo)
   }
-  
+
 
   return (
-    <div id='Pot_enroll'>
+    <div id='Pot-enroll'>
+      <div className='circle-frame' >
+        <AiFillLeftCircle className='circle-btn'/>
+      </div>
+      <div className='fil-white'></div>
+
       <div>
+        <img className='qr-reader-frame' src={QrReaderImg} alt="qr reader bg" />
+      </div>
+
+      {
+        qrLoading &&
+        <div className='info-frame'>
+          <div className='info-wrapper'>
+            <div className='info'>
+              <span>
+                <strong className='hTag'>나의 플랜토 정보 입력</strong>
+                <br />
+                <span className='pTag'>추가 정보를 입력해 플랜토를 시작합니다!</span>
+              </span>
+            </div>
+            <div>
+              <BsArrowRightCircleFill onClick={() => setPlant()} style={{marginLeft: "35%", width: "55px"}} className='circle-btn p-right'/>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div id='qr-reader'>
         <QrReader
           constraints={ {facingMode: 'environment'}}
           onResult={(result, error) => {
             if (!!result) {
-              navigate(result?.text)
+              setSerialNo(result?.text)
+              setQrLoading(true)
             }
 
             if (!!error) {
