@@ -29,13 +29,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
             return;
         }
         String token = jwtHeader.replace(JwtProperties.TOKEN_PREFIX, "");
-        String userId = null;
+        String socialId = null;
         try {
             // token을 비밀 키로 복호화함, 클레임에 넣어두었던 id값을 가져옴
-            userId = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET))
+            socialId = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET))
                     .build()
                     .verify(token)
-                    .getClaim("userId")
+                    .getClaim("socialId")
                     .asString();
         } catch (TokenExpiredException e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
             e.printStackTrace();
             request.setAttribute(JwtProperties.HEADER_STRING, "유효하지 않은 토큰입니다.");
         }
-        request.setAttribute("userId", userId);
+        request.setAttribute("socialId", socialId);
         filterChain.doFilter(request, response);    // filterChain에 request, response 값 넘김
     }
 }
