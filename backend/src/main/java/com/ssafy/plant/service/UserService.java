@@ -1,8 +1,13 @@
 package com.ssafy.plant.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.plant.config.jwt.JwtProperties;
 import com.ssafy.plant.config.oauth.OauthToken;
+import com.ssafy.plant.config.oauth.Profile.KakaoProfile;
+import com.ssafy.plant.domain.User;
 import com.ssafy.plant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +19,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -63,7 +72,60 @@ public class UserService {
         return oauthToken;
     }
 
-    public String saveUser(String access_token) {
-        return null;
+    public String saveUser(String token) throws JsonProcessingException {
+        KakaoProfile profile = searchProfile(token);
+
+        String userId = "kakao" + profile.getId();
+        String name = profile.properties.getNickname();
+        String profileImageUrl = profile.kakao_account.getProfile().getProfile_image_url();
+
+        User user = userRepository.findByUserId(userId);  // db에 저장 되어 있는 유저인지 확인
+
+        if (user == null) {
+            user = User.builder()
+                    .userId(userId)
+                    .name(name)
+                    .profileImageUrl(profileImageUrl)
+                    .role("ROLE_USER")
+                    .build();
+            userRepository.save(user);
+        }
+        return createToken(user);
+    }
+
+    public String createToken(User user) {
+        String jwtToken = JWT.create()
+                .withSubject(user.getUserId())
+                .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
+                .withClaim("userId", user.getUserId())
+                .withClaim("name", user.getName())
+                .withClaim("profileImageUrl", user.getProfileImageUrl())
+                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+        return jwtToken;
+    }
+
+    private KakaoProfile searchProfile(String token) throws JsonProcessingException {
+        RestTemplate rt = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token);
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        HttpEntity<MultiValueMap<String, String>> profileRequest = new HttpEntity<>(headers);
+        ResponseEntity<String> profileResponse = rt.exchange(
+                "https://kapi.kakao.com/v2/user/me",
+                HttpMethod.POST,
+                profileRequest,
+                String.class
+        );
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        KakaoProfile kakaoProfile = objectMapper.readValue(profileResponse.getBody(), KakaoProfile.class);
+        return kakaoProfile;
+    }
+
+    public User getUser(HttpServletRequest request) {   // 인증된 사용자 정보 가져오기
+        String userId = (String) request.getAttribute("userId");
+        User user = userRepository.findByUserId(userId);
+        return user;
     }
 }
