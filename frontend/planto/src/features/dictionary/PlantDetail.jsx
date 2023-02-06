@@ -7,6 +7,7 @@ import humid from '../../assets/icons/humid.png'
 import lux from '../../assets/icons/lux.png'
 // nav바
 import BottomNav from '../nav/BottomNav';
+import PlantCarousel from './PlantCarousel'
 
 
 function PlantDetail() {
@@ -62,10 +63,8 @@ function PlantDetail() {
         </div>
         {/* 관리방법 */}
         <div>
-            <p className='font-PreSB infoTitle'>관리 TIP</p>
-            <div className='infobox'>
-                <p className='font-PreL'> {plant.manageInfo}</p>
-            </div>
+            <p className='font-PreSB infoTitle'>TIP</p>
+            <PlantCarousel/>
         </div>
         {/* 비슷한 식물(AI추천) */}
         <div>
