@@ -1,8 +1,12 @@
 import React from 'react'
+import BottomNav from '../nav/BottomNav'
 
 function Expert() {
   return (
-    <div>Expert</div>
+    <div>
+      Expert
+      <BottomNav/>
+    </div>
   )
 }
 
