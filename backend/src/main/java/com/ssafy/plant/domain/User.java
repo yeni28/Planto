@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -30,9 +31,12 @@ public class User {
 
     private String role;
 
-    @CreatedDate
-    @Column(name = "create_date")
-    private Timestamp createdDate;
+    private LocalDateTime createDate;
+
+    @PrePersist // DB에 INSERT 되기 직전에 실행
+    public void createDate() {
+        this.createDate = LocalDateTime.now();
+    }
 
     @Builder
     public User(String userId, String name, String profileImageUrl, String role) {
@@ -41,7 +45,4 @@ public class User {
         this.profileImageUrl = profileImageUrl;
         this.role = role;
     }
-
-
-
 }

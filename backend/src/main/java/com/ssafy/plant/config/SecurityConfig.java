@@ -6,6 +6,8 @@ package com.ssafy.plant.config;
 // 3. 액세스 토큰을 이용해 사용자 정보 불러오기
 // 4. 불러온 사용자 정보를 토대로 자동 회원가입/로그인 진행
 
+import com.ssafy.plant.config.jwt.CustomAuthenticationEntryPoint;
+import com.ssafy.plant.config.jwt.JwtRequestFilter;
 import com.ssafy.plant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -50,10 +52,10 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
 
                 .and()
-                .exceptionHandling();
-//                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
-//        http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 
