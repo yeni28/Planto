@@ -60,4 +60,14 @@ public class DictService {
         return dictRepository.findById(id).get().entityToDto();
     }
 
+    public List<DictDTO> getDictDark(){
+        List<DictDTO> dictDTOS = new ArrayList<>();
+        List<DictEntity> dictEntities = dictRepository.findByLightMax(800);
+
+        for (DictEntity dictEntity : dictEntities) {
+            dictDTOS.add(dictEntity.entityToDto());
+        }
+
+        return dictDTOS;
+    }
 }
