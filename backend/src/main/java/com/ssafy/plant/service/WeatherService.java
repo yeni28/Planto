@@ -75,9 +75,9 @@ public class WeatherService {
             String SNO = "적설없음";
             String PCP = "강수없음";
             String TMP = "0";
+            String SKY = "1";
 
             ArrayList<WeatherEntity> weathers = new ArrayList<>();
-
             for (Map<String, String> weather:res) {
                 if (weather.get("fcstTime").equals(fcstTime)) {
                     if (weather.get("category").equals("TMP")){
@@ -86,10 +86,12 @@ public class WeatherService {
                         SNO = weather.get("fcstValue");
                     } else if (weather.get("category").equals("PCP")){
                         PCP = weather.get("fcstValue");
+                    } else if (weather.get("category").equals("SKY")){
+                        SKY = weather.get("fcstValue");
                     }
                     fcstDate = weather.get("fcstDate");
                 } else {
-                    WeatherEntity weatherEntity = new WeatherEntity(baseTime, fcstDate, fcstTime, PCP, SNO, TMP);
+                    WeatherEntity weatherEntity = new WeatherEntity(baseTime, fcstDate, fcstTime, PCP, SNO, TMP, SKY);
                     if (weather.get("category").equals("TMP")) {
                         TMP = weather.get("fcstValue");
                     }
