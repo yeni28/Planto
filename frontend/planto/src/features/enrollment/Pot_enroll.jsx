@@ -1,13 +1,40 @@
-import React from 'react'
-import BottomNav from '../nav/BottomNav'
+import './pot_enroll.css';
+import React, { useState } from 'react';
+import { QrReader } from 'react-qr-reader';
+import BottomNav from '../../features/nav/BottomNav';
 
-function component() {
+function Pot_enroll() {
+  const [data, setData] = useState('No result');
+
+  const previewStyle = {
+    height:825,
+    width: 1100
+  };
+
   return (
-    <div>component
+    <div id='Pot_enroll'>
+      <div>
+        <QrReader
+          onResult={(result, error) => {
+            if (!!result) {
+              setData(result?.text);
+            }
 
-      <BottomNav/>
+            if (!!error) {
+              console.info(error);
+            }
+          }}
+          // videoStyle={previewStyle}
+          videoContainerStyle={previewStyle}
+          videoStyle={{ width: '100%' }}
+        />
+      </div>
+      
+      <p>{data}</p>
+        <BottomNav />
+      
     </div>
-  )
+  );
 }
 
-export default component
+export default Pot_enroll

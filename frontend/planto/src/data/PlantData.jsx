@@ -10,7 +10,7 @@ function PlantData() {
           method: "get",
           url: "http://13.125.75.241/api/v1/dict",
       }).then(function (response) {
-          console.log(response.data)
+        //   console.log(response.data)
           setPlants(response.data)
       });
       
@@ -21,12 +21,12 @@ function PlantData() {
 return (
   <div>
       <ul>
+        {plants}
           {plants.map((item)=>{return (<DictPage plants={item} test={"test data"}/>)})}
       </ul>
 
       <h1> This is Plant Data Page.</h1>
-
-      <DictPage plants={plants} test={"test"}/>
+    
   </div>
 )
 }

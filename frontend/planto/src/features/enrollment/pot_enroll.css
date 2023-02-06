@@ -1,0 +1,9 @@
+#Pot_enroll{
+    overflow: hidden;  
+    white-space: nowrap;
+    word-break:break-all;
+}
+
+#video{
+    left: -350px !important;
+}
