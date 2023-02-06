@@ -6,6 +6,8 @@ package com.ssafy.plant.config;
 // 3. 액세스 토큰을 이용해 사용자 정보 불러오기
 // 4. 불러온 사용자 정보를 토대로 자동 회원가입/로그인 진행
 
+import com.ssafy.plant.config.jwt.CustomAuthenticationEntryPoint;
+import com.ssafy.plant.config.jwt.JwtRequestFilter;
 import com.ssafy.plant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -23,11 +25,8 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig {
     private final UserRepository userRepository;
     private final CorsFilter corsFilter;
-<<<<<<< HEAD
+
 //    public static final String FRONT_URL = "http://localhost:3000/";
-=======
-    public static final String FRONT_URL = "http://13.125.75.241/";
->>>>>>> aabf9581c2f0b6c194091171524aadb2540c63fd
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -41,19 +40,14 @@ public class SecurityConfig {
                 .addFilter(corsFilter); // @CrossOrigin(인증X), 시큐리티 필터에 등록 인증(O)
 
         http.authorizeRequests()
-<<<<<<< HEAD
                 .antMatchers("/main")
-=======
-                .antMatchers(FRONT_URL+"/**")
->>>>>>> aabf9581c2f0b6c194091171524aadb2540c63fd
                 .authenticated()
                 .anyRequest().permitAll()
-
                 .and()
-                .exceptionHandling();
-//                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
-//        http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 

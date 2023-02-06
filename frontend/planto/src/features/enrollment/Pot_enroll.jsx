@@ -25,6 +25,7 @@ function Pot_enroll() {
     <div id='Pot_enroll'>
       <div>
         <QrReader
+          constraints={ {facingMode: 'environment'}}
           onResult={(result, error) => {
             if (!!result) {
               navigate(result?.text)

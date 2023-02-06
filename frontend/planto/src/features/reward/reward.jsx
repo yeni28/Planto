@@ -8,7 +8,7 @@ function reward() {
     name:'황채연'
   }
   return (
-    <div>
+    <div style={{backgroundColor:'#FAF8F8', padding:'1.2rem'}}>
       <div className='reward_top_wrapped'>
         <div className='reward_text'>
           <div className="Myplanto_title">
