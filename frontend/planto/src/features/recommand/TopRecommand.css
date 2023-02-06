@@ -1,0 +1,12 @@
+.topreco{
+    position: relative;
+}
+.beginnerBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(107, 190, 118, 0.62) 2.22%, rgba(48, 133, 43, 0.62) 100%);
+}
+.ExpertBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(178, 80, 232, 0.62) 2.22%, rgba(96, 9, 128, 0.62) 87.31%);}

@@ -5,11 +5,11 @@ import {Link} from 'react-router-dom'
 import BottomNav from '../nav/BottomNav'
 import "./Beginner.css"
 // 이미지
-import easyBig from '../../assets/icons/easybig.png'
+import TopRecommand from './TopRecommand';
 function Beginner() {
   
   const [bplants, setBPlants] =  useState([]);
-
+  const reconame = 'Beginner'
   useEffect(() => {
     axios({
         method: "get",
@@ -22,14 +22,10 @@ function Beginner() {
 
   return (
     <div>
-      <div>
-        <div className='beginnerBack'>
-          <img src={easyBig} alt="Easy Plant" style={{width:'10rem',position:'absolute',left:'15.2rem',top:'1.4rem',overflow:'hidden'}}/>
-          <p className=' font-PreSB recommandText'>초보 식물 집사가 <br/> 기르기 좋은 식물 추천</p>
-        </div>
-      
+      <TopRecommand reconame = {reconame}/>
+      <div className="RecommandPlant">
+      <div style={{marginTop:"1.2rem"}}>{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>
       </div>
-      <div >{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>
       <BottomNav/>
     </div>
   )
@@ -40,21 +36,22 @@ function BPlant({bplant}){
   const bplantName = arr[0]
   const bplantNameSecond = arr[1] !== undefined ? arr[1].slice(0,-1):""
   
-  
+
+
   return (
-    <div >
-      <Link to={`/dictionary/${bplant.bplantDictId}`} state={{bplant:bplant, bplantName:bplantName, bplantNameSecond:bplantNameSecond}}>
-        <div className='plant_card' style={{marginBottom:'1.2rem',}}>
+    <div>
+      <Link to={`/dictionary/${bplant.plantDictId}`} state={{plant:bplant, plantName:bplantName, plantNameSecond:bplantNameSecond}}>
+        <div className='plant_line' style={{marginBottom:'1.2rem',}}>
           <div className="plant_image"> 
-            <div className="img_circle" style={{
+            <div className="img_square" style={{
             backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${bplant.imagePath}")`
             }}>
             </div>
           </div>
-          <div className='plant_text'>
+          <div className='plant_text' style={{marginLeft:'0.5rem',marginTop:'0.8rem'}}>
+            <p className='font-PreL plant_name' style={{marginBottom:'-0.2rem'}}>{bplantName}</p>  
+            <p className='font-PreM plant_name_second' style={{marginBottom:'-0.2rem',color:'#3BD476'}}>{bplantNameSecond}</p>
             <p className='font-PreL plant_name_eng'>{bplant.plantEng}</p>
-            <p className='font-PreM plant_name'>{bplantName}</p>  
-            <p className='font-PreM text-stone-400 plant_name_second'>{bplantNameSecond}</p>
           </div>
         </div>
       </Link>
