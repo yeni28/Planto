@@ -34,6 +34,16 @@ https://docs.google.com/spreadsheets/d/1xuw4zW-qgKjzGF9_SGADlVzwjqH90jnQYqsnnbyt
 
 ### 터치
 
+#### 살살터치
+
+![기분좋음 (2)](https://user-images.githubusercontent.com/57944215/216546556-33f672da-6b0a-45b0-a35f-34f97d48cdcd.gif)
+
+
+#### 세개 터치
+
+![슬픔 (2) (2)](https://user-images.githubusercontent.com/57944215/216546458-102b3745-da79-4fec-8282-8b2546358a20.gif)
+
+
 ### 딱콩
 
 ![화남](https://user-images.githubusercontent.com/57944215/216273239-5a00e4c3-3da5-47c1-a0b7-6a094bf0a03d.gif)
