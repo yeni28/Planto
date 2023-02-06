@@ -65,15 +65,15 @@ public class UserService {
     public String saveUser(String token) throws JsonProcessingException {
         KakaoProfile profile = searchProfile(token);
 
-        String userId = "kakao" + profile.getId();
+        String socialId = "kakao" + profile.getId();
         String name = profile.properties.getNickname();
         String profileImageUrl = profile.kakao_account.getProfile().getProfile_image_url();
 
-        User user = userRepository.findByUserId(userId);  // db에 저장 되어 있는 유저인지 확인
+        User user = userRepository.findBySocialId(socialId);  // db에 저장 되어 있는 유저인지 확인
 
         if (user == null) {
             user = User.builder()
-                    .userId(userId)
+                    .socialId(socialId)
                     .name(name)
                     .profileImageUrl(profileImageUrl)
                     .role("ROLE_USER")
@@ -85,9 +85,9 @@ public class UserService {
 
     public String createToken(User user) {
         String jwtToken = JWT.create()
-                .withSubject(user.getUserId())
+                .withSubject(user.getSocialId())
                 .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-                .withClaim("userId", user.getUserId())
+                .withClaim("socialId", user.getSocialId())
                 .withClaim("name", user.getName())
                 .withClaim("profileImageUrl", user.getProfileImageUrl())
                 .sign(Algorithm.HMAC512(JwtProperties.SECRET));
@@ -114,8 +114,8 @@ public class UserService {
     }
 
     public User getUser(HttpServletRequest request) {   // 인증된 사용자 정보 가져오기
-        String userId = (String) request.getAttribute("userId");
-        User user = userRepository.findByUserId(userId);
+        String socialId = (String) request.getAttribute("socialId");
+        User user = userRepository.findBySocialId(socialId);
         return user;
     }
 }
