@@ -22,7 +22,7 @@ function Main(){
             </div>
             <div>
                 <div className="main_back_img">
-                <img src={backImg}  alt="background"className="main_back_img"></img>
+                <img src={backImg}  alt="background"></img>
                 </div>
                 
                 <button className="main_btn font-PreSB " onClick={() => {navigate("/enrollment");}}> + 플랜토 등록하기! </button>

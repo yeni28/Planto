@@ -1,5 +1,4 @@
 .reward_top_wrapped{
-    margin: 0.5rem;
     display: flex;
     justify-content: space-between;
 }
@@ -10,8 +9,7 @@
 }
 
 .reward_img {
-    margin-top: 2rem;
-    margin-right: 1rem;
+
     width:150px;
     height:150px;
     border-radius: 50%;
