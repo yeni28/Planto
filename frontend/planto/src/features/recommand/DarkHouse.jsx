@@ -6,7 +6,7 @@ function Darkhouse() {
 
   return (
     <div>
-        darkhouse
+      darkhouse
       <BottomNav/>
     </div>
   )
