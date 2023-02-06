@@ -1,44 +1,32 @@
-package com.ssafy.plant.domain;
+package com.ssafy.plant.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.*;
-
 @Getter
 @NoArgsConstructor
 @ToString
-@Entity
-@Table(name = "weather")
-public class WeatherEntity {
-
-    @Id
-    @Column(name = "weather_id", length = 30, unique = true, nullable = false)
+public class WeatherDTO {
     private String id;
 
-    @Column(length = 20)
     private String baseDate;
 
-    @Column(length = 20)
     private String fcstDate;
 
-    @Column(length = 20)
     private String fcstTime;
 
-    @Column(length = 10)
     private String PCP;
 
-    @Column(length = 10)
     private String SNO;
 
-    @Column(length = 10)
     private String TMP;
 
-    //빌더
+    private String SKY;
+
     @Builder
-    public WeatherEntity(String baseDate, String fcstDate, String fcstTime, String PCP, String SNO, String TMP) {
+    public WeatherDTO(String baseDate, String fcstDate, String fcstTime, String PCP, String SNO, String TMP, String SKY) {
         this.id = baseDate + fcstDate + fcstTime;
         this.baseDate = baseDate;
         this.fcstDate = fcstDate;
@@ -46,5 +34,6 @@ public class WeatherEntity {
         this.PCP = PCP;
         this.SNO = SNO;
         this.TMP = TMP;
+        this.SKY = SKY;
     }
 }

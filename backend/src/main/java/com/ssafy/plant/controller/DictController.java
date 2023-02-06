@@ -39,4 +39,9 @@ public class DictController {
     public ResponseEntity<DictDTO> dictDetail(@PathVariable("plantDictId") String plantDictId) {
         return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictDetail(plantDictId));
     }
+
+    @GetMapping("/dark")
+    public ResponseEntity<List<DictDTO>> dictDark(){
+        return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictDark());
+    }
 }
