@@ -2,7 +2,7 @@ package com.ssafy.plant.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.plant.config.mqtt.MqttConfigSend;
-import com.ssafy.plant.domain.WeatherEntity;
+import com.ssafy.plant.dto.WeatherDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
@@ -77,7 +77,7 @@ public class WeatherService {
             String TMP = "0";
             String SKY = "1";
 
-            ArrayList<WeatherEntity> weathers = new ArrayList<>();
+            ArrayList<WeatherDTO> weathers = new ArrayList<>();
             for (Map<String, String> weather:res) {
                 if (weather.get("fcstTime").equals(fcstTime)) {
                     if (weather.get("category").equals("TMP")){
@@ -91,17 +91,17 @@ public class WeatherService {
                     }
                     fcstDate = weather.get("fcstDate");
                 } else {
-                    WeatherEntity weatherEntity = new WeatherEntity(baseTime, fcstDate, fcstTime, PCP, SNO, TMP, SKY);
+                    WeatherDTO weatherDTO = new WeatherDTO(baseTime, fcstDate, fcstTime, PCP, SNO, TMP, SKY);
                     if (weather.get("category").equals("TMP")) {
                         TMP = weather.get("fcstValue");
                     }
                     fcstTime = weather.get("fcstTime");
-                    weathers.add(weatherEntity);
+                    weathers.add(weatherDTO);
                 }
             }
 
             String weathersJson = objectMapper.writeValueAsString(weathers);
-
+            System.out.println(weathersJson);
             return weathersJson;
 
         } catch (Exception e) {
