@@ -24,8 +24,8 @@ public class UserController {
 
     @GetMapping("/oauth/token") // 프론트에서 인가코드 받아오는 url
     public ResponseEntity<String> getLogin(@RequestParam("code") String code) throws JsonProcessingException {
-//        System.out.println("인가코드받아왔어요");
-//        System.out.println(code);
+        System.out.println("인가코드받아왔어요");
+        System.out.println(code);
         // 넘어온 인가코드로 accesstoken
         OauthToken oauthToken = userService.getAccessToken(code);
 
