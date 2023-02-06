@@ -1,14 +1,14 @@
 package com.ssafy.plant.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.security.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,10 +18,15 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(nullable = false, unique = true, name = "user_id")
-    private String userId;
+//    @JsonIgnoreProperties({"user"})
+//    @OneToMany(mappedBy ="user", fetch=FetchType.LAZY)
+//    private List<Plant> plants;
+
+    @Column(nullable = false, unique = true, name = "socialId")
+    private String socialId;
 
     @Column(nullable = false)
     private String name;
@@ -31,6 +36,7 @@ public class User {
 
     private String role;
 
+    @Column(name = "create_date")
     private LocalDateTime createDate;
 
     @PrePersist // DB에 INSERT 되기 직전에 실행
@@ -39,8 +45,8 @@ public class User {
     }
 
     @Builder
-    public User(String userId, String name, String profileImageUrl, String role) {
-        this.userId = userId;
+    public User(String socialId, String name, String profileImageUrl, String role) {
+        this.socialId = socialId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
         this.role = role;
