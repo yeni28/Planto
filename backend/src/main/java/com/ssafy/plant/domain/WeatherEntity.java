@@ -36,9 +36,12 @@ public class WeatherEntity {
     @Column(length = 10)
     private String TMP;
 
+    @Column(length = 10)
+    private String SKY;
+
     //빌더
     @Builder
-    public WeatherEntity(String baseDate, String fcstDate, String fcstTime, String PCP, String SNO, String TMP) {
+    public WeatherEntity(String baseDate, String fcstDate, String fcstTime, String PCP, String SNO, String TMP, String SKY) {
         this.id = baseDate + fcstDate + fcstTime;
         this.baseDate = baseDate;
         this.fcstDate = fcstDate;
@@ -46,5 +49,6 @@ public class WeatherEntity {
         this.PCP = PCP;
         this.SNO = SNO;
         this.TMP = TMP;
+        this.SKY = SKY;
     }
 }

@@ -13,7 +13,7 @@ function KakaoLogin() {
         const KAKAO_CODE = PARAMS.get('code');
 
         console.log({KAKAO_CODE})
-        const backHost = `http://localhost:8080/api/v1/oauth/token&code=${KAKAO_CODE}`
+        const backHost = `http://localhost:8080/api/v1/oauth/token?code=${KAKAO_CODE}`
 
         await axios({
             url: backHost,

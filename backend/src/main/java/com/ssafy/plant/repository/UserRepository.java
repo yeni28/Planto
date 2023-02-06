@@ -4,5 +4,6 @@ import com.ssafy.plant.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUserId(String userId);
+    User findBySocialId(String socialId);
+    User findByUserId(Long userId);
 }
