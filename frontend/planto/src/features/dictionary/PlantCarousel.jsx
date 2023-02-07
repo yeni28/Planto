@@ -1,4 +1,4 @@
-import React,{Component, useState}from 'react'
+import React,{ useState, useRef, useMemo}from 'react'
 import {useLocation} from "react-router-dom"
 // carousel 라이브러리
 import Slider from 'react-slick'
@@ -25,12 +25,41 @@ const PlantCarousel= ()=> {
         pauseOnHover: true
 
       };
-
+    // 
     // 더보기 버튼
-    const [isMoreView, setIsMoreView] = useState(false);
-    const onClickMoreViewBtn = () =>{
-        setIsMoreView(!isMoreView);
-    }; //클릭 시 상태 반전
+    const [isShowMore, setIsShowMore] = useState(false);
+    // 글자수 제한
+    const textLimit = useRef(60);
+    const functionInfo = useMemo(()=>{
+        const shortReview = plant.functionInfo.slice(0, textLimit.current);
+
+        if (plant.functionInfo.length > textLimit.current){
+            if (isShowMore) {return plant.functionInfo;}
+            return shortReview;
+        }
+        return plant.functionInfo;
+    }, [isShowMore])
+      
+    const manageInfo = useMemo(()=>{
+        const shortReview = plant.manageInfo.slice(0, textLimit.current);
+
+        if (plant.manageInfo.length > textLimit.current){
+            if (isShowMore) {return plant.manageInfo;}
+            return shortReview;
+        }
+        return plant.manageInfo;
+    }, [isShowMore])
+      
+    const adviceInfo = useMemo(()=>{
+        const shortReview = plant.adviceInfo.slice(0, textLimit.current);
+
+        if (plant.adviceInfo.length > textLimit.current){
+            if (isShowMore) {return plant.adviceInfo;}
+            return shortReview;
+        }
+        return plant.adviceInfo;
+    }, [isShowMore])
+      
 
 
   return (
@@ -38,12 +67,15 @@ const PlantCarousel= ()=> {
         <Slider {...settings}>
         <div>
            { plant.manageInfo !=="" 
-            ?<div className='infobox2'>
-                <div className='font-PreM'> 관리 방법 </div>
-                <div className='infoDetail font-PreL'>{plant.manageInfo}</div>    
+            ?<div className='infobox2 moreinfo'>
+                <div className='font-PreM carouseltitle'> 관리 방법 </div>
+                <div>
+                    <div className='infoDetail font-PreL'>{manageInfo}</div>
+                    <div className="font-PreM morebtn"onClick={()=>setIsShowMore(!isShowMore)}>{(plant.manageInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div>
+                </div>    
             </div>
             :
-            <div className='infobox2'>
+            <div className='infobox2 '>
                 <img src={NotReady} alt="Not Ready" style={{width:'3rem', margin:'auto',}} />
                 <p className='font-PreL text-stone-700' style={{margin:'auto',textAlign:'center',marginTop:'0.5rem'}}> 관리 정보가 준비중 입니다. </p>
             </div>
@@ -51,31 +83,32 @@ const PlantCarousel= ()=> {
         </div>
         <div>
             { plant.functionInfo !== ""
-            ?<div className='infobox2 '>
-                <div className='font-PreM'> 기능 </div>
-                <div isMoreView={isMoreView}>
-                    <div className='infoDetail font-PreL'>{plant.functionInfo}</div>
+            ?<div className='infobox2 moreinfo '>
+                <div className='font-PreM carouseltitle'> 식물 정보 </div>
+                <div>
+                    <div className='infoDetail font-PreL'>{functionInfo}</div>
+                    <div className="font-PreM morebtn"onClick={()=>setIsShowMore(!isShowMore)}>{(plant.functionInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div>
                 </div> 
-                <div isMoreView={isMoreView}>
-                    <p onClick={onClickMoreViewBtn}>{isMoreView ? "접기" : "더보기"}</p>
-                </div>
             </div>
             :<div className='infobox2'>
                 <img src={NotReady} alt="Not Ready" style={{width:'3rem', margin:'auto',}} />
-                <p className='font-PreL text-stone-700' style={{margin:'auto',textAlign:'center',marginTop:'0.5rem'}}> 기능 정보가 준비중 입니다. </p>
+                <p className='font-PreL text-stone-700' style={{margin:'auto',textAlign:'center',marginTop:'0.5rem'}}> 식물 정보가 준비중 입니다. </p>
              </div>
             }       
         </div>
 
         <div>
             { plant.adviceInfo !=="" 
-            ?<div className='infobox2 '>
-                <div className='font-PreM'> 조언 </div>
-                <div className='infoDetail font-PreL'>{plant.adviceInfo}</div>    
+            ?<div className='infobox2 moreinfo '>
+                <div className='font-PreM carouseltitle'> 특징 </div>
+                <div>
+                    <div className='infoDetail font-PreL'>{adviceInfo} <span>{(isShowMore?'':'...')}</span></div>
+                    <div className="font-PreM morebtn"onClick={()=>setIsShowMore(!isShowMore)}>{(plant.adviceInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div>
+                </div>  
             </div>
             :<div className='infobox2'>
                 <img src={NotReady} alt="Not Ready" style={{width:'3rem', margin:'auto',}} />
-                <p className='font-PreL text-stone-700' style={{margin:'auto',textAlign:'center',marginTop:'0.5rem'}}> 조언 정보가 준비중 입니다. </p>
+                <p className='font-PreL text-stone-700' style={{margin:'auto',textAlign:'center',marginTop:'0.5rem'}}> 특징 정보가 준비중 입니다. </p>
             </div>
             }
         </div>

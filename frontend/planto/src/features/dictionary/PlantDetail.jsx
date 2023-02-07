@@ -24,7 +24,9 @@ function PlantDetail() {
                 marginBottom:'0.5rem',
                 width:'10rem',
                 height:'10rem',
+                borderRadius:'1rem',
                 backgroundSize:'cover',
+                backgroundPosition:'center',
                 backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${plant.imagePath}")`,
                 }}
             >
@@ -67,7 +69,7 @@ function PlantDetail() {
             <PlantCarousel/>
         </div>
         {/* 비슷한 식물(AI추천) */}
-        <div>
+        <div style={{marginTop:'2.5rem'}}>
             <p className='font-PreSB infoTitle'>비슷한 식물</p>
          
         </div>

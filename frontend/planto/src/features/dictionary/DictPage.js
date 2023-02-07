@@ -65,6 +65,10 @@ function DictPage() {
       }}> 식물 찾기</p>
       <div>{plants.map(plant=>(<Plant plant={plant} key={plant.plantDictId}/>))}
       </div>
+
+      <div style={{height:'3rem'}}>
+
+      </div>
       <BottomNav/>
 
     

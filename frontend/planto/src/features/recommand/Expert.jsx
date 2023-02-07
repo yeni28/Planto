@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
 import BottomNav from '../nav/BottomNav'
+import MoveTopBtn from "../components/MoveTopBtn"
 import TopRecommand from './TopRecommand';
 
 
@@ -26,6 +27,7 @@ function Expert() {
       <div className="RecommandPlant">
       <div style={{marginTop:"1.2rem"}}>{iplants.map(iplant=>(<IPlant iplant={iplant} key={iplant.plantDictId}/>))}</div>
       </div>
+      <MoveTopBtn/>
       <BottomNav/>
     </div>
     </div>
