@@ -21,8 +21,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 요청 헤더의 Authorization 항목 값을 가져오기
-        String jwtHeader = ((HttpServletRequest) request).getHeader(JwtProperties.HEADER_STRING);
 
+        String jwtHeader = ((HttpServletRequest) request).getHeader(JwtProperties.HEADER_STRING);
+        System.out.println("필터 발동");
+
+        System.out.println(jwtHeader);
         // 만약 jwtHeader가 null 이거나 Bearer로 시작하지 않으면 필터 다시 태움
         if (jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
             filterChain.doFilter(request, response);
@@ -37,6 +40,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
                     .verify(token)
                     .getClaim("socialId")
                     .asString();
+            System.out.println("???????????????????????");
+            System.out.println(token);
+            System.out.println(socialId);
+            System.out.println("???????????????????????");
         } catch (TokenExpiredException e) {
             e.printStackTrace();
             request.setAttribute(JwtProperties.HEADER_STRING, "토큰이 만료되었습니다.");
