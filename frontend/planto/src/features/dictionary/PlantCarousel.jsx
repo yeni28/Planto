@@ -16,7 +16,6 @@ const PlantCarousel= ()=> {
     const plant = location.state.plant;
     // carousel setting
     const settings = {
-        adaptiveHeight: true,
         dots: true,
         infinite: true,
         speed: 500,
@@ -70,7 +69,7 @@ const PlantCarousel= ()=> {
             ?<div className='infobox2 moreinfo'>
                 <div className='font-PreM carouseltitle'> 관리 방법 </div>
                 <div>
-                    <div className='infoDetail font-PreL'>{manageInfo}</div>
+                    <div className='infoDetail font-PreL'>{manageInfo} <span>{(plant.manageInfo.length> textLimit.current) && (isShowMore ? null :'...')}</span> </div>
                     <div className="font-PreM morebtn"onClick={()=>setIsShowMore(!isShowMore)}>{(plant.manageInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div>
                 </div>    
             </div>
@@ -86,8 +85,10 @@ const PlantCarousel= ()=> {
             ?<div className='infobox2 moreinfo '>
                 <div className='font-PreM carouseltitle'> 식물 정보 </div>
                 <div>
-                    <div className='infoDetail font-PreL'>{functionInfo}</div>
-                    <div className="font-PreM morebtn"onClick={()=>setIsShowMore(!isShowMore)}>{(plant.functionInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div>
+                    <div className='infoDetail font-PreL'>{functionInfo} <span>{(plant.functionInfo.length> textLimit.current) && (isShowMore ? null:'...')}</span> </div>
+                    <div>
+                    { plant.functionInfo.length > textLimit.current ?<div className="font-PreM morebtn" onClick={()=>setIsShowMore(!isShowMore)}>{(plant.functionInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div> : null } 
+                    </div>
                 </div> 
             </div>
             :<div className='infobox2'>
@@ -102,9 +103,10 @@ const PlantCarousel= ()=> {
             ?<div className='infobox2 moreinfo '>
                 <div className='font-PreM carouseltitle'> 특징 </div>
                 <div>
-                    <div className='infoDetail font-PreL'>{adviceInfo} <span>{(isShowMore?'':'...')}</span></div>
-                    <div className="font-PreM morebtn"onClick={()=>setIsShowMore(!isShowMore)}>{(plant.adviceInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div>
-                </div>  
+                    <div className='infoDetail font-PreL'>{adviceInfo} <span>{(plant.adviceInfo.length> textLimit.current) && (isShowMore ? null:'...')}</span></div>
+                    <div>
+                        { plant.adviceInfo.length > textLimit.current ?<div className="font-PreM morebtn" onClick={()=>setIsShowMore(!isShowMore)}>{(plant.adviceInfo.length> textLimit.current) && (isShowMore ? '닫기':'더보기')}</div> : <p className='nomore'></p> } 
+                    </div>                </div>  
             </div>
             :<div className='infobox2'>
                 <img src={NotReady} alt="Not Ready" style={{width:'3rem', margin:'auto',}} />

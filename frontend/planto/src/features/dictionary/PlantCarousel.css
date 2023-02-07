@@ -1,6 +1,5 @@
 .infobox2{
     margin: auto;
-    width: 20rem;
     height: 8.5rem;
     padding: 1rem;
     background-color:white;
@@ -20,7 +19,9 @@
 
 }
 .carousel{
+    width: 22rem;
     height: auto;
+    
 }
 .slick-prev:before {
     opacity: 0;
@@ -43,7 +44,7 @@ color: rgb(59, 159, 49);
     border-bottom: 1px solid rgb(227, 227, 227);
 }
 .morebtn{
-    margin-left: 15rem;
+    margin-left: 14rem;
     color:#a4a4a4;
     font-size: 0.9rem;
     text-align: center;
@@ -53,11 +54,13 @@ color: rgb(59, 159, 49);
     height: 1.4rem;
 }
 
-.str{
- font-family: 'PreLight';
-}
+
 
 @font-face{
     font-family: 'PreLight';
     src:url('../../assets/fonts/Pretendard-Light.ttf')
+}
+.nomore{
+    height: 2rem;
+    background-color: white;
 }
