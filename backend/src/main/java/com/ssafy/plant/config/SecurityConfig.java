@@ -15,13 +15,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
@@ -45,7 +41,8 @@ public class SecurityConfig {
                 .addFilter(corsFilter); // @CrossOrigin(인증X), 시큐리티 필터에 등록 인증(O)
 
         http.authorizeRequests()
-                .antMatchers("/admin")
+//                .antMatchers(FRONT_URL+"/main/**")
+                .antMatchers("/admin", "/api/v1/hello")
                 .authenticated()
                 .anyRequest().permitAll()
                 .and()
@@ -55,6 +52,5 @@ public class SecurityConfig {
         http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-
     }
 }

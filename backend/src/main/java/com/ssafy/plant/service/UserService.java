@@ -91,8 +91,6 @@ public class UserService {
                 .withSubject(user.getSocialId())
                 .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
                 .withClaim("socialId", user.getSocialId())
-                .withClaim("name", user.getName())
-                .withClaim("profileImageUrl", user.getProfileImageUrl())
                 .sign(Algorithm.HMAC512(JwtProperties.SECRET));
         return jwtToken;
     }

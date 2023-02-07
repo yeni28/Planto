@@ -4,8 +4,13 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.ssafy.plant.config.auth.PrincipalDetails;
+import com.ssafy.plant.domain.User;
 import com.ssafy.plant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -33,6 +38,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
         }
         String token = jwtHeader.replace(JwtProperties.TOKEN_PREFIX, "");
         String socialId = null;
+
         try {
             // token을 비밀 키로 복호화함, 클레임에 넣어두었던 id값을 가져옴
             socialId = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET))
@@ -44,6 +50,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
             System.out.println(token);
             System.out.println(socialId);
             System.out.println("???????????????????????");
+
         } catch (TokenExpiredException e) {
             e.printStackTrace();
             request.setAttribute(JwtProperties.HEADER_STRING, "토큰이 만료되었습니다.");
@@ -51,7 +58,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
             e.printStackTrace();
             request.setAttribute(JwtProperties.HEADER_STRING, "유효하지 않은 토큰입니다.");
         }
+
         request.setAttribute("socialId", socialId);
+        System.out.println("----------------------------");
+        System.out.println(request);
+        System.out.println(response);
+        System.out.println("----------------------------");
         filterChain.doFilter(request, response);    // filterChain에 request, response 값 넘김
     }
 }
