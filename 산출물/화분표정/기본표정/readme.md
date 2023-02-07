@@ -21,7 +21,7 @@ https://docs.google.com/spreadsheets/d/1xuw4zW-qgKjzGF9_SGADlVzwjqH90jnQYqsnnbyt
 
 ### 추움
 
-![추움 (1)](https://user-images.githubusercontent.com/57944215/216273297-53006254-5c24-4a69-89c1-f2fa279c5558.gif)
+![추움](https://user-images.githubusercontent.com/57944215/216273297-53006254-5c24-4a69-89c1-f2fa279c5558.gif)
 
 ### 물 많음
 
@@ -30,18 +30,18 @@ https://docs.google.com/spreadsheets/d/1xuw4zW-qgKjzGF9_SGADlVzwjqH90jnQYqsnnbyt
 
 ### 물 적음
 
-![목마름 (2) (1)](https://user-images.githubusercontent.com/57944215/216273303-51f1df4d-3d7e-4248-b8e1-c0e215b676af.gif)
+![목마름](https://user-images.githubusercontent.com/57944215/216273303-51f1df4d-3d7e-4248-b8e1-c0e215b676af.gif)
 
 ### 터치
 
 #### 살살터치
 
-![기분좋음 (2)](https://user-images.githubusercontent.com/57944215/216546556-33f672da-6b0a-45b0-a35f-34f97d48cdcd.gif)
+![기분좋음](https://user-images.githubusercontent.com/57944215/216546556-33f672da-6b0a-45b0-a35f-34f97d48cdcd.gif)
 
 
 #### 세개 터치
 
-![슬픔 (2) (2)](https://user-images.githubusercontent.com/57944215/216546458-102b3745-da79-4fec-8282-8b2546358a20.gif)
+![슬픔](https://user-images.githubusercontent.com/57944215/216546458-102b3745-da79-4fec-8282-8b2546358a20.gif)
 
 
 ### 딱콩

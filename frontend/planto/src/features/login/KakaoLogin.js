@@ -29,7 +29,7 @@ function KakaoLogin() {
             console.log(err)
         })
 
-        // const token = window.localStorage.getItem('token');
+        const token = window.localStorage.setItem('token');
         try {
             // 차후 백에서 api받아서 수정
             await axios.post('/api/post', KAKAO_CODE,{

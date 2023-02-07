@@ -1,12 +1,24 @@
-.beginnerBack{
-    width: 100%;
-    height: 165px;
-    background: linear-gradient(270deg, rgba(107, 190, 118, 0.62) 2.22%, rgba(48, 133, 43, 0.62) 100%);
+.RecommandPlantList{
 }
+
 .recommandText{
     position: absolute;
     color:white;
     top:9%;
     margin-left: 1rem;
     font-size: 1.6rem;
+}
+.plant_line{
+    margin:auto;
+    display: flex;
+    width:21.5rem;
+    height:6.5rem;
+    border-bottom: 1px #e1e1e1 solid;
+}
+
+.img_square{
+    width: 5rem;
+    height: 5rem;
+    background-size: cover;
+
 }
