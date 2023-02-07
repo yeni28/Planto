@@ -1,10 +1,11 @@
 import React from 'react'
-import {useLocation} from "react-router-dom"
+import {useLocation, useNavigate} from "react-router-dom"
 import './PlantDetail.css'
 // 이미지 파일
 import temp from '../../assets/icons/temp.png'
 import humid from '../../assets/icons/humid.png'
 import lux from '../../assets/icons/lux.png'
+import BackG from '../../assets/icons/back_g.png'
 // nav바
 import BottomNav from '../nav/BottomNav';
 import PlantCarousel from './PlantCarousel'
@@ -15,9 +16,15 @@ function PlantDetail() {
   const plant = location.state.plant;
   const plantName = location.state.plantName;
   const plantNameSecond = location.state.plantNameSecond;
-    console.log(plant)
+  const navigate = useNavigate();
+
   return (
     <div style={{backgroundColor:'#FAF8F8', padding:'2.7rem'}}>
+        <div>
+            <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'1%', left:'1%'}}>
+            <img src={BackG} alt="back_green" style={{width:"4rem"}} />
+            </button>
+        </div>
         <div className='PlantDetailImg'>
             <div style={{
                 margin:'auto',

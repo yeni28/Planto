@@ -1,16 +1,18 @@
 import React from 'react'
 import './TopRecommand.css'
+
 import easyBig from '../../assets/icons/easybig.png'
 import hardBig from '../../assets/icons/hardbig.png'
 import dark from '../../assets/icons/dark.png'
 import watercan from '../../assets/icons/watercan.png'
-
+import BackWhite from '../../assets/icons/back_white.png'
 
 function TopRecommand({reconame}) {
     const now = reconame
+
   return (
 
-
+    
     <div>
     {
     {

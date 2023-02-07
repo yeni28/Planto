@@ -1,15 +1,19 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import BottomNav from '../nav/BottomNav'
 import MoveTopBtn from "../components/MoveTopBtn"
 import "./DarkHouse.css"
 // 이미지
 import TopRecommand from './TopRecommand';
+import BackWhite from '../../assets/icons/back_white.png'
+
 
 function Darkhouse() {
   const [dplants, setDPlants] =  useState([]);
   const reconame = 'DarkHouse'
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios({
         method: "get",
@@ -22,6 +26,11 @@ function Darkhouse() {
 
   return (
     <div>
+      <div>
+      <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
+      <img src={BackWhite} alt="back_white" style={{width:"5rem"}} />
+      </button>
+      </div>
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
       <div style={{marginTop:"1.2rem"}}>{dplants.map(dplant=>(<DPlant dplant={dplant} key={dplant.plantDictId}/>))}</div>

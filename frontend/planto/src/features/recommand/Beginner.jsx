@@ -1,15 +1,19 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import BottomNav from '../nav/BottomNav'
 import MoveTopBtn from '../components/MoveTopBtn'
 import "./Beginner.css"
 // 이미지
 import TopRecommand from './TopRecommand';
+import BackWhite from '../../assets/icons/back_white.png'
+
+
 function Beginner() {
   
   const [bplants, setBPlants] =  useState([]);
+  const navigate = useNavigate();
   const reconame = 'Beginner'
   useEffect(() => {
     axios({
@@ -24,6 +28,11 @@ function Beginner() {
 
   return (
     <div>
+      <div>
+      <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
+      <img src={BackWhite} alt="back_white" style={{width:"5rem"}} />
+      </button>
+      </div>
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
       <div style={{marginTop:"1.2rem"}}>{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>

@@ -1,14 +1,16 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 
 import BottomNav from '../nav/BottomNav'
 import MoveTopBtn from "../components/MoveTopBtn"
 import TopRecommand from './TopRecommand';
+import BackWhite from '../../assets/icons/back_white.png'
 
 
 function Expert() {
   const [iplants, setIPlants] =  useState([]);
+  const navigate = useNavigate();
   const reconame = 'Expert'
 
   useEffect(() => {
@@ -22,6 +24,11 @@ function Expert() {
 }, [])
   return (
     <div>
+      <div>
+      <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
+      <img src={BackWhite} alt="back_white" style={{width:"5rem"}} />
+      </button>
+      </div>
       <div>
       <TopRecommand reconame={reconame}/>
       <div className="RecommandPlant">

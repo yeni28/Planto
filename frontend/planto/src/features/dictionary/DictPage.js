@@ -61,7 +61,7 @@ function DictPage() {
       {/* 식물 찾기 */}
       <p className="font-PreM"
       style={{
-        marginLeft:'2.4rem', marginBottom:'1rem'
+        marginLeft:'0.4rem', marginBottom:'1rem',color:'#329e5d',
       }}> 식물 찾기</p>
       <div>{plants.map(plant=>(<Plant plant={plant} key={plant.plantDictId}/>))}
       </div>

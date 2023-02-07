@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import { useNavigate } from 'react-router-dom'
 // 달력
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +11,7 @@ import BottomNav from '../nav/BottomNav'
 import './Plant_enroll.css'
 // 이미지
 import AddPic from '../../assets/icons/addpic.png'
+import BackG from '../../assets/icons/back_g.png'
 
 const Example = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -25,9 +26,15 @@ const Example = () => {
 
 function Plant_enroll() {
   const [plantnickname, setPlantNickName] = useState('');
-
+  const navigate = useNavigate();
   return (
     <div style={{padding:'1rem' }}>
+      {/* 뒤로가기 */}
+      <div>
+        <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'0.3%'}}>
+          <img src={BackG} alt="back_green" style={{width:"4rem"}} />
+        </button>
+      </div>
       <div className='EnrolltitleBox'>
         <span className='font-PreSB enrollTitle'> 나의 식물 등록 </span>
       </div>
@@ -48,7 +55,7 @@ function Plant_enroll() {
         <div className='inputbox'>
           <p className='font-PreL plantInputTitle'> 이름 </p>
           <div className="plantInputLine">
-            <input className="plantInput" type="text" value={plantnickname} onChange={(e)=>{
+            <input className="plantInput" type="text"  maxLength='10' value={plantnickname} onChange={(e)=>{
               setPlantNickName(e.target.value)
             }} />
           </div>
