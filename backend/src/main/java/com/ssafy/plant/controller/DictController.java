@@ -44,4 +44,9 @@ public class DictController {
     public ResponseEntity<List<DictDTO>> dictDark(){
         return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictDark());
     }
+
+    @GetMapping("/water")
+    public ResponseEntity<List<DictDTO>> dictWater(){
+        return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictWater());
+    }
 }

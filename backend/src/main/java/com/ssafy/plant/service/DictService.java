@@ -70,4 +70,15 @@ public class DictService {
 
         return dictDTOS;
     }
+
+    public List<DictDTO> getDictWater(){
+        List<DictDTO> dictDTOS = new ArrayList<>();
+        List<DictEntity> dictEntities = dictRepository.findByHumidityMaxLessThanEqual(40);
+
+        for (DictEntity entity : dictEntities){
+            dictDTOS.add(entity.entityToDto());
+        }
+
+        return dictDTOS;
+    }
 }
