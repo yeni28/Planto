@@ -19,6 +19,7 @@ import EnrollPlant from './features/enrollment/Plant_enroll';
 // 업적 페이지
 import Reward from './features/reward/reward';
 import KakaoLogin from './features/login/KakaoLogin';
+import Search from './features/components/SearchBar';
 
 
 
@@ -43,6 +44,8 @@ root.render(
         {/* 등록 */}
         <Route path="/enrollment" element={<Enroll/>}></Route>
         <Route path="/enrollment/plant" element={<EnrollPlant/>}></Route>
+        {/* 검색 */}
+        <Route path="/enrollment/plant/search" element={<Search/>}></Route>
       </Routes>
     </BrowserRouter>
 

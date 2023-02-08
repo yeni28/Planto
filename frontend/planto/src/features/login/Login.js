@@ -11,6 +11,7 @@ export default function Login(){
         window.location.href=KAKAO_AUTH_URL
  
     }
+
     
     return(
         <div> 

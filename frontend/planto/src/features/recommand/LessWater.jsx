@@ -33,7 +33,7 @@ function LessWater() {
       </div>
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
-      <div style={{marginTop:"1.2rem"}}>{wplants.map(wplant=>(<Wplant wplant={wplant} key={wplant.plantDictId}/>))}</div>
+      <div>{wplants.map(wplant=>(<Wplant wplant={wplant} key={wplant.plantDictId}/>))}</div>
       </div>
       <div style={{height:'3rem'}}></div>
       <MoveTopBtn/>
@@ -59,7 +59,7 @@ function Wplant({wplant}){
             }}>
             </div>
           </div>
-          <div className='plant_text' style={{marginLeft:'0.5rem',marginTop:'0.8rem'}}>
+          <div className='plant_text'>
             <p className='font-PreL plant_name' style={{marginBottom:'-0.2rem'}}>{wplantName}</p>  
             <p className='font-PreM plant_name_second' style={{marginBottom:'-0.2rem',color:'#3BD476'}}>{wplantNameSecond}</p>
             <p className='font-PreL plant_name_eng'>{wplant.plantEng}</p>

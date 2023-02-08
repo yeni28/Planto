@@ -1,12 +1,16 @@
 package com.ssafy.plant.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,8 +34,9 @@ public class Plant {
     @Column(name="image_path")
     private String imagePath;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="create_date")
-    private LocalDateTime createDate;
+    private Date createDate;
 
     private int temperature;
 
@@ -47,11 +52,6 @@ public class Plant {
     private int hug;
 
     private int liking;
-
-    @PrePersist
-    public void createDate() {
-        this.createDate = LocalDateTime.now();
-    }
 
 }
 
