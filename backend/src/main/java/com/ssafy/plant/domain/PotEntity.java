@@ -1,14 +1,15 @@
 package com.ssafy.plant.domain;
 
+import com.ssafy.plant.dto.PotDTO;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+@Builder
 @Table(name = "pot")
 public class PotEntity {
     @Id
@@ -23,10 +24,13 @@ public class PotEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Builder
-    public PotEntity(long potId, Plant plant, User user){
-        this.potId = potId;
-        this.plant = plant;
-        this.user = user;
+    public PotDTO entityToDto(){
+        return PotDTO
+                .builder()
+                .potId(potId)
+                .user(user)
+                .plant(plant)
+                .build();
     }
+
 }

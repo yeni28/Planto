@@ -7,6 +7,8 @@ import com.ssafy.plant.repository.PotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +22,16 @@ public class PotService {
         PotEntity potEntity = potDTO.dtoToEntity();
         potRepository.save(potEntity);
         return "created";
+    }
+
+    public List<PotDTO> getPots(User user) {
+        List<PotEntity> potEntities = potRepository.findByUser(user);
+        List<PotDTO> potDTOs = new ArrayList<>();
+
+        for (PotEntity potEntity : potEntities){
+            potDTOs.add(potEntity.entityToDto());
+        }
+
+        return potDTOs;
     }
 }
