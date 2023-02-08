@@ -1,0 +1,16 @@
+
+.plant_line{
+    margin:auto;
+    display: flex;
+    width:21.5rem;
+    height:6.5rem;
+    border-bottom: 1px #e1e1e1 solid;
+}
+
+.img_square{
+    width: 5rem;
+    height: 5rem;
+    background-size: cover;
+    background-position: center;
+
+}

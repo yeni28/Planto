@@ -161,7 +161,7 @@ public class DictApi {
                 humidityMin = Integer.parseInt(humidity[0]);
                 humidityMax = Integer.parseInt(humidity[1].substring(0, 2));
             }
-            String [] images = plant.getRtnThumbFileNm().split("\\|");
+            String [] images = plant.getRtnStreFileNm().split("\\|");
 
             DictEntity dictEntity = DictEntity.builder()
                     .plantDictId(Long.parseLong(cntntsNo))

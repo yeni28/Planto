@@ -14,8 +14,13 @@ function KakaoLogin() {
     
         console.log({KAKAO_CODE})
         const backHost = `http://localhost:8080/api/v1/oauth/token?code=${KAKAO_CODE}`
+<<<<<<< HEAD
         
         await axios({   
+=======
+
+        await axios({
+>>>>>>> 3b9171e9adcd040fce1ab618bb23a90c626b6159
             url: backHost,
             method: 'GET',
         })
@@ -35,7 +40,7 @@ function KakaoLogin() {
             console.log(err)
         })
 
-        // const token = window.localStorage.getItem('token');
+        const token = window.localStorage.setItem('token');
         try {
             // 차후 백에서 api받아서 수정
             await axios.post('/api/post', KAKAO_CODE,{

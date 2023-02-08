@@ -60,4 +60,25 @@ public class DictService {
         return dictRepository.findById(id).get().entityToDto();
     }
 
+    public List<DictDTO> getDictDark(){
+        List<DictDTO> dictDTOS = new ArrayList<>();
+        List<DictEntity> dictEntities = dictRepository.findByLightMax(800);
+
+        for (DictEntity dictEntity : dictEntities) {
+            dictDTOS.add(dictEntity.entityToDto());
+        }
+
+        return dictDTOS;
+    }
+
+    public List<DictDTO> getDictWater(){
+        List<DictDTO> dictDTOS = new ArrayList<>();
+        List<DictEntity> dictEntities = dictRepository.findByHumidityMaxLessThanEqual(40);
+
+        for (DictEntity entity : dictEntities){
+            dictDTOS.add(entity.entityToDto());
+        }
+
+        return dictDTOS;
+    }
 }

@@ -1,0 +1,27 @@
+.topreco{
+    position: relative;
+}
+.recommandText{
+    position: absolute;
+    color:white;
+    top:9%;
+    margin-left: 1rem;
+    font-size: 1.4rem;
+}
+.beginnerBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(107, 190, 118, 0.62) 2.22%, rgba(48, 133, 43, 0.62) 100%);
+}
+.ExpertBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(178, 80, 232, 0.62) 2.22%, rgba(96, 9, 128, 0.62) 87.31%);}
+.DarkBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(140, 140, 140, 0.62) 2.22%, rgba(41, 41, 41, 0.62) 100%);}
+.WaterBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(207, 227, 244, 0.62) 2.22%, rgba(80, 150, 232, 0.62) 100%);}

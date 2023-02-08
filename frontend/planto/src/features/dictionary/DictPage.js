@@ -26,44 +26,48 @@ function DictPage() {
 
 
 
-return (
-  <div className='dictionary'>
+  return (
+    <div className='dictionary'>
 
 
-      <div className='searchBar'
-      style={{
-        // position:'fixed'
-      }}> 식물명 검색하기 </div>
-      <div>
-      {/* 식물 해시태그 */}
-      <div className='plant_category'>
-        <div className='category' onClick={() => {navigate("/dictionary/darkhouse");}}>
-          <img src={Dark} alt="" className='dictIcon'></img>
-          <p className='font-PreM text-stone-700 tag_text'> #어두운 집</p>
+        <div className='searchBar'
+        style={{
+          // position:'fixed'
+        }}> 식물명 검색하기 </div>
+        <div>
+        {/* 식물 해시태그 */}
+        <div className='plant_category'>
+          <div className='category' onClick={() => {navigate("/dictionary/darkhouse");}}>
+            <img src={Dark} alt="" className='dictIcon'></img>
+            <p className='font-PreM text-stone-700 tag_text'> #어두운 집</p>
+          </div>
+          <div className='category' onClick={() => {navigate("/dictionary/lesswater");}}>
+            <img src={LowWater} alt="" className='dictIcon'></img>
+            <p className='font-PreM text-stone-700 tag_text'> #물 조금만</p>
+          </div>
+          <div className='category' onClick={() => {navigate("/dictionary/beginner");}}>
+            <img src={Easy} alt="" className='dictIcon'></img>
+            <p className='font-PreM text-stone-700 tag_text'> #기르기 쉬운</p>
+          </div>
+          <div className='category' onClick={() => {navigate("/dictionary/expert");}}>
+            <img src={Hard} alt="" className='dictIcon'></img>
+            <p className='font-PreM text-stone-700 tag_text'> #까다로운</p>
+          </div>
+          
         </div>
-        <div className='category' onClick={() => {navigate("/dictionary/lesswater");}}>
-          <img src={LowWater} alt="" className='dictIcon'></img>
-          <p className='font-PreM text-stone-700 tag_text'> #물 조금만</p>
-        </div>
-        <div className='category' onClick={() => {navigate("/dictionary/beginner");}}>
-          <img src={Easy} alt="" className='dictIcon'></img>
-          <p className='font-PreM text-stone-700 tag_text'> #기르기 쉬운</p>
-        </div>
-        <div className='category' onClick={() => {navigate("/dictionary/expert");}}>
-          <img src={Hard} alt="" className='dictIcon'></img>
-          <p className='font-PreM text-stone-700 tag_text'> #까다로운</p>
-        </div>
-        
-      </div>
 
 
       </div>
       {/* 식물 찾기 */}
       <p className="font-PreM"
       style={{
-        marginLeft:'2.4rem', marginBottom:'1rem'
+        marginLeft:'0.4rem', marginBottom:'1rem',color:'#329e5d',
       }}> 식물 찾기</p>
       <div>{plants.map(plant=>(<Plant plant={plant} key={plant.plantDictId}/>))}
+      </div>
+
+      <div style={{height:'3rem'}}>
+
       </div>
       <BottomNav/>
 
