@@ -8,14 +8,14 @@ import sdict from "../../assets/icons/selected/book.png"
 import dict from "../../assets/icons/book.png"
 import mark from "../../assets/icons/mark.png"
 import qr from "../../assets/icons/qr.png"
+import qrsel from "../../assets/icons/selected/qr.png"
+// 아이콘
+import { RiLeafLine } from "react-icons/ri";
 
 
 const BottomNav=()=>{
 
-    const activeStyle={
-        color:'#5D9451'
-    };
-    
+
     return(
 
         <nav className="wrapper">
@@ -41,9 +41,9 @@ const BottomNav=()=>{
                 </NavLink>
             </div>
             
-            <div className="navbox">
+            <div className="navbox" style={{marginLeft:'-0.5rem'}}>
                 <NavLink to="/enrollment" style={({isActive})=>({color: isActive ?'#5D9451':'#A4A4A4'})}>
-                <img src={qr}  className="navIcon"  alt="qrcode"></img>
+                <img src={qr}   className="navIcon"  alt="qrcode"></img>
                 <p className="font-PreR text-gray-400" >등록</p>
                 </NavLink>
             </div>
