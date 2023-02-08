@@ -22,6 +22,11 @@ spring:
       ddl-auto: update
     show-sql: 'true'
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+
   redis:
     host: ${properties.redis.host}
     port: ${properties.redis.port}
