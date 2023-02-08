@@ -2,36 +2,44 @@ import './main.css';
 import backImg from "../../assets/background/backimg.png"
 import BottomNav from '../nav/BottomNav';
 import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {HOST} from "../login/OAuth";
+// import { atom } from 'recoil';
+// import { recoilPersist } from 'recoil-persist';
+
+
 
 function Main(){
     const navigate = useNavigate();
-    
+
+    const [userdata, setUserdata] = useState();
+
     //  username 받아오기 구현
     
-    // useEffect(() => {
-    //     const token = window.localStorage.getItem('token');
+    useEffect(() => {
+        const token = window.localStorage.getItem('token');
+        
+        try {
+          axios.get(`${HOST}/api/v1/user/oauth/username`, {
+            headers: {
+              Authorization: token,
+            
+            },
+          }
+          ).then((res) => {
+            setUserdata(res.data)
+            
+          });
+          
+        } 
+        catch (e) {
+          console.error(e);
+        }
+        }, [])
 
-    //     try {
-    //       const res =  axios.post('/api/post', {
-    //         headers: {
-    //           Authorization: token,
-    //         },
-    //       });
-    //     } catch (e) {
-    //       console.error(e);
-    //     }
-      
-    
-      
-    // }, [])
-    
 
-    const user ={
-        name : '황효상', // 이름 DB에서 받아오기
 
-    }
     return(
         <div>
             <div className="Myplanto_title">
@@ -40,7 +48,7 @@ function Main(){
             </div>
             <div className="Myplanto_name">
                 <span className="font-PreR"> 반가워요,</span> 
-                <span className="font-PreEB"> {user.name}</span><span className="font-PreR">님!</span>
+                <span className="font-PreEB">{userdata ? userdata.name : null}</span><span className="font-PreR">님!</span>
             </div>
             <div>
                 <div className="main_back_img">

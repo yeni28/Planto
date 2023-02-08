@@ -3,14 +3,13 @@ package com.ssafy.plant.dto;
 import com.ssafy.plant.domain.Plant;
 import com.ssafy.plant.domain.PotEntity;
 import com.ssafy.plant.domain.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ToString
 public class PotDTO {
 

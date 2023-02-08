@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
+// 
+import { RecoilRoot } from 'recoil';
+
+// 메인 페이지
 import App from './features/home/App';
 import Main from './features/home/Main';
 // 사전 페이지
@@ -26,6 +30,7 @@ import Search from './features/components/SearchBar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <RecoilRoot>
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -48,6 +53,6 @@ root.render(
         <Route path="/enrollment/plant/search" element={<Search/>}></Route>
       </Routes>
     </BrowserRouter>
-
   </React.StrictMode>
+  </RecoilRoot>
 );

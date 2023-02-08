@@ -62,7 +62,7 @@ const PlantCarousel= ()=> {
 
 
   return (
-    <div>
+    <div style={{width:'326px'}}>
         <Slider {...settings}>
         <div>
            { plant.manageInfo !=="" 

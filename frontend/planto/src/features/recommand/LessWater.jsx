@@ -26,16 +26,16 @@ function LessWater() {
 
   return (
     <div>
-      <div>
+      {/* <div>
       <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
       <img src={BackWhite} alt="back_white" style={{width:"5rem"}} />
       </button>
-      </div>
+      </div> */}
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
       <div>{wplants.map(wplant=>(<Wplant wplant={wplant} key={wplant.plantDictId}/>))}</div>
       </div>
-      <div style={{height:'3rem'}}></div>
+      <div style={{height:'4rem'}}></div>
       <MoveTopBtn/>
       <BottomNav/>
     </div>

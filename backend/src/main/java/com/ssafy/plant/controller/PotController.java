@@ -8,12 +8,10 @@ import com.ssafy.plant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/pot")
@@ -30,5 +28,12 @@ public class PotController {
         User user = userService.getUser(request);
         String result = potService.setPot(potDTO, user);
         return ResponseEntity.status(HttpStatus.CREATED).body("created");
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<PotDTO>> getPot(HttpServletRequest request) {
+        User user = userService.getUser(request);
+        List<PotDTO> potDTOS = potService.getPots(user);
+        return ResponseEntity.status(HttpStatus.OK).body(potDTOS);
     }
 }

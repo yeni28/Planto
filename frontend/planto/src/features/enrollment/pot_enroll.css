@@ -40,7 +40,7 @@
 .qr-reader-frame {
     position: absolute;
     z-index: 3;
-    top: 25%;
+    top: 20%;
     right: 2%;
 }
 
@@ -56,7 +56,7 @@
     margin: 0 5%;
     border-radius: 40px;
     background-color: #FFF9E9;
-    padding: 5%;
+    padding: 3% 5%;
     display: flex;
     flex-wrap: nowrap;
 }
@@ -67,7 +67,7 @@
 }
 
 .info-wrapper .pTag{
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .info{
