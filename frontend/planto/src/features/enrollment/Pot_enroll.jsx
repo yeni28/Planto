@@ -6,9 +6,12 @@ import { AiFillLeftCircle } from "react-icons/ai";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import QrReaderImg from "../../assets/background/qr_scan_img.png"
 import axios from 'axios'
+import { HOST } from '../login/OAuth'
+import { useNavigate } from 'react-router-dom';
 
 
 function Pot_enroll() {
+  const navigate = useNavigate();
 
   const [qrLoading, setQrLoading] = useState(false)
   const [serialNo, setSerialNo] = useState()
@@ -19,10 +22,24 @@ function Pot_enroll() {
   };
 
   function setPlant(){
-    axios({
-
-    })  
+    const backHost = `${HOST}/api/v1/pot`
+    const token = window.localStorage.getItem('token');
     console.log(serialNo)
+    axios({
+      url: backHost,
+      method: 'POST',
+      data: {
+        potId : serialNo
+      },
+      headers: {
+        Authorization: token
+      }
+      }).then((res) => {
+        navigate('/enrollment/plant', { state :{ serialNo : serialNo}})
+        console.log(res)
+    }).catch(e =>{
+      console.log(e)
+    })
   }
 
 
@@ -64,9 +81,9 @@ function Pot_enroll() {
               setQrLoading(true)
             }
 
-            if (!!error) {
-              console.info(error);
-            }
+            // if (!!error) {
+            //   console.info(error);
+            // }
           }}
           // videoStyle={previewStyle}
           videoContainerStyle={previewStyle}
