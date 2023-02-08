@@ -16,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -35,6 +36,7 @@ public class UserService {
 
     @Value("${java.oauth.kakao.redirectUri}")
     private String redirectId;
+
     public OauthToken getAccessToken(String code) throws JsonProcessingException {
         RestTemplate rt = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -56,12 +58,12 @@ public class UserService {
                 String.class
         );
         ObjectMapper objectMapper = new ObjectMapper();
-        OauthToken oauthToken = null;
-        oauthToken = objectMapper.readValue(accessTokenResponse.getBody(), OauthToken.class);
+        OauthToken oauthToken = objectMapper.readValue(accessTokenResponse.getBody(), OauthToken.class);
         // .readValue(Json 데이터, 변환할 클래스) 메소드를 이용해 바디값 읽어오기
         return oauthToken;
     }
 
+    @Transactional
     public String saveUser(String token) throws JsonProcessingException {
         KakaoProfile profile = searchProfile(token);
 
@@ -83,18 +85,17 @@ public class UserService {
         return createToken(user);
     }
 
+    @Transactional
     public String createToken(User user) {
         String jwtToken = JWT.create()
                 .withSubject(user.getSocialId())
                 .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
                 .withClaim("socialId", user.getSocialId())
-                .withClaim("name", user.getName())
-                .withClaim("profileImageUrl", user.getProfileImageUrl())
                 .sign(Algorithm.HMAC512(JwtProperties.SECRET));
         return jwtToken;
     }
 
-    private KakaoProfile searchProfile(String token) throws JsonProcessingException {
+    public KakaoProfile searchProfile(String token) throws JsonProcessingException {
         RestTemplate rt = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + token);
@@ -113,7 +114,10 @@ public class UserService {
         return kakaoProfile;
     }
 
+    @Transactional(readOnly = true)
     public User getUser(HttpServletRequest request) {   // 인증된 사용자 정보 가져오기
+        System.out.println("====현재 로그인 중인 사용자====");
+        System.out.println((String) request.getAttribute("socialId"));
         String socialId = (String) request.getAttribute("socialId");
         User user = userRepository.findBySocialId(socialId);
         return user;
