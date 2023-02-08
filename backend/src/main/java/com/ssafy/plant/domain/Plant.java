@@ -29,6 +29,10 @@ public class Plant {
     @JoinColumn(name="plant_dict_plant_dict_id")
     private DictEntity plantDict;
 
+    @OneToOne
+    @JoinColumn(name="pot_Entity_pot_id")
+    private PotEntity potEntity;
+
     private String name;
 
     @Column(name="image_path")
@@ -44,12 +48,14 @@ public class Plant {
 
     private int sun;
 
+    private int soilMoisture;
+
     @Column(name = "water_level")
     private int waterLevel;
 
     private int attack;
 
-    private int hug;
+    private int touch;
 
     private int liking;
 

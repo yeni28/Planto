@@ -9,4 +9,7 @@ public interface DictRepository extends JpaRepository<DictEntity, Long> {
     List<DictEntity> findByManageLevel(String level);
     List<DictEntity> findByLightMax(int light);
     List<DictEntity> findByHumidityMaxLessThanEqual(int humidityMax);
+
+    DictEntity findByPlantDictId(Long plantDictId);
+
 }

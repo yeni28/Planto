@@ -22,6 +22,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
@@ -60,6 +61,7 @@ public class UserService {
         ObjectMapper objectMapper = new ObjectMapper();
         OauthToken oauthToken = objectMapper.readValue(accessTokenResponse.getBody(), OauthToken.class);
         // .readValue(Json 데이터, 변환할 클래스) 메소드를 이용해 바디값 읽어오기
+        System.out.println(oauthToken);
         return oauthToken;
     }
 
@@ -87,6 +89,7 @@ public class UserService {
 
     @Transactional
     public String createToken(User user) {
+        System.out.println("토큰생성**************************");
         String jwtToken = JWT.create()
                 .withSubject(user.getSocialId())
                 .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
@@ -116,10 +119,10 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUser(HttpServletRequest request) {   // 인증된 사용자 정보 가져오기
-        System.out.println("====현재 로그인 중인 사용자====");
-        System.out.println((String) request.getAttribute("socialId"));
         String socialId = (String) request.getAttribute("socialId");
         User user = userRepository.findBySocialId(socialId);
+        System.out.println("====현재 로그인 중인 사용자====");
+        System.out.println(user);
         return user;
     }
 }

@@ -62,6 +62,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
         }
 
         request.setAttribute("socialId", socialId);
+
         filterChain.doFilter(request, response);    // filterChain에 request, response 값 넘김
     }
 }

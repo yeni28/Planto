@@ -1,21 +1,26 @@
 package com.ssafy.plant.dto.plant;
 
+import com.ssafy.plant.domain.DictEntity;
 import com.ssafy.plant.domain.Plant;
+import com.ssafy.plant.domain.PotEntity;
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
-//public class PlantRegistDto {
-//    private MultipartFile file;
-//    private String name;
-//    private Date createDate;
-//    private Long plantDictId;
-//
-//    public Plant toEntity(String imagePath, User user) {
-//        return Plant.builder()
-//                .name(name)
-//                .imagePath(imagePath)
-//                .user(user)
-//                .build();
-//    }
-//}
+@Data
+public class PlantRegistDto {
+    private MultipartFile file;
+    private String name;
+    private String createDate;
+    private Long plantDictId;
+
+    public Plant toEntity(String imagePath, PotEntity pot, DictEntity plantDict) {
+        return Plant.builder()
+                .name(name)
+                .potEntity(pot)
+                .plantDict(plantDict)
+                .imagePath(imagePath)
+                .build();
+    }
+}
