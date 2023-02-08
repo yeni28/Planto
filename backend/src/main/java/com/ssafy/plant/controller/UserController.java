@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,14 @@ public class UserController {
 
     private final UserService userService;
 
+
     @GetMapping("/hello")
     public ResponseEntity<String> getHello(HttpServletRequest request) {
         System.out.println("*****************************");
         System.out.println(request.getAttribute("socialId"));
         System.out.println("*****************************");
+        User userEntity = userService.getUser(request);
+        System.out.println(userEntity);
         return ResponseEntity.status(HttpStatus.OK).body("success hello");
     }
 

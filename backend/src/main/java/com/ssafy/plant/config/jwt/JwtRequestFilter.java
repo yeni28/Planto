@@ -29,10 +29,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
 
         String jwtHeader = ((HttpServletRequest) request).getHeader(JwtProperties.HEADER_STRING);
         System.out.println("필터 발동");
-
         System.out.println(jwtHeader);
         // 만약 jwtHeader가 null 이거나 Bearer로 시작하지 않으면 필터 다시 태움
         if (jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            System.out.println("토큰이 없습니다.");
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             filterChain.doFilter(request, response);
             return;
         }
@@ -60,10 +62,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {    // 한 요청당
         }
 
         request.setAttribute("socialId", socialId);
-        System.out.println("----------------------------");
-        System.out.println(request);
-        System.out.println(response);
-        System.out.println("----------------------------");
         filterChain.doFilter(request, response);    // filterChain에 request, response 값 넘김
     }
 }

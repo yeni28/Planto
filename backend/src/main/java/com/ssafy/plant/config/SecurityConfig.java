@@ -26,11 +26,13 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig {
     private final UserRepository userRepository;
     private final CorsFilter corsFilter;
+    private AuthenticationManager authenticationManager;
 
 //    public static final String FRONT_URL = "http://localhost:3000/";
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
 
         http.csrf().disable()
                 .sessionManagement()  // session 을 사용하지 않음
@@ -42,12 +44,12 @@ public class SecurityConfig {
 
         http.authorizeRequests()
 //                .antMatchers(FRONT_URL+"/main/**")
-                .antMatchers("/admin", "/api/v1/hello")
+                .antMatchers("/admin")
                 .authenticated()
-                .anyRequest().permitAll()
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+                .anyRequest().permitAll();
+//                .and()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
         http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
 
