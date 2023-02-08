@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import {CLIENT_ID , REDIRECT_URI} from "./OAuth";
 import axios from 'axios'
 function KakaoLogin() {
-    const navigate = useNavigate()
     
     // TOKEN저장
     
@@ -14,13 +13,8 @@ function KakaoLogin() {
     
         console.log({KAKAO_CODE})
         const backHost = `http://localhost:8080/api/v1/oauth/token?code=${KAKAO_CODE}`
-<<<<<<< HEAD
-        
-        await axios({   
-=======
-
         await axios({
->>>>>>> 3b9171e9adcd040fce1ab618bb23a90c626b6159
+
             url: backHost,
             method: 'GET',
         })
