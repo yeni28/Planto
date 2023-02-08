@@ -16,6 +16,7 @@ https://docs.google.com/spreadsheets/d/1xuw4zW-qgKjzGF9_SGADlVzwjqH90jnQYqsnnbyt
 
 ### 기본표정(기분좋음)
 
+![2_8](https://user-images.githubusercontent.com/57944215/217197201-9304e21e-8e76-4879-bd78-80a9c54bf4b5.gif)
 
 ### 더움
 
@@ -43,10 +44,11 @@ https://docs.google.com/spreadsheets/d/1xuw4zW-qgKjzGF9_SGADlVzwjqH90jnQYqsnnbyt
 
 #### 세개 터치
 
+![2_10](https://user-images.githubusercontent.com/57944215/217197158-d3ac6994-4e6e-4bda-a3eb-d36e10aa7100.gif)
 
 ### 딱콩
 
-
+![2_9](https://user-images.githubusercontent.com/57944215/217197489-78cad4fa-02fe-48a3-b787-ad4740477cf7.gif)
 
 ### 어두움
 
