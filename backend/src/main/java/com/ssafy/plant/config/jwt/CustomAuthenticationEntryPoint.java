@@ -15,13 +15,20 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         String exception = (String) request.getAttribute(JwtProperties.HEADER_STRING);
         String errorCode;
+        System.out.println("에러발생");
+        System.out.println("에러발생");
+        System.out.println("에러발생");
+        System.out.println("에러발생");
+
 
         if (exception.equals("토큰이 만료되었습니다.")) {
+            System.out.println("토큰만료");
             errorCode = "토큰이 만료되었습니다.";
             setResponse(response, errorCode);
         }
 
         if (exception.equals("유효하지 않은 토큰입니다.")) {
+            System.out.println("유효x 토큰");
             errorCode = "유효하지 않은 토큰입니다.";
             setResponse(response, errorCode);
         }

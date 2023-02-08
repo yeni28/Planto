@@ -1,13 +1,4 @@
-.RecommandPlantList{
-}
 
-.recommandText{
-    position: absolute;
-    color:white;
-    top:9%;
-    margin-left: 1rem;
-    font-size: 1.6rem;
-}
 .plant_line{
     margin:auto;
     display: flex;
@@ -20,5 +11,6 @@
     width: 5rem;
     height: 5rem;
     background-size: cover;
+    background-position: center;
 
 }
