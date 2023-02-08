@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React,{useEffect, useState} from 'react'
+import { useNavigate , useLocation} from 'react-router-dom'
 // 달력
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -27,6 +27,26 @@ const Example = () => {
 function Plant_enroll() {
   const [plantnickname, setPlantNickName] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const plantname = location.state !== null ? location.state.plantName : "";
+
+  const [isplantname, setIsPlantName] = useState('');
+
+  useEffect(() => {
+    setIsPlantName(plantname)
+  }, [plantname]) 
+  
+  // 검색 창으로 이동
+  const goToSearch = () =>{
+    navigate("/enrollment/plant/search")
+  }
+  console.log({plantnickname})
+  // 인풋 값 전달
+  
+  
+
+
+
   return (
     <div style={{padding:'1rem' }}>
       {/* 뒤로가기 */}
@@ -45,19 +65,24 @@ function Plant_enroll() {
       {/* 인풋 */}
       <div>
 
-        <div >
-          <p className='font-PreL plantInputTitle'>식물명</p>
+        <div onClick={() => goToSearch()}>
+          <p className='font-PreL plantInputTitle'>식물 종류</p>
           <div className="plantInputLine">
-            {}
+            <div className='font-PreM' style={{ marginLeft:'1rem',fontSize:'1.2rem'}}>
+            <div>  {plantname} </div>
+            </div>
           </div>
         </div>
 
         <div className='inputbox'>
           <p className='font-PreL plantInputTitle'> 이름 </p>
           <div className="plantInputLine">
-            <input className="plantInput" type="text"  maxLength='10' value={plantnickname} onChange={(e)=>{
+            <input className="plantInput" type="text"  maxLength='10' value={plantnickname} 
+            onChange={(e)=>{
               setPlantNickName(e.target.value)
-            }} />
+            }} 
+            
+            />
           </div>
         </div>
 

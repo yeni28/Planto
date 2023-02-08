@@ -33,11 +33,11 @@ function KakaoLogin() {
         .catch((err) => {
             console.log(err)
         })
-
-        const token = window.localStorage.setItem('token');
+        
+        const token = window.localStorage.getItem('token');
         try {
             // 차후 백에서 api받아서 수정
-            await axios.post('/api/post', KAKAO_CODE,{
+            const res =await axios.post('/api/post', KAKAO_CODE,{
                 headers:{
                     Authorization:KAKAO_CODE,
                 },

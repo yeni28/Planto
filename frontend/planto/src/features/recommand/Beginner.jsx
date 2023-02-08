@@ -35,7 +35,7 @@ function Beginner() {
       </div>
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
-      <div style={{marginTop:"1.2rem"}}>{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>
+      <div>{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>
       </div>
       <div style={{height:'3rem'}}></div>
       <MoveTopBtn/>
@@ -61,7 +61,7 @@ function BPlant({bplant}){
             }}>
             </div>
           </div>
-          <div className='plant_text' style={{marginLeft:'0.5rem',marginTop:'0.8rem'}}>
+          <div className='plant_text' >
             <p className='font-PreL plant_name' style={{marginBottom:'-0.2rem'}}>{bplantName}</p>  
             <p className='font-PreM plant_name_second' style={{marginBottom:'-0.2rem',color:'#3BD476'}}>{bplantNameSecond}</p>
             <p className='font-PreL plant_name_eng'>{bplant.plantEng}</p>

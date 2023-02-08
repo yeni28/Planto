@@ -32,7 +32,7 @@ function Expert() {
       <div>
       <TopRecommand reconame={reconame}/>
       <div className="RecommandPlant">
-      <div style={{marginTop:"1.2rem"}}>{iplants.map(iplant=>(<IPlant iplant={iplant} key={iplant.plantDictId}/>))}</div>
+      <div>{iplants.map(iplant=>(<IPlant iplant={iplant} key={iplant.plantDictId}/>))}</div>
       </div>
       <MoveTopBtn/>
       <BottomNav/>
@@ -51,14 +51,14 @@ function IPlant({iplant}){
   return (
     <div>
       <Link to={`/dictionary/${iplant.plantDictId}`} state={{plant:iplant, plantName:iplantName, plantNameSecond:iplantNameSecond}}>
-        <div className='plant_line' style={{marginBottom:'1.2rem',}}>
+        <div className='plant_line' >
           <div className="plant_image"> 
             <div className="img_square" style={{
             backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${iplant.imagePath}")`
             }}>
             </div>
           </div>
-          <div className='plant_text' style={{marginLeft:'0.5rem',marginTop:'0.8rem'}}>
+          <div className='plant_text'>
             <p className='font-PreL plant_name' style={{marginBottom:'-0.2rem'}}>{iplantName}</p>  
             <p className='font-PreM plant_name_second' style={{marginBottom:'-0.2rem',color:'#3BD476'}}>{iplantNameSecond}</p>
             <p className='font-PreL plant_name_eng'>{iplant.plantEng}</p>
