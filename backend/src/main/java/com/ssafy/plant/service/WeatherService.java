@@ -26,7 +26,7 @@ public class WeatherService {
     @Value("${java.weather.secretKey}")
     private String secretKey;
 
-    @Cacheable(value = "getWeathers")
+//    @Cacheable(value = "getWeathers")
     public String getWeather() {
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");

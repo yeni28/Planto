@@ -1,6 +1,9 @@
 package com.ssafy.plant.config.mqtt;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ssafy.plant.service.MachinePlantService;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +23,9 @@ public class MqttConfigSub {
     private String BROKER_URL;
     private static final String MQTT_CLIENT_ID = MqttAsyncClient.generateClientId();
     private static final String TOPIC_FILTER = "MTS";
+
+    @Autowired
+    MachinePlantService machinePlantService;
 
     @Bean
     public MessageChannel mqttInputChannel() {
@@ -44,6 +50,13 @@ public class MqttConfigSub {
             String topic = (String) message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC);
             System.out.println("Topic:" + topic);
             System.out.println("Payload" + message.getPayload());
+
+            try {
+                machinePlantService.getPlant(message.getPayload());
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+
         };
     }
 }

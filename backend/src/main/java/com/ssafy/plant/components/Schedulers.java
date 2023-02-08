@@ -1,23 +1,32 @@
 package com.ssafy.plant.components;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ssafy.plant.config.mqtt.MqttConfigSend;
+import com.ssafy.plant.service.LikingService;
 import com.ssafy.plant.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WeatherComponent {
+public class Schedulers {
     @Autowired
     MqttConfigSend.OutboundGateway outboundGateway;
 
     @Autowired
     WeatherService weatherService;
 
-    @Scheduled(cron = "*/10 * * * * *")
+    @Autowired
+    LikingService likingService;
+
+//    @Scheduled(cron = "*/10 * * * * *")
     public void getWeather(){
         String weathers = weatherService.getWeather();
         outboundGateway.sendToMqtt(weathers, "STM");
-        System.out.println(weathers);
+    }
+
+    @Scheduled(cron = "*/10 * * * * *")
+    public void sendLiking() throws JsonProcessingException {
+        likingService.sendLiking();
     }
 }

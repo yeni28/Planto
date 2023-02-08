@@ -1,6 +1,6 @@
 package com.ssafy.plant.controller;
 
-import com.ssafy.plant.dto.plantDto;
+import com.ssafy.plant.dto.plant.plantDto;
 import com.ssafy.plant.service.PlantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

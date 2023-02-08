@@ -47,8 +47,7 @@ services:
     build:
       context: ./frontend/planto
       dockerfile: Dockerfile
-    container_name: "react"
-    working_dir: "/app/front"
+    container_name: "nginx-react"
     ports:
       - 3000:3000
     
@@ -76,15 +75,46 @@ services:
       - /home/opendocs/jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     user: root 
-  
+
   nginx:
     image: nginx:1.21.5-alpine
     ports:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    #   - ./certbot/conf:/etc/letsencrypt  #동일한 디렉토리를 마운트
+    #   - ./certbot/www:/var/www/certbot
+    # command : "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     container_name: myweb-proxy
     depends_on:
       - backend
       - front
+
+  # nginx:
+  #   build: ./nginx
+  #   container_name: nginx
+  #   ports:
+  #       - "80:80"
+  #       - "443:443"  # nginx에 443 포트 추가
+  #   restart: "on-failure"
+  #   volumes: 
+  #       # - ./nginx/nginx.conf:/etc/nginx/conf.d
+  #       - build_folder:/var/www/Frontend
+  #       - ./certbot/conf:/etc/letsencrypt  #동일한 디렉토리를 마운트
+  #       - ./certbot/www:/var/www/certbot
+  #   command : "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  #   depends_on:
+  #     - backend
+  #     - front
+
+  # certbot:  #certbot 컨테이너 추가 
+  #     image: certbot/certbot
+  #     restart: unless-stopped
+  #     container_name: certbot
+  #     volumes: 
+  #         - ./certbot/conf:/etc/letsencrypt    #nginx컨테이너에 certbot컨테이너 연결
+  #         - ./certbot/www:/var/www/certbot
+  #     depends_on:
+  #         - nginx
+  #     entrypoint : "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
       
