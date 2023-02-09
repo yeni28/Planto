@@ -36,7 +36,7 @@ input {
     vertical-align: middle;
 }
 
-input[type=text] {
+.plantInput input[type=text] {
 
     margin-left: 1rem;
     font-size: 1rem;

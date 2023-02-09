@@ -4,11 +4,11 @@ import './ModalEnroll.css'
 
 const ModalEnroll = (props) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-    const { open, close, header, plantName } = props;
+    const { open, close, header, plantName, plantDictId } = props;
     const navigate = useNavigate()
 
-    const goToEnroll = ({plantName}) =>{
-        navigate("/enrollment/plant", {state :{plantName:plantName}})
+    const goToEnroll = ({plantName,plantDictId }) =>{
+        navigate("/enrollment/plant", {state :{plantName:plantName, plantDictId:plantDictId}})
     }
 
     return (
@@ -27,7 +27,7 @@ const ModalEnroll = (props) => {
               <button className="font-PreM enrollNo close" onClick={close}>
                 취소
               </button>
-              <button className="font-PreM enrollYes" onClick={()=>goToEnroll({plantName})}>
+              <button className="font-PreM enrollYes" onClick={()=>goToEnroll({plantName, plantDictId})}>
                 등록
               </button>
             </footer>

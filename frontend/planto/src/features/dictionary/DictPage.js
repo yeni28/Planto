@@ -9,6 +9,8 @@ import LowWater from "../../assets/icons/water.png"
 import Easy from "../../assets/icons/easy.png"
 import Hard from "../../assets/icons/hard.png"
 import { HOST } from '../login/OAuth'
+import {RiSearchLine} from "react-icons/ri";
+
 
 function DictPage() {
   const navigate = useNavigate();
@@ -25,16 +27,25 @@ function DictPage() {
       
   }, [])
 
+// user Input
+const [userInput, setUserInput] = useState('');
+const getValue = (e) =>{
+    setUserInput(e.target.value.trim())
+};
+
+//검색
+const searched = plants.filter((item)=> item.name.includes(userInput))
+
 
 
   return (
     <div className='dictionary'>
 
 
-        <div className='searchBar'
-        style={{
-          // position:'fixed'
-        }}> 식물명 검색하기 </div>
+       <div style={{display:'flex', marginLeft:'2rem',marginBottom:'-1.4rem'}}>
+          <input type="text" className='searchinput font-PreM' onChange={getValue}  placeholder='원하는 식물을 찾아보세요!' />
+          <RiSearchLine size="30" style={{marginLeft:'.5rem',marginTop:'.45rem', color:'rgb(62, 126, 62)'}}/>
+        </div>
         <div>
         {/* 식물 해시태그 */}
         <div className='plant_category'>
@@ -64,7 +75,9 @@ function DictPage() {
       style={{
         marginLeft:'0.4rem', marginBottom:'1rem',color:'#329e5d',
       }}> 식물 찾기</p>
-      <div>{plants.map(plant=>(<Plant plant={plant} key={plant.plantDictId}/>))}
+      <div >
+        {searched.map((item)=>(<Plant plant={item} key={item.plantDictId}/>))}
+        {/* {plants.map(plant=>(<Plant plant={plant} key={plant.plantDictId}/>))} */}
       </div>
 
       <div style={{height:'3rem'}}>
@@ -86,9 +99,9 @@ function Plant({plant}){
 
 
   return (
-    <div>
+    <div >
       <Link to={`/dictionary/${plant.plantDictId}`} state={{plant:plant, plantName:plantName, plantNameSecond:plantNameSecond}}>
-        <div className='plant_card' style={{marginBottom:'1.2rem',}}>
+        <div className='plant_card' style={{marginBottom:'1.2rem',backgroundColor:'white'}}>
           <div className="plant_image"> 
             <div className="img_circle" style={{
             backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${plant.imagePath}")`

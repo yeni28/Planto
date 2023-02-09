@@ -2,12 +2,12 @@ import './pot_enroll.css';
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import BottomNav from '../../features/nav/BottomNav';
-import { AiFillLeftCircle } from "react-icons/ai";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import QrReaderImg from "../../assets/background/qr_scan_img.png"
 import axios from 'axios'
 import { HOST } from '../login/OAuth'
 import { useNavigate } from 'react-router-dom';
+import back_green from "../../assets/icons/back_green.png"
 
 
 function Pot_enroll() {
@@ -45,10 +45,7 @@ function Pot_enroll() {
 
   return (
     <div id='Pot-enroll'>
-      <div className='circle-frame' >
-        <AiFillLeftCircle className='circle-btn'/>
-      </div>
-      <div className='fil-white'></div>
+      <img src={back_green} onClick={() =>{navigate(-1)}} alt="back_btn" className='circle-btn' />
 
       <div>
         <img className='qr-reader-frame' src={QrReaderImg} alt="qr reader bg" />
@@ -66,7 +63,7 @@ function Pot_enroll() {
               </span>
             </div>
             <div>
-              <BsArrowRightCircleFill onClick={() => setPlant()} style={{marginLeft: "35%", width: "55px"}} className='circle-btn p-right'/>
+              <BsArrowRightCircleFill onClick={() => setPlant()} style={{marginLeft: "40%", width: "55px"}} className='circle-btn p-right'/>
             </div>
           </div>
         </div>

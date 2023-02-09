@@ -45,7 +45,11 @@ function KakaoLogin() {
 
 
     return (
-    <div>KakaoLogin</div>
+    <div>
+    
+    KakaoLogin
+
+    </div>
   )
 }
 
