@@ -15,12 +15,14 @@ public class PlantRegistDto {
     private String createDate;
     private Long plantDictId;
 
-    public Plant toEntity(String imagePath, PotEntity pot, DictEntity plantDict) {
+    public Plant toEntity(String imagePath, PotEntity pot, DictEntity plantDict, Date date) {
         return Plant.builder()
                 .name(name)
                 .potEntity(pot)
+                .createDate(date)
                 .plantDict(plantDict)
                 .imagePath(imagePath)
+                .liking(50)
                 .build();
     }
 }

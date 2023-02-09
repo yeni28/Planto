@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/plant")
@@ -16,7 +18,8 @@ public class PlantController {
     private final PlantService plantService;
 
     @PostMapping("/{potId}")
-    public ResponseEntity<String> createPlant(PlantRegistDto dto, @PathVariable Long potId) {
+    public ResponseEntity<String> createPlant(PlantRegistDto dto, @PathVariable Long potId) throws ParseException {
+        System.out.println(dto);
         plantService.식물등록(dto, potId);
         return ResponseEntity.status(HttpStatus.CREATED).body("식물등록");
     }
