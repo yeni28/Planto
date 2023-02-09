@@ -56,6 +56,8 @@ function Plant({plant}){
     const plantNameSecond = arr[1] !== undefined ? arr[1].slice(0,-1):""
     const [modalOpen, setModalOpen] = useState(false);
 
+    const plantDictId = plant.plantDictId
+
     const openModal = () => {
       setModalOpen(true);
       console.log(setModalOpen)
@@ -70,7 +72,7 @@ function Plant({plant}){
   
     return (
       <div>
-        <ModalEnroll open={modalOpen} close={closeModal} header="이름 확인" plantName={plantName}>
+        <ModalEnroll open={modalOpen} close={closeModal} header="이름 확인" plantName={plantName} plantDictId={plantDictId}>
         <div className="modalText">
           <p className="font-PreM">" {plantName} " </p>
           <p className="font-PreL">이 식물을 등록할까요?</p>
