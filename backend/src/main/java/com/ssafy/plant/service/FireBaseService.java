@@ -21,6 +21,8 @@ public class FireBaseService {
         Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
         InputStream content = new ByteArrayInputStream(file.getBytes());
         Blob blob = bucket.create(nameFile.toString(), content, file.getContentType());
+        String myUrl = String.format("https://storage.googleapis.com/planto-e2910.appspot.com/%s", nameFile);
+        System.out.println("파이어베이스 유알엘 " + myUrl);
         return blob.getMediaLink();
     }
 }
