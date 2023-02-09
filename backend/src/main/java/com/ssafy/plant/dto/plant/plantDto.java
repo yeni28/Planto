@@ -1,9 +1,11 @@
-package com.ssafy.plant.dto;
+package com.ssafy.plant.dto.plant;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +19,7 @@ public class plantDto {
     private Long potId;
     private String name;
     private String imagePath;
+    private Date createDate;
     private int temperature;
     private int humidity;
     private int sun;

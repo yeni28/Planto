@@ -1,14 +1,19 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import BottomNav from '../nav/BottomNav'
+import MoveTopBtn from '../components/MoveTopBtn'
 import "./Beginner.css"
 // 이미지
 import TopRecommand from './TopRecommand';
+import BackWhite from '../../assets/icons/back_white.png'
+
+
 function Beginner() {
   
   const [bplants, setBPlants] =  useState([]);
+  const navigate = useNavigate();
   const reconame = 'Beginner'
   useEffect(() => {
     axios({
@@ -18,14 +23,22 @@ function Beginner() {
         setBPlants(response.data)
     });
     
-}, [])
+    }, [])
+  
 
   return (
     <div>
+      <div>
+      <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
+      <img src={BackWhite} alt="back_white" style={{width:"5rem"}} />
+      </button>
+      </div>
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
-      <div style={{marginTop:"1.2rem"}}>{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>
+      <div>{bplants.map(bplant=>(<BPlant bplant={bplant} key={bplant.plantDictId}/>))}</div>
       </div>
+      <div style={{height:'3rem'}}></div>
+      <MoveTopBtn/>
       <BottomNav/>
     </div>
   )
@@ -48,7 +61,7 @@ function BPlant({bplant}){
             }}>
             </div>
           </div>
-          <div className='plant_text' style={{marginLeft:'0.5rem',marginTop:'0.8rem'}}>
+          <div className='plant_text' >
             <p className='font-PreL plant_name' style={{marginBottom:'-0.2rem'}}>{bplantName}</p>  
             <p className='font-PreM plant_name_second' style={{marginBottom:'-0.2rem',color:'#3BD476'}}>{bplantNameSecond}</p>
             <p className='font-PreL plant_name_eng'>{bplant.plantEng}</p>

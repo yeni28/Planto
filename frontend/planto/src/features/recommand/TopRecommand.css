@@ -1,6 +1,13 @@
 .topreco{
     position: relative;
 }
+.recommandText{
+    position: absolute;
+    color:white;
+    top:9%;
+    margin-left: 1rem;
+    font-size: 1.4rem;
+}
 .beginnerBack{
     width: 100%;
     height: 165px;
@@ -10,3 +17,34 @@
     width: 100%;
     height: 165px;
     background: linear-gradient(270deg, rgba(178, 80, 232, 0.62) 2.22%, rgba(96, 9, 128, 0.62) 87.31%);}
+.DarkBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(140, 140, 140, 0.62) 2.22%, rgba(41, 41, 41, 0.62) 100%);}
+.WaterBack{
+    width: 100%;
+    height: 165px;
+    background: linear-gradient(270deg, rgba(207, 227, 244, 0.62) 2.22%, rgba(80, 150, 232, 0.62) 100%);}
+
+.plant_line{
+    margin:auto;
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    width:21.5rem;
+    height:6.5rem;
+    border-bottom: 1px #e1e1e1 solid;
+}
+
+.img_square{
+    width: 5rem;
+    height: 5rem;
+    background-size: cover;
+    background-position: center;
+    vertical-align: middle;
+
+
+}
+.recommand_plant_text{
+
+}

@@ -2,9 +2,31 @@ import './main.css';
 import backImg from "../../assets/background/backimg.png"
 import BottomNav from '../nav/BottomNav';
 import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Main(){
     const navigate = useNavigate();
+    
+    //  username 받아오기 구현
+    
+    // useEffect(() => {
+    //     const token = window.localStorage.getItem('token');
+
+    //     try {
+    //       const res =  axios.post('/api/post', {
+    //         headers: {
+    //           Authorization: token,
+    //         },
+    //       });
+    //     } catch (e) {
+    //       console.error(e);
+    //     }
+      
+    
+      
+    // }, [])
+    
 
     const user ={
         name : '황효상', // 이름 DB에서 받아오기
