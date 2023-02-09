@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -29,13 +32,10 @@ public class PlantService {
     private String uploadFolder;
 
     @Transactional
-    public void 식물등록(PlantRegistDto plantRegistDto, Long potId) {
-        System.out.println("식물등록!!!!!!!!!!!!!!!");
-        System.out.println(plantRegistDto);
+    public void 식물등록(PlantRegistDto plantRegistDto, Long potId) throws ParseException {
         UUID uuid = UUID.randomUUID();
         String imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
         System.out.println("이미지 파일 이름" + imageFileName);
-
         Path imageFilePath = Paths.get(uploadFolder+imageFileName);
 
         //통신, I/O -> 예외가 발생할 수 있다.
@@ -48,7 +48,12 @@ public class PlantService {
         DictEntity dictEntity = dictRepository.findByPlantDictId(plantRegistDto.getPlantDictId());
         PotEntity potEntity = potRepository.findByPotId(potId);
 
-        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
+        // 포맷터
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
+        // 문자열 -> Date
+        Date date = formatter.parse(plantRegistDto.getCreateDate());
+
+        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity, date);
         System.out.println(plant);
         plantRepository.save(plant);
     }

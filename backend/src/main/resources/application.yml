@@ -66,6 +66,6 @@ logging:
               BasicBinder: trace
 
 file:
-  path: C:/workspace/planto/upload/
+  path: /static/myPlanto/
 
 
