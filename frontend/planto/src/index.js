@@ -8,9 +8,9 @@ import { RecoilRoot } from 'recoil';
 // 메인 페이지
 import App from './features/home/App';
 import Main from './features/home/Main';
+import MainPlanto from './features/home/mainPlanto';
 // 사전 페이지
 import Dict from './features/dictionary/DictPage';
-import PlantData from './data/PlantData';
 import PlantDetail from './features/dictionary/PlantDetail';
 // 추천 페이지
 import DarkHouse from './features/recommand/DarkHouse';
@@ -36,9 +36,10 @@ root.render(
       <Routes>
         <Route path="/" element={<App/>}></Route>
         <Route path="/main/none" element={<Main/>}></Route>
+        <Route path="/main/planto" element={<MainPlanto/>}></Route>
+        {/* 사전 */}
         <Route path="/dictionary" element={<Dict/>}></Route>
         <Route path="/reward" element={<Reward/>}></Route>
-        <Route path="/plantdata" element={<PlantData/>}></Route>
         <Route path="/dictionary/:plantId" element={<PlantDetail/>}></Route>
         {/* 해시태그 페이지 */}
         <Route path="/dictionary/darkhouse" element={<DarkHouse/>}></Route>
