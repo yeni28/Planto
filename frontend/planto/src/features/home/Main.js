@@ -29,7 +29,8 @@ function Main(){
           }
           ).then((res) => {
             setUserdata(res.data)
-            
+            window.localStorage.setItem("username",res.data.name)
+
           });
           
         } 
