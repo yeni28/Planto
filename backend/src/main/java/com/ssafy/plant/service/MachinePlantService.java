@@ -3,7 +3,9 @@ package com.ssafy.plant.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.plant.domain.Plant;
+import com.ssafy.plant.domain.PotEntity;
 import com.ssafy.plant.repository.PlantRepository;
+import com.ssafy.plant.repository.PotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class MachinePlantService {
     @Autowired
     PlantRepository plantRepository;
 
+    @Autowired
+    PotRepository potRepository;
+
     public void getPlant(Object payload) throws JsonProcessingException {
         Map<String, String> map = new HashMap<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -26,24 +31,19 @@ public class MachinePlantService {
         int touch = Integer.parseInt(map.get("touch"));
         int attack = Integer.parseInt(map.get("attack"));
 
-//        Plant plant = plantRepository.findById(serialNo).get();
-//        touch += plant.getTouch();
-//        attack += plant.getAttack();
+        PotEntity pot = potRepository.findByPotId(serialNo);
+        Plant plant = pot.getPlant();
+        touch += plant.getTouch();
+        attack += plant.getAttack();
 
-//        plant.set
-//
-//        plant = Plant.builder()
-//                .plantId(Long.parseLong(map.get("device_number")))
-//                .temperature((int)Double.parseDouble(map.get("temperature")))
-//                .humidity((int)Double.parseDouble(map.get("humidity")))
-//                .sun((int)Double.parseDouble(map.get("light")))
-//                .touch(touch)
-//                .soilMoisture((int)Double.parseDouble(map.get("soil_moisture")))
-//                .attack(attack)
-//                .build();
+        plant.setTemperature((int)Double.parseDouble(map.get("temperature")));
+        plant.setHumidity((int)Double.parseDouble(map.get("humidity")));
+        plant.setSun((int)Double.parseDouble(map.get("light")));
+        plant.setTouch(touch);
+        plant.setAttack(attack);
+        plant.setSoilMoisture((int)Double.parseDouble(map.get("soil_moisture")));
 
-//        System.out.println(plant.toString());
-//        plantRepository.save(plant);
+        plantRepository.save(plant);
 
     }
 }
