@@ -68,3 +68,7 @@ logging:
 file:
   path: C:/workspace/planto/upload/
 
+app:
+  firebase-configuration-file: ./serviceAccountKey.json
+  firebase-bucket: planto-e2910.appspot.com
+

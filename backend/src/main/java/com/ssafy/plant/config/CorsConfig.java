@@ -19,7 +19,7 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration
 public class CorsConfig{
-
+//
 //    @Override
 //    public void init(FilterConfig filterConfig) throws ServletException {
 //

@@ -12,14 +12,14 @@ import java.util.Date;
 public class PlantRegistDto {
     private MultipartFile file;
     private String name;
-    private String createDate;
+    private Date createDate;
     private Long plantDictId;
 
-    public Plant toEntity(String imagePath, PotEntity pot, DictEntity plantDict, Date date) {
+    public Plant toEntity(String imagePath, PotEntity pot, DictEntity plantDict) {
         return Plant.builder()
                 .name(name)
                 .potEntity(pot)
-                .createDate(date)
+                .createDate(createDate)
                 .plantDict(plantDict)
                 .imagePath(imagePath)
                 .liking(50)
