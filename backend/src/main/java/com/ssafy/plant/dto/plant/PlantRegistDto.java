@@ -22,6 +22,7 @@ public class PlantRegistDto {
                 .createDate(date)
                 .plantDict(plantDict)
                 .imagePath(imagePath)
+                .liking(50)
                 .build();
     }
 }
