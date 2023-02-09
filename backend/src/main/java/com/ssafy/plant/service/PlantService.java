@@ -48,12 +48,12 @@ public class PlantService {
         DictEntity dictEntity = dictRepository.findByPlantDictId(plantRegistDto.getPlantDictId());
         PotEntity potEntity = potRepository.findByPotId(potId);
 
-        // 포맷터
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
-        // 문자열 -> Date
-        Date date = formatter.parse(plantRegistDto.getCreateDate());
+//        // 포맷터
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
+//        // 문자열 -> Date
+//        Date date = formatter.parse(plantRegistDto.getCreateDate());
 
-        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity, date);
+        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
         System.out.println(plant);
         plantRepository.save(plant);
     }

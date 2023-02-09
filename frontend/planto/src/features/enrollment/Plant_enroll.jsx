@@ -1,11 +1,9 @@
 import React,{useEffect, useRef, useState} from 'react'
 import { useNavigate , useLocation} from 'react-router-dom'
 // 달력
-import DatePicker,{registerLocale} from "react-datepicker";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/esm/locale';
-import getYear from "date-fns/getYear";
-import getMonth from "date-fns/getMonth";
 
 // import
 import BottomNav from '../nav/BottomNav'
@@ -17,6 +15,7 @@ import BackG from '../../assets/icons/back_g.png'
 import {HOST} from "../login/OAuth";
 import axios from 'axios';
 
+// import Uploader from './Uploader';
 
 
 
@@ -24,35 +23,40 @@ import axios from 'axios';
 
 function Plant_enroll() {
   const [plantnickname, setPlantNickName] = useState('');
+  const [file, setFile] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
   const plantname = location.state !== null ? location.state.plantName : "";
-  const plantid = location.state !== null ? location.state.plantDictId : "";
+  const plantDictid = location.state !== null ? location.state.plantDictId : "";
   
-  console.log(startDate)
   // 검색 창으로 이동
   const goToSearch = () =>{
     navigate("/enrollment/plant/search")
   }
   console.log({plantnickname})
   // 화분 id 
-  const pot_serial = location.state.serialNo
+  const pot_serial =  window.localStorage.getItem('potSerial')
   console.log(pot_serial)
   // 인풋 값 전달
   // 이미지 파일
-  const [file,setFile] = useState()
-  
-  const onClickData = (event) =>{
-    event.preventDefault();
+
+  const token = window.localStorage.getItem('token');
+  const onClickData = () =>{
+    console.log(fileInput)
     const formData = new FormData();
     formData.append('file',file)
     formData.append('name', plantnickname)
     formData.append('createDate',startDate)
-    formData.append('plantDictId',plantid)
+    formData.append('plantDictId',plantDictid)
     axios({
       method:'post',
       url:`${HOST}/api/v1/plant/${pot_serial}`,
+      headers: {
+        enctype: "multipart/form-data", 
+        Authorization: token,
+        // Content-Type을 반드시 이렇게 하여야 한다.
+      },
       data: formData,
     }).then((result)=>{console.log('요청 성공')})
     .catch((error)=>{console.log('요청 실패')})
@@ -66,9 +70,24 @@ function Plant_enroll() {
   };
   
   const handleChange = e => {
+    setFile(e.target.files[0])
     console.log(e.target.files[0]);
   };
   
+  // 날짜
+  // function DateChange({startDate}){
+  //   const Y = startDate.getFullYear();
+  //   const M = startDate.getMonth()+1;
+  //   const D = startDate.getDate();
+
+  //   const realdate = `${Y}`  + `${M<10 ? 0+""+M : M}` + `${D<10 ? 0+""+D : D}`
+  //   console.log(realdate)
+
+
+  // }
+
+
+
   return (
     <div style={{padding:'1rem' }}>
       {/* 뒤로가기 */}
@@ -88,6 +107,7 @@ function Plant_enroll() {
              ref={fileInput}
              onChange={handleChange}
              style={{ display: "none" }} />
+      {/* <Uploader/> */}
       {/* 인풋 */}
       <div>
 
@@ -126,7 +146,7 @@ function Plant_enroll() {
         </div>
         {/* 등록버튼 */}
         {/* 등록하기 클릭하면! 백으로 데이터 보내주기 => DB저장 */}
-        <button className='font-PreM enrollBtn'> 등록하기 </button>
+        <button className='font-PreM enrollBtn' onClick={onClickData}> 등록하기 </button>
       </div>
 
       <BottomNav/>
