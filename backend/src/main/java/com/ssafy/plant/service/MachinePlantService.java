@@ -40,11 +40,13 @@ public class MachinePlantService {
         attack += plant.getAttack();
         int liking = plant.getLiking();
 
+
         if (touch_status == 1){
             touch += 1;
         } else if(touch_status == 2){
             attack += 1;
         }
+        System.out.println(touch % 10);
         System.out.println(touch);
         if (touch != 0 && touch % 10 == 0 && liking < 100){
             liking += 1;

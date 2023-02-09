@@ -1,18 +1,12 @@
 package com.ssafy.plant.controller;
 
-import com.google.cloud.storage.Blob;
-import com.google.cloud.storage.Bucket;
-import com.google.firebase.cloud.StorageClient;
 import com.ssafy.plant.dto.plant.PlantDto;
 import com.ssafy.plant.dto.plant.PlantRegistDto;
-import com.ssafy.plant.service.FireBaseService;
 import com.ssafy.plant.service.PlantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,8 +15,7 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/plant")
 public class PlantController {
-
-    private final FireBaseService fireBaseService;
+    
     private final PlantService plantService;
 
     @PostMapping("/{potId}")

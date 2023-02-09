@@ -5,6 +5,7 @@ import axios from 'axios';
 import ModalEnroll from './ModalEnroll';
 import './SearchBar.css'
 import {RiSearchLine} from "react-icons/ri";
+import { HOST } from "../login/OAuth"
 
 function SearchBar() {
 
@@ -14,7 +15,7 @@ function SearchBar() {
     useEffect(() => {
         axios({
             method: "get",
-            url: "http://13.125.75.241/api/v1/dict",
+            url: `${HOST}/api/v1/dict`,
         }).then(function (response) {
             setPlants(response.data)
             
