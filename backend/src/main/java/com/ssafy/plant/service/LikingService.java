@@ -12,12 +12,11 @@ public class LikingService {
 
     @Autowired
     MqttConfigSend.OutboundGateway outboundGateway;
-    public void sendLiking() throws JsonProcessingException {
+    public void sendLiking(long serialNo, int liking) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        LikingDTO likingDTO = LikingDTO.builder().serialNo(123).liking(0).build();
+        LikingDTO likingDTO = LikingDTO.builder().serialNo(serialNo).liking(liking).build();
         String likingJson = objectMapper.writeValueAsString(likingDTO);
 
         outboundGateway.sendToMqtt(likingJson, "STM/liking");
-        System.out.println(likingJson);
     }
 }

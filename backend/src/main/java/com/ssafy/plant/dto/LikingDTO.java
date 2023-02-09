@@ -6,11 +6,11 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class LikingDTO {
-    private int serialNo;
+    private long serialNo;
     private int liking;
 
     @Builder
-    public LikingDTO(int serialNo, int liking) {
+    public LikingDTO(long serialNo, int liking) {
         this.serialNo = serialNo;
         this.liking = liking;
     }

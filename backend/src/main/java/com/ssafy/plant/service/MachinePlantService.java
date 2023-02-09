@@ -22,28 +22,64 @@ public class MachinePlantService {
     @Autowired
     PotRepository potRepository;
 
+    @Autowired
+    LikingService likingService;
+
     public void getPlant(Object payload) throws JsonProcessingException {
         Map<String, String> map = new HashMap<>();
         ObjectMapper objectMapper = new ObjectMapper();
         map = objectMapper.readValue(payload.toString(), map.getClass());
 
         long serialNo = Integer.parseInt(map.get("device_number"));
-        int touch = Integer.parseInt(map.get("touch"));
+        int touch_status = Integer.parseInt(map.get("touch"));
         int attack = Integer.parseInt(map.get("attack"));
 
         PotEntity pot = potRepository.findByPotId(serialNo);
         Plant plant = pot.getPlant();
-        touch += plant.getTouch();
+        int touch = plant.getTouch();
         attack += plant.getAttack();
+        int liking = plant.getLiking();
+
+        if (touch_status == 1){
+            touch += 1;
+        } else if(touch_status == 2){
+            attack += 1;
+        }
+
+        if (touch > 20 && liking < 100){
+            liking += 1;
+            touch = 0;
+            checkLiking(pot.getPotId(), liking);
+        } else if (attack > 100 && liking > 0){
+            liking -= 1;
+            attack = 0;
+            checkLiking(pot.getPotId(), liking);
+        }
 
         plant.setTemperature((int)Double.parseDouble(map.get("temperature")));
         plant.setHumidity((int)Double.parseDouble(map.get("humidity")));
         plant.setSun((int)Double.parseDouble(map.get("light")));
         plant.setTouch(touch);
         plant.setAttack(attack);
+        plant.setLiking(liking);
         plant.setSoilMoisture((int)Double.parseDouble(map.get("soil_moisture")));
 
+        System.out.println(plant);
         plantRepository.save(plant);
+    }
 
+    public void checkLiking(long potId, int liking) throws JsonProcessingException {
+        //         기분 나쁜 플랜토
+        if (liking < 30){
+            likingService.sendLiking(potId, 0);
+
+//         기본 플랜토
+        } else if(liking < 70){
+            likingService.sendLiking(potId, 1);
+
+//         사랑받는 플랜토
+        } else{
+            likingService.sendLiking(potId, 2);
+        }
     }
 }
