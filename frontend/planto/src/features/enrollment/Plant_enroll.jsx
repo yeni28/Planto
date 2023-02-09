@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/esm/locale';
 
-
 // import
 import BottomNav from '../nav/BottomNav'
 import './Plant_enroll.css'

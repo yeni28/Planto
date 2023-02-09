@@ -6,7 +6,7 @@ import ModalEnroll from './ModalEnroll';
 import './SearchBar.css'
 import {RiSearchLine} from "react-icons/ri";
 
-function SearchBar() {
+function SearchBarDict() {
 
 //   데이터 받아오기
     const [plants, setPlants] = useState([]);
@@ -54,42 +54,26 @@ function Plant({plant}){
     const arr = plant.name.split("(")
     const plantName = arr[0]
     const plantNameSecond = arr[1] !== undefined ? arr[1].slice(0,-1):""
-    const [modalOpen, setModalOpen] = useState(false);
 
-    const openModal = () => {
-      setModalOpen(true);
-      console.log(setModalOpen)
-    };
-    
-    const closeModal = () => {
-      setModalOpen(false);
-    };
-
-
-    
   
     return (
-      <div>
-        <ModalEnroll open={modalOpen} close={closeModal} header="이름 확인" plantName={plantName}>
-        <div className="modalText">
-          <p className="font-PreM">" {plantName} " </p>
-          <p className="font-PreL">이 식물을 등록할까요?</p>
-        </div>
-        </ModalEnroll>
-          <div className='plant_card' onClick={()=>openModal({plantName})}style={{marginBottom:'1.2rem',}}>
-            <div className="plant_image"> 
-              <div className="img_circle" style={{
-              backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${plant.imagePath}")`
-              }}>
-              </div>
-            </div>
-            <div className='plant_text'>
-              <p className='font-PreL plant_name_eng'>{plant.plantEng}</p>
-              <p className='font-PreM plant_name'>{plantName}</p>  
-              <p className='font-PreM text-stone-400 plant_name_second'>{plantNameSecond}</p>
+    <div>
+      <Link to={`/dictionary/${plant.plantDictId}`} state={{plant:plant, plantName:plantName, plantNameSecond:plantNameSecond}}>
+        <div className='plant_card' style={{marginBottom:'1.2rem',}}>
+          <div className="plant_image"> 
+            <div className="img_circle" style={{
+            backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${plant.imagePath}")`
+            }}>
             </div>
           </div>
-      </div>
+          <div className='plant_text'>
+            <p className='font-PreL plant_name_eng'>{plant.plantEng}</p>
+            <p className='font-PreM plant_name'>{plantName}</p>  
+            <p className='font-PreM text-stone-400 plant_name_second'>{plantNameSecond}</p>
+          </div>
+        </div>
+      </Link>
+    </div>
     )
   }
-export default SearchBar
+export default SearchBarDict
