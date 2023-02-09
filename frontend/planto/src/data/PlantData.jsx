@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import DictPage from '../features/dictionary/DictPage';
+import { HOST } from '../features/login/OAuth'
 
 function PlantData() {
   const [plants, setPlants] = useState([]);
@@ -8,7 +9,7 @@ function PlantData() {
   useEffect(() => {
       axios({
           method: "get",
-          url: "http://13.125.75.241/api/v1/dict",
+          url: `${HOST}/api/v1/dict`,
       }).then(function (response) {
         //   console.log(response.data)
           setPlants(response.data)

@@ -7,6 +7,8 @@ import MoveTopBtn from "../components/MoveTopBtn"
 import TopRecommand from './TopRecommand';
 import BackWhite from '../../assets/icons/back_white.png'
 import BackBtn from '../components/BackBtn';
+import { HOST } from '../login/OAuth'
+
 
 
 function Darkhouse() {
@@ -17,7 +19,7 @@ function Darkhouse() {
   useEffect(() => {
     axios({
         method: "get",
-        url: "http://13.125.75.241/api/v1/dict/dark",
+        url: `${HOST}/api/v1/dict/dark`,
     }).then(function (response) {
         setDPlants(response.data)
     });

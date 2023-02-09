@@ -9,6 +9,7 @@ import "./LessWater.css"
 // 이미지
 import TopRecommand from './TopRecommand';
 import BackWhite from '../../assets/icons/back_white.png'
+import { HOST } from '../login/OAuth'
 
 function LessWater() {
   const [wplants, setWplants] =  useState([]);
@@ -17,7 +18,7 @@ function LessWater() {
   useEffect(() => {
     axios({
         method: "get",
-        url: "http://13.125.75.241/api/v1/dict/water",
+        url: `${HOST}/api/v1/dict/intermediate`,
     }).then(function (response) {
         setWplants(response.data)
     });
