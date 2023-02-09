@@ -2,12 +2,15 @@ package com.ssafy.plant.controller;
 
 import com.ssafy.plant.dto.plant.PlantDto;
 import com.ssafy.plant.dto.plant.PlantRegistDto;
+import com.ssafy.plant.service.FireBaseService;
 import com.ssafy.plant.service.PlantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 @RestController
@@ -15,6 +18,7 @@ import java.text.ParseException;
 @RequestMapping("/api/v1/plant")
 public class PlantController {
 
+    private final FireBaseService fireBaseService;
     private final PlantService plantService;
 
     @PostMapping("/{potId}")
@@ -34,5 +38,14 @@ public class PlantController {
     public ResponseEntity<String> updatePlant(@PathVariable Long plantId) {
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
+    @PostMapping("/files")
+    public ResponseEntity<String> uploadFile(MultipartFile file, String nameFile) throws IOException {
+        System.out.println(file);
+        System.out.println(nameFile);
+        fireBaseService.uploadFiles(file, nameFile);
+        return ResponseEntity.status(HttpStatus.OK).body("파이어베이스에 이미지 저장이 완료되었습니다.");
+
     }
 }
