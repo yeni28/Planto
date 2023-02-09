@@ -35,6 +35,7 @@ function Pot_enroll() {
         Authorization: token
       }
       }).then((res) => {
+        window.localStorage.setItem("potSerial", serialNo)
         navigate('/enrollment/plant', { state :{ serialNo : serialNo}})
         console.log(res)
     }).catch(e =>{
