@@ -62,9 +62,7 @@ function Pot_enroll() {
                 <span className='pTag'>추가 정보를 입력해 플랜토를 시작합니다!</span>
               </span>
             </div>
-            <div>
-              <BsArrowRightCircleFill onClick={() => setPlant()} style={{marginLeft: "40%", width: "55px"}} className='circle-btn p-right'/>
-            </div>
+            <BsArrowRightCircleFill onClick={() => setPlant()} className='circle-right-btn'/>
           </div>
         </div>
       }

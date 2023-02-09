@@ -10,14 +10,25 @@
 
 .circle-btn {
     z-index: 2;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     color: #329E5D;
     position: absolute;
     top: 4%;
     left: 4%;
     width: 100px;
     height: 100px;
+}
+
+.circle-right-btn{
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    color: #329E5D;
+    position: absolute;
+    right: 10%;
+    top: 11%;
+    width: 50px;
 }
 
 .qr-reader-frame {
@@ -45,19 +56,15 @@
 }
 
 .info-wrapper .hTag {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: #329E5D;
 }
 
 .info-wrapper .pTag{
-    font-size: 0.9em;
+    font-size: 0.7em;
 }
 
 .info{
     display: flex;
     align-items: center;
-}
-
-.p-right{
-    margin-left: 30%;
 }
