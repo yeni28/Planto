@@ -1,8 +1,9 @@
 .plantInput{
 
-    margin: auto;
     width: 80%;
     height: 2rem;
+    
+
 }
 
 .enrollBtn{
@@ -11,7 +12,7 @@
     height: 3rem;
     font-size: 1.5rem;
     border-radius: 10rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     margin-left: 6.2rem;
     background-color: #329E5D ;
     color: white;
@@ -19,6 +20,7 @@
 }
 .plantInputTitle{
     margin-left: 2.6rem;
+    
 }
 .inputbox{
     margin-top: 1rem;
@@ -26,22 +28,30 @@
 input:focus {outline: none;} 
 
 input {
+    margin-top: 0.2rem;
     border: none;
-    border: none; background: transparent;
+    border: none; 
+    background: transparent;
+    align-items: center;
+    vertical-align: middle;
 }
 
 input[type=text] {
 
     margin-left: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'PreLight';
+    
 }
 
 .plantInputLine{
+    display: flex;
     width: 80%;
     height: 2.5rem;
     margin: auto;
-    border-bottom: solid 1px black ;
+    background-color: #f0f0f0;
+    
+
 }
 
 .EnrolltitleBox{
@@ -52,3 +62,4 @@ input[type=text] {
     font-size: 1.5rem;
     color:#329E5D;
 }
+

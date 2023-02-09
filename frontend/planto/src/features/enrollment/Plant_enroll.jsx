@@ -60,7 +60,7 @@ function Plant_enroll() {
       </div>
       {/* 사진등록 */}
       <div>
-        <img src={AddPic} alt="add Picture" style={{width:'20rem', margin:'auto'}}></img>
+        <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
       </div>
       {/* 인풋 */}
       <div>
@@ -68,8 +68,8 @@ function Plant_enroll() {
         <div onClick={() => goToSearch()}>
           <p className='font-PreL plantInputTitle'>식물 종류</p>
           <div className="plantInputLine">
-            <div className='font-PreM' style={{ marginLeft:'1rem',fontSize:'1.2rem'}}>
-            <div>  {plantname} </div>
+            <div className='font-PreM' style={{ marginLeft:'1rem',fontSize:'1rem' ,marginTop:'0.5rem'}}>
+            <div> { plantname !== "" ?plantname : <div className='font-PreL text-stone-700'> 🔍 내 식물 찾기 </div> } </div>
             </div>
           </div>
         </div>
@@ -80,17 +80,15 @@ function Plant_enroll() {
             <input className="plantInput" type="text"  maxLength='10' value={plantnickname} 
             onChange={(e)=>{
               setPlantNickName(e.target.value)
-            }} 
-            
-            />
+            }} />
           </div>
         </div>
 
         <div className='inputbox'> 
           <div>
           <p className='font-PreL plantInputTitle'> 첫 만남 </p>
-          <div className="plantInputLine" style={{marginTop:'0.5rem'}}>
-            <Example/> 
+          <div className="plantInputLine" style={{marginTop:'0.5rem', paddingTop:'0.2rem'}}>
+            <Example /> 
           </div>
           </div>
 
@@ -99,6 +97,7 @@ function Plant_enroll() {
         {/* 등록하기 클릭하면! 백으로 데이터 보내주기 => DB저장 */}
         <button className='font-PreM enrollBtn'> 등록하기 </button>
       </div>
+
       <BottomNav/>
     </div>
   )

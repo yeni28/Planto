@@ -19,7 +19,7 @@ public class Schedulers {
     @Autowired
     LikingService likingService;
 
-    @Scheduled(cron = "*/10 * * * * *")
+//    @Scheduled(cron = "*/10 * * * * *")
     public void getWeather(){
         String weathers = weatherService.getWeather();
         outboundGateway.sendToMqtt(weathers, "STM");

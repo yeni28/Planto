@@ -34,6 +34,8 @@ function Expert() {
       <div className="RecommandPlant">
       <div>{iplants.map(iplant=>(<IPlant iplant={iplant} key={iplant.plantDictId}/>))}</div>
       </div>
+
+      <div style={{height:'4rem'}}></div>
       <MoveTopBtn/>
       <BottomNav/>
     </div>

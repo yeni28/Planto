@@ -6,6 +6,7 @@ import MoveTopBtn from "../components/MoveTopBtn"
 // 이미지
 import TopRecommand from './TopRecommand';
 import BackWhite from '../../assets/icons/back_white.png'
+import BackBtn from '../components/BackBtn';
 
 
 function Darkhouse() {
@@ -25,16 +26,19 @@ function Darkhouse() {
 
   return (
     <div>
-      <div>
-      <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
+      {/* <div>
+      <button onClick={()=>navigate(-1)}style={{position:'',top:'-1.5%', left:'-4%',opacity:'0.5'}}>
       <img src={BackWhite} alt="back_white" style={{width:"5rem"}} />
       </button>
-      </div>
+      </div> */}
+      {/* 윗배경 */}
       <TopRecommand reconame = {reconame}/>
       <div className="RecommandPlant">
+      {/* 식물리스트 */}
       <div>{dplants.map(dplant=>(<DPlant dplant={dplant} key={dplant.plantDictId}/>))}</div>
       </div>
-      <div style={{height:'3rem'}}></div>
+      {/* 스크롤 여백 */}
+      <div style={{height:'4rem'}}></div>
       <MoveTopBtn/>
       <BottomNav/>
     </div>

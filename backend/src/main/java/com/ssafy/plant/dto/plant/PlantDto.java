@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class plantDto {
+public class PlantDto {
     @JsonProperty("plant_id")
     private Long id;
     @JsonProperty("plant_dict_plant_dict_id")
@@ -27,5 +27,4 @@ public class plantDto {
     private int waterLevel;
     private int attack;
     private int liking;
-
 }
