@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserAchievementRepository extends JpaRepository<UserAchievementEntity, Integer> {
-    List<UserAchievementEntity> findByUserOrderByCreated(User user);
+    List<UserAchievementEntity> findByUserOrderByCreatedDesc(User user);
 }

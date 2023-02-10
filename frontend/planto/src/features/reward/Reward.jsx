@@ -9,17 +9,17 @@ import { useRef } from 'react'
 function Reward() {
   const [achievements, setAchievements] = useState()
   const [text, setText] = useState()
-  const [countAchievement, setCountAchievement] = useState(20)
+  const [countAchievement, setCountAchievement] = useState(0)
   let remainAchievements = useRef([]);
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
     axios({
-        method: "get",
-        url: `${HOST}/api/v1/achievement`,
-        headers: {
-          Authorization: token
-        }
+      method: "get",
+      url: `${HOST}/api/v1/achievement`,
+      headers: {
+        Authorization: token
+      }
     }).then(function (response) {
       console.log(response)
       remainAchievements.current = []
@@ -27,87 +27,92 @@ function Reward() {
       setText(response.data.slice(0, 2))
       setCountAchievement(response.data.length)
 
-      for (let i = 0; i < 20 - response.data.length; i++){
+      for (let i = 0; i < 20 - response.data.length; i++) {
         remainAchievements.current.push(i)
       }
     });
   }, [])
 
   const user = {
-    name:window.localStorage.getItem('username'),
-    profileImageUrl:window.localStorage.getItem('profileImageUrl')
+    name: window.localStorage.getItem('username'),
+    profileImageUrl: window.localStorage.getItem('profileImageUrl')
   }
+  
   return (
-    <div style={{backgroundColor:'#FAF8F8', padding:'1.2rem'}}>
+    <div style={{ backgroundColor: '#FAF8F8', padding: '1.2rem' }}>
       <div className='reward_top_wrapped'>
         <div className='reward_text'>
           <div className="Myplanto_title">
-              <span className="font-PreR"> My</span>
-              <span className="font-PreEB"> 업적 </span>
+            <span className="font-PreR"> My</span>
+            <span className="font-PreEB"> 업적 </span>
           </div>
           <div className="Myplanto_name">
-              <span className="font-PreR"> 반가워요,</span> 
-              <span className="font-PreEB"> {user.name}</span><span className="font-PreR">님!</span>
+            <span className="font-PreR"> 반가워요,</span>
+            <span className="font-PreEB"> {user.name}</span><span className="font-PreR">님!</span>
           </div>
           <div>
-            <p className='font-PreR reward_message'> 업적을 달성해서 
-            <br></br>컬렉션을 완성해보세요!</p>
+            <p className='font-PreR reward_message'> 업적을 달성해서
+              <br></br>컬렉션을 완성해보세요!</p>
           </div>
         </div>
 
         <div className='reward_img'>
-          
           <img src={user.profileImageUrl} alt="사용자 이미지" />
         </div>
       </div>
+
+      {/* 업적 달성 메세지 */}
       <div>
         {
           text ?
-          text.map((item) => <Descriptions description={item.achievement.description} key={item.user_achievement_id}/>):
-          null
+            text.map((item) => <Descriptions description={item.achievement.description} key={item.user_achievement_id} />) :
+            null
         }
       </div>
-      <div>
+
+      {/* 업적 달성 개수 */}
+      <div className='font-PreM'>
         {countAchievement}/20
       </div>
+
       <div className='achievement-frame'>
         {/* 보유한 업적 */}
-          {
-            achievements ?
-            achievements.map((item) => <Achievement achievement={item.achievement} key={item.user_achievement_id}/>):
+        {
+          achievements ?
+            achievements.map((item) => <Achievement achievement={item.achievement} key={item.user_achievement_id} />) :
             null
-          }
+        }
         {/* 보유하지 않은 업적 */}
-          {
-            remainAchievements.current.map((item, key) => <RemainAchievement key={key}/>)
-          }
+        {
+          remainAchievements.current.map((item, key) => <RemainAchievement key={key} />)
+        }
       </div>
-      <BottomNav/>
+      <BottomNav />
     </div>
   )
 }
 
 
-function Achievement({achievement}){
-  return(
+function Achievement({ achievement }) {
+  return (
     <span className='achievement-frame'>
       <img className='imgTag' src={`/achievements/${achievement.imageName}.png`} alt={achievement.imageName} />
     </span>
   );
 }
 
-function RemainAchievement(){
-  return(
+function RemainAchievement() {
+  return (
     <span className='achievement-frame'>
       <img className='imgTag' src={lock} alt="lock" />
     </span>
   );
 }
 
-function Descriptions({description}){
-  return(
+function Descriptions({ description }) {
+  return (
     <span>
-      <h1>
+      <h1 className='font-PreM'>
         {description}
       </h1>
     </span>
