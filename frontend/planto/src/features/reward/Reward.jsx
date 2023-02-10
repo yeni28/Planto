@@ -4,9 +4,9 @@ import './Reward.css'
 import { HOST } from '../login/OAuth'
 import axios from 'axios'
 
-
 function Reward() {
   const [achievements, setAchievements] = useState()
+  const [text, setText] = useState()
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -20,8 +20,8 @@ function Reward() {
     }).then(function (response) {
       console.log(response)
       setAchievements(response.data)
+      setText(response.data.slice(0, 2))
     });
-    
   }, [])
 
   const user = {
@@ -51,7 +51,25 @@ function Reward() {
           <img src={user.profileImageUrl} alt="사용자 이미지" />
         </div>
       </div>
-      
+      <div>
+        {
+          text ?
+          text.map((item) => <Descriptions description={item.achievement.description} key={item.user_achievement_id}/>):
+          null
+        }
+        {console.log(text)}
+      {/* {
+        achievements && achievements[0] ? 
+        <Descriptions description={achievements[0]}/>:
+        null
+      }
+
+      {
+        achievements && achievements[1] ? 
+        <Descriptions description={achievements[1]}/>:
+        null
+      } */}
+      </div>
       <div>
           {
             achievements ?
@@ -69,7 +87,17 @@ export default Reward
 function Achievement({achievement}){
   return(
     <span>
-      <img className='imgTag' src={achievement.imageName} alt={achievement.imageName} />
+      <img className='imgTag' src='/achievements/smile.png' alt={achievement.imageName} />
+    </span>
+  );
+}
+
+function Descriptions({description}){
+  return(
+    <span>
+      <h1>
+        {description}
+      </h1>
     </span>
   );
 }
