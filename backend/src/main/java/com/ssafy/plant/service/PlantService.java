@@ -6,6 +6,7 @@ import com.google.firebase.cloud.StorageClient;
 import com.ssafy.plant.domain.DictEntity;
 import com.ssafy.plant.domain.Plant;
 import com.ssafy.plant.domain.PotEntity;
+import com.ssafy.plant.dto.plant.PlantDto;
 import com.ssafy.plant.dto.plant.PlantRegistDto;
 import com.ssafy.plant.repository.DictRepository;
 import com.ssafy.plant.repository.PlantRepository;
@@ -40,8 +41,15 @@ public class PlantService {
     @Value("${app.firebase-bucket}")
     private String firebaseBucket;
 
+    @Transactional(readOnly = true)
+    public PlantDto 식물상세보기(Long plantId) {
+        Plant target = plantRepository.findByPlantId(plantId);
+        PlantDto dto = target.entityToDto();
+        return dto;
+    }
+
     @Transactional
-    public void 식물등록(PlantRegistDto plantRegistDto, Long potId) throws IOException {
+    public Plant 식물등록(PlantRegistDto plantRegistDto, Long potId) throws IOException {
         UUID uuid = UUID.randomUUID();
         String imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
         System.out.println("이미지 파일 이름" + imageFileName);
@@ -61,6 +69,43 @@ public class PlantService {
 
         Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
         System.out.println(plant);
-        plantRepository.save(plant);
+        return plantRepository.save(plant);
+    }
+
+    @Transactional
+    public Plant 식물수정(PlantRegistDto plantRegistDto, Long plantId) throws IOException {
+        Plant target = plantRepository.findByPlantId(plantId);
+
+        if (target == null) {
+            return null;
+        }
+
+        UUID uuid = UUID.randomUUID();
+        String imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
+        System.out.println("이미지 파일 이름" + imageFileName);
+
+        Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
+        InputStream content = new ByteArrayInputStream(plantRegistDto.getFile().getBytes());
+        bucket.create(imageFileName, content, plantRegistDto.getFile().getContentType());
+
+        // plant 테이블에 저장
+        DictEntity dictEntity = dictRepository.findByPlantDictId(plantRegistDto.getPlantDictId());
+        PotEntity potEntity = target.getPotEntity();
+
+        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
+        target.patch(plant);
+        Plant updatedPlant = plantRepository.save(target);
+        return updatedPlant;
+
+    }
+
+    @Transactional
+    public Plant 식물삭제(Long plantId) {
+        Plant target = plantRepository.findByPlantId(plantId);
+        if (target == null) {
+            return null;
+        }
+        plantRepository.delete(target);
+        return target;
     }
 }
