@@ -82,7 +82,6 @@ function Reward() {
   )
 }
 
-export default Reward
 
 function Achievement({achievement}){
   return(
