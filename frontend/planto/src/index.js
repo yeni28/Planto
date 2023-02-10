@@ -9,6 +9,7 @@ import { RecoilRoot } from 'recoil';
 import App from './features/home/App';
 import Main from './features/home/Main';
 import MainPlanto from './features/home/mainPlanto';
+import PlantoDetail from './features/home/PlantoDetail';
 // 사전 페이지
 import Dict from './features/dictionary/DictPage';
 import PlantDetail from './features/dictionary/PlantDetail';
@@ -21,7 +22,7 @@ import Expert from './features/recommand/Expert';
 import Enroll from './features/enrollment/Pot_enroll';
 import EnrollPlant from './features/enrollment/Plant_enroll';
 // 업적 페이지
-import Reward from './features/reward/reward';
+import Reward from './features/reward/Reward';
 import KakaoLogin from './features/login/KakaoLogin';
 import Search from './features/components/SearchBar';
 
@@ -37,6 +38,7 @@ root.render(
         <Route path="/" element={<App/>}></Route>
         <Route path="/main/none" element={<Main/>}></Route>
         <Route path="/main/planto" element={<MainPlanto/>}></Route>
+        <Route path="/main/planto/:serialnumber" element={<PlantoDetail/>}></Route>
         {/* 사전 */}
         <Route path="/dictionary" element={<Dict/>}></Route>
         <Route path="/reward" element={<Reward/>}></Route>

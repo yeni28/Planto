@@ -1,0 +1,89 @@
+.plantodetaildiv{
+    width: 100%;
+    height: 120vh;
+}
+
+
+.detailback{
+    width:100%;
+    
+}
+
+
+.plantoDetailName{
+    margin-top: .5rem;
+    text-align: center;
+    font-size: 2rem;
+    color:white;
+    text-shadow: 1px 2px 30px black;
+}
+
+/* 호감도 */
+.likeboxwrap{
+    position: relative;
+}
+
+.likebox{
+    margin-left:2rem;
+    padding: .7rem;
+    width:20rem;
+    height:8rem;
+    border-radius: 1rem;
+    -webkit-backdrop-filter: brightness(1.1) blur(10px);
+    backdrop-filter: brightness(1.1) blur(10px);
+    mix-blend-mode: overlay;
+
+}
+
+
+/* 서브 타이틀 */
+.plantodetailsubtitle{
+    color:white;
+    text-align: center;
+    position: absolute;
+    top:4vh;
+    left:25vw;
+
+}
+
+.likecheckbtn{
+    width: 4.5rem;
+    height: 2em;
+    border-radius: 5rem;
+    background-color: #f15858;
+    color:rgb(255, 255, 255)
+
+}
+
+/* 현재 상태 */
+.infoIcon2{
+    width: 3rem;
+}
+.infobox2{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 20rem;
+    height: 8.5rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow:0px 0px 0.5rem rgba(0, 0, 0, .1);
+    gap:2.2rem;
+
+}
+.infonowcondition{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:.1rem;
+}
+.infonowtitle{
+    text-align: center;
+    margin-top:.5rem;
+    margin-bottom:.5rem;
+    color:white;
+}
+.infotext2{
+    font-size:1.2rem;
+    color:#329e5d;
+}

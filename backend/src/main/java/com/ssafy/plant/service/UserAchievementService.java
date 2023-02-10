@@ -21,7 +21,7 @@ public class UserAchievementService {
     UserAchievementRepository userAchievementRepository;
 
     public List<UserAchievementDTO> getAchievements(User user){
-        List<UserAchievementEntity> userAchievementEntities= userAchievementRepository.findByUser(user);
+        List<UserAchievementEntity> userAchievementEntities= userAchievementRepository.findByUserOrderByCreated(user);
         List<UserAchievementDTO> userAchievementDTOS = new ArrayList<>();
 
         for (UserAchievementEntity userAchievementEntity : userAchievementEntities){

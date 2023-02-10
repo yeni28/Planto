@@ -1,10 +1,13 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BottomNav from '../nav/BottomNav';
 import Example from '../../assets/background/backimg.png'
 function MainPlanto() {
   const  userName = window.localStorage.getItem('username')
+  const  serialnumber = window.localStorage.getItem('potSerial')
   const navigate = useNavigate();
+
+
 
   return (
     <div>
@@ -32,6 +35,11 @@ function MainPlanto() {
                   </div>
                 </div>
                 {/* 버튼 */}
+                <Link to={`/planto/${serialnumber}`}>
+                  <div>    
+                     디테일을 봐요
+                  </div>
+                </Link>
               </div>
               <button className="main_add_btn font-PreSB " onClick={() => {navigate("/enrollment");}}> + </button>
             </div>
