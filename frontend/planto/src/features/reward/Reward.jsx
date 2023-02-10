@@ -100,3 +100,5 @@ function Descriptions({description}){
     </span>
   );
 }
+
+export default Reward;
