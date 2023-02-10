@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import BottomNav from '../nav/BottomNav'
 import './Reward.css'
 import { HOST } from '../login/OAuth'
@@ -6,6 +6,8 @@ import axios from 'axios'
 
 
 function Reward() {
+  const [achievements, setAchievements] = useState()
+
   useEffect(() => {
     const token = window.localStorage.getItem('token');
 
@@ -16,7 +18,8 @@ function Reward() {
           Authorization: token
         }
     }).then(function (response) {
-        console.log(response)
+      console.log(response)
+      setAchievements(response.data)
     });
     
   }, [])
@@ -47,11 +50,30 @@ function Reward() {
           
           <img src={user.profileImageUrl} alt="사용자 이미지" />
         </div>
-
+      </div>
+      
+      <div>
+          {
+            achievements ?
+            achievements.map((item) => <Achievement achievement={item.achievement} key={item.user_achievement_id}/>):
+            null
+          }
       </div>
       <BottomNav/>
     </div>
   )
 }
 
+<<<<<<< Updated upstream:frontend/planto/src/features/reward/reward.jsx
 export default Reward
+=======
+export default Reward
+
+function Achievement({achievement}){
+  return(
+    <span>
+      <img className='imgTag' src={achievement.imageName} alt={achievement.imageName} />
+    </span>
+  );
+}
+>>>>>>> Stashed changes:frontend/planto/src/features/reward/Reward.jsx

@@ -16,3 +16,11 @@
     overflow: hidden;
 
 }
+
+.imgTag{
+    width: 50px;
+    height: 50px;
+    background-color: #E1F2DB;
+    border-radius: 10px;
+    /* border-radius: ; */
+}
