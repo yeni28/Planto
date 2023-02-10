@@ -1,5 +1,8 @@
 package com.ssafy.plant.service;
 
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Bucket;
+import com.google.firebase.cloud.StorageClient;
 import com.ssafy.plant.domain.DictEntity;
 import com.ssafy.plant.domain.Plant;
 import com.ssafy.plant.domain.PotEntity;
@@ -12,6 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,19 +37,19 @@ public class PlantService {
     @Value("${file.path}")
     private String uploadFolder;
 
+    @Value("${app.firebase-bucket}")
+    private String firebaseBucket;
+
     @Transactional
-    public void 식물등록(PlantRegistDto plantRegistDto, Long potId) throws ParseException {
+    public void 식물등록(PlantRegistDto plantRegistDto, Long potId) throws IOException {
         UUID uuid = UUID.randomUUID();
         String imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
         System.out.println("이미지 파일 이름" + imageFileName);
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
 
-        //통신, I/O -> 예외가 발생할 수 있다.
-        try {
-            Files.write(imageFilePath, plantRegistDto.getFile().getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
+        InputStream content = new ByteArrayInputStream(plantRegistDto.getFile().getBytes());
+        bucket.create(imageFileName, content, plantRegistDto.getFile().getContentType());
+
         // plant 테이블에 저장
         DictEntity dictEntity = dictRepository.findByPlantDictId(plantRegistDto.getPlantDictId());
         PotEntity potEntity = potRepository.findByPotId(potId);

@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import BottomNav from '../nav/BottomNav'
-import './reward.css'
+import './Reward.css'
+import { HOST } from '../login/OAuth'
+import axios from 'axios'
 
 
-function reward() {
+function Reward() {
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+
+    axios({
+        method: "get",
+        url: `${HOST}/api/v1/achievement`,
+        headers: {
+          Authorization: token
+        }
+    }).then(function (response) {
+        console.log(response)
+    });
+    
+  }, [])
+
   const user = {
-    name:'황채연'
+    name:window.localStorage.getItem('username'),
+    profileImageUrl:window.localStorage.getItem('profileImageUrl')
   }
   return (
     <div style={{backgroundColor:'#FAF8F8', padding:'1.2rem'}}>
@@ -27,8 +45,7 @@ function reward() {
 
         <div className='reward_img'>
           
-          <img src="https://i.pinimg.com/564x/93/ff/82/93ff82add0a65ce3b24f2aa0b639cb50.jpg" alt=""
-         />
+          <img src={user.profileImageUrl} alt="사용자 이미지" />
         </div>
 
       </div>
@@ -37,4 +54,4 @@ function reward() {
   )
 }
 
-export default reward
+export default Reward

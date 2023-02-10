@@ -21,7 +21,7 @@ import Expert from './features/recommand/Expert';
 import Enroll from './features/enrollment/Pot_enroll';
 import EnrollPlant from './features/enrollment/Plant_enroll';
 // 업적 페이지
-import Reward from './features/reward/reward';
+import Reward from './features/reward/Reward';
 import KakaoLogin from './features/login/KakaoLogin';
 import Search from './features/components/SearchBar';
 
