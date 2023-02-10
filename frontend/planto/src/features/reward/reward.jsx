@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import BottomNav from '../nav/BottomNav'
-import './reward.css'
+import './Reward.css'
+import { HOST } from '../login/OAuth'
+import axios from 'axios'
 
 
-function reward() {
+function Reward() {
+  
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+
+    axios({
+        method: "get",
+        url: `${HOST}/api/v1/achievement`,
+        headers: {
+          Authorization: token
+        }
+    }).then(function (response) {
+        console.log(response)
+    });
+    
+  }, [])
+
   const user = {
     name:'황채연'
   }
@@ -37,4 +55,4 @@ function reward() {
   )
 }
 
-export default reward
+export default Reward
