@@ -64,9 +64,6 @@ function Reward() {
   )
 }
 
-<<<<<<< Updated upstream:frontend/planto/src/features/reward/reward.jsx
-export default Reward
-=======
 export default Reward
 
 function Achievement({achievement}){
@@ -76,4 +73,3 @@ function Achievement({achievement}){
     </span>
   );
 }
->>>>>>> Stashed changes:frontend/planto/src/features/reward/Reward.jsx
