@@ -46,12 +46,13 @@ public class MachinePlantService {
         } else if(touch_status == 2){
             attack += 1;
         }
-        System.out.println(touch % 10);
-        System.out.println(touch);
+
         if (touch != 0 && touch % 10 == 0 && liking < 100){
             liking += 1;
+            touch += 1;
             checkLiking(pot.getPotId(), liking);
-        } else if (attack != 0 && attack % 40 == 0 && liking > 0){
+        } else if (attack != 0 && attack % 10 == 0 && liking > 0){
+            attack += 1;
             liking -= 1;
             checkLiking(pot.getPotId(), liking);
         }

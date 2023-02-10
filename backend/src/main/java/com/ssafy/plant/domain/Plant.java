@@ -93,6 +93,7 @@ public class Plant {
                 .createDate(createDate)
                 .temperature(temperature)
                 .humidity(humidity)
+                .attack(attack)
                 .sun(sun)
                 .waterLevel(waterLevel)
                 .touch(touch)
