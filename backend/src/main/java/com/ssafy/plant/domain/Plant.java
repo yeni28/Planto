@@ -1,5 +1,6 @@
 package com.ssafy.plant.domain;
 
+import com.ssafy.plant.dto.plant.PlantDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -59,5 +60,45 @@ public class Plant {
 
     private int liking;
 
+    public void patch(Plant plant) {
+        if (plant.getName() != null) {
+            this.name = plant.getName();
+        }
+        if (plant.getCreateDate() != null) {
+            this.createDate = plant.getCreateDate();
+        }
+        if (plant.getImagePath() != null) {
+            this.imagePath = plant.getImagePath();
+        }
+        if (plant.getPlantDict() != this.plantDict && plant.getPlantDict() != null) {
+            this.plantDict = plant.getPlantDict();
+            this.liking = 50;
+            this.humidity = 0;
+            this.soilMoisture = 0;
+            this.touch = 0;
+            this.sun = 0;
+            this.attack = 0;
+            this.waterLevel = 0;
+            this.temperature = 0;
+        }
+    }
+
+    public PlantDto entityToDto() {
+        return PlantDto.builder()
+                .plantId(plantId)
+                .plantDictId(plantDict.getPlantDictId())
+                .potId(potEntity.getPotId())
+                .name(name)
+                .imagePath(imagePath)
+                .createDate(createDate)
+                .temperature(temperature)
+                .humidity(humidity)
+                .sun(sun)
+                .waterLevel(waterLevel)
+                .touch(touch)
+                .liking(liking)
+                .soilMoisture(soilMoisture)
+                .build();
+    }
 }
 
