@@ -38,6 +38,20 @@ function Plant_enroll() {
   // 화분 id 
   const pot_serial =  window.localStorage.getItem('potSerial')
   console.log(pot_serial)
+
+  // 사진등록
+  const fileInput = React.useRef(null);
+  
+  const handleButtonClick = e => {
+    fileInput.current.click();
+  };
+  
+  const handleChange = e => {
+    setFile(e.target.files[0])
+    console.log(e.target.files[0]);
+  };
+  
+
   // 인풋 값 전달
   // 이미지 파일
 
@@ -62,31 +76,6 @@ function Plant_enroll() {
     .catch((error)=>{console.log('요청 실패')})
   }
 
-  // 사진등록
-  const fileInput = React.useRef(null);
-  
-  const handleButtonClick = e => {
-    fileInput.current.click();
-  };
-  
-  const handleChange = e => {
-    setFile(e.target.files[0])
-    console.log(e.target.files[0]);
-  };
-  
-  // 날짜
-  // function DateChange({startDate}){
-  //   const Y = startDate.getFullYear();
-  //   const M = startDate.getMonth()+1;
-  //   const D = startDate.getDate();
-
-  //   const realdate = `${Y}`  + `${M<10 ? 0+""+M : M}` + `${D<10 ? 0+""+D : D}`
-  //   console.log(realdate)
-
-
-  // }
-
-
 
   return (
     <div style={{padding:'1rem' }}>
@@ -100,6 +89,14 @@ function Plant_enroll() {
         <span className='font-PreSB enrollTitle'> 나의 식물 등록 </span>
       </div>
       {/* 사진등록 */}
+      {/* 
+      <div>
+        <form>
+          <button>Add </button>
+          <input type="file" style={{display:"none"}}/>
+        </form>
+      </div> */}
+
       <div onClick={handleButtonClick} >
         <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
       </div>
@@ -107,7 +104,9 @@ function Plant_enroll() {
              ref={fileInput}
              onChange={handleChange}
              style={{ display: "none" }} />
-      {/* <Uploader/> */}
+
+
+
       {/* 인풋 */}
       <div>
 
@@ -145,6 +144,7 @@ function Plant_enroll() {
 
         </div>
         {/* 등록버튼 */}
+
         {/* 등록하기 클릭하면! 백으로 데이터 보내주기 => DB저장 */}
         <button className='font-PreM enrollBtn' onClick={onClickData}> 등록하기 </button>
       </div>
