@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import BottomNav from '../nav/BottomNav';
 // 이미지
+import back from '../../assets/background/detailback.png'
 import temp from '../../assets/icons/temp.png'
 import humid from '../../assets/icons/humid.png'
 import lux from '../../assets/icons/lux.png'
-import back from '../../assets/background/detailback.png'
+// 이미지2
+import nowtem from '../../assets/icons/nowtem.png'
+import nowhum from '../../assets/icons/nowhum.png'
+import nowsun from '../../assets/icons/nowsun.png'
 
 //  api주소
 import { HOST } from "../login/OAuth"
@@ -81,7 +85,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
             <div> {plant.plant} </div>
           </div>
           {/* 호감도 표현 */}
-          <div className='likeboxwrap'>
+          <div className='likeboxwrap' style={{marginBottom:'1rem'}}>
               <div className='likebox'>
                 <div className='font-PreM'
                 style={{color:'white', textAlign:'center'}}
@@ -92,21 +96,40 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
                 
                 <div className='font-PreM plantodetailsubtitle'>  
                 플랜토와 얼마나 친해졌나요? </div>
-                <div style={{position:'absolute', top:'5rem', left:'15rem'}}>
-                <button className="likecheckbtn">+More</button>
+                <div style={{position:'absolute', top:'5rem', left:'16rem'}}>
+                <button className="font-PreM likecheckbtn"> 더 보기 </button>
                 </div>
               </div>
               
           </div>
           {/*  현재 상태 */}
           <div>
+                <p className='font-PreR infonowtitle '> 현재 식물의 상태를 확인하세요! </p>
+                <div className="infobox2">
+                    <div className='infonowcondition'>
+                        {/* <p className='font-PreL ' style={{marginTop:'0.15rem'}}>온도</p> */}
+                        <img src={nowtem} alt="temp" className='infoIcon2'></img>
+                        <p className='font-PreSB text-green-700 infotext2' style={{marginTop:'0.15rem'}}>{plant.temperature}°C</p>
+                    </div>
+                    <div className='infonowcondition'>
+                        {/* <p className='font-PreSB text-green-700 ' style={{marginTop:'0.15rem'}}>습도</p> */}
+                        <img src={nowhum} alt="humid" className='infoIcon2'></img>
+                        <p className='font-PreSB text-green-700 infotext2 ' style={{marginTop:'0.15rem'}}>{plant.soilMoisture}%</p>
+                    </div>
+                    <div className='infonowcondition'>
+                        {/* <p className='font-PreSB text-green-700 ' style={{marginTop:'0.15rem'}}>조도</p> */}
+                        <img src={nowsun} alt="lux" className='infoIcon2'></img>
+                        <p className='font-PreSB text-green-700 infotext2' style={{marginTop:'0.15rem'}}>{plant.sun}(lux)</p>
+                    </div>
+                </div>
+            </div>
 
-          </div>
           {/* 선호 환경 */}
+        
           <div>
             {/* 저장된 식물 ID를 토대로 디테일 구현 */}
-            {/* <div>
-                <p className='font-PreSB infoTitle'>최적 환경</p>
+            <div>
+                <p className='font-PreR infonowtitle'>식물이 원하는 환경이에요</p>
                 <div className="infobox">
                     <div className='infocondition'>
                         <img src={temp} alt="temp" className='infoIcon'></img>
@@ -124,7 +147,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
                         <p className='font-PreM infotext' style={{marginLeft:'4.5rem',marginTop:'0.15rem'}}>{plant.lightMin}~{plant.lightMax}(lux)</p>
                     </div>
                 </div>
-            </div> */}
+            </div>
 
           </div>
           {/* 기능성 정보 */}
