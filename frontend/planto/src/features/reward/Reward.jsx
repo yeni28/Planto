@@ -3,14 +3,17 @@ import BottomNav from '../nav/BottomNav'
 import './Reward.css'
 import { HOST } from '../login/OAuth'
 import axios from 'axios'
+import lock from '../../assets/icons/lock.png'
+import { useRef } from 'react'
 
 function Reward() {
   const [achievements, setAchievements] = useState()
   const [text, setText] = useState()
+  const [countAchievement, setCountAchievement] = useState(20)
+  let remainAchievements = useRef([]);
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
-
     axios({
         method: "get",
         url: `${HOST}/api/v1/achievement`,
@@ -19,8 +22,14 @@ function Reward() {
         }
     }).then(function (response) {
       console.log(response)
+      remainAchievements.current = []
       setAchievements(response.data)
       setText(response.data.slice(0, 2))
+      setCountAchievement(response.data.length)
+
+      for (let i = 0; i < 20 - response.data.length; i++){
+        remainAchievements.current.push(i)
+      }
     });
   }, [])
 
@@ -57,24 +66,20 @@ function Reward() {
           text.map((item) => <Descriptions description={item.achievement.description} key={item.user_achievement_id}/>):
           null
         }
-        {console.log(text)}
-      {/* {
-        achievements && achievements[0] ? 
-        <Descriptions description={achievements[0]}/>:
-        null
-      }
-
-      {
-        achievements && achievements[1] ? 
-        <Descriptions description={achievements[1]}/>:
-        null
-      } */}
       </div>
       <div>
+        {countAchievement}/20
+      </div>
+      <div className='achievement-frame'>
+        {/* 보유한 업적 */}
           {
             achievements ?
             achievements.map((item) => <Achievement achievement={item.achievement} key={item.user_achievement_id}/>):
             null
+          }
+        {/* 보유하지 않은 업적 */}
+          {
+            remainAchievements.current.map((item, key) => <RemainAchievement key={key}/>)
           }
       </div>
       <BottomNav/>
@@ -85,8 +90,16 @@ function Reward() {
 
 function Achievement({achievement}){
   return(
-    <span>
-      <img className='imgTag' src='/achievements/smile.png' alt={achievement.imageName} />
+    <span className='achievement-frame'>
+      <img className='imgTag' src={`/achievements/${achievement.imageName}.png`} alt={achievement.imageName} />
+    </span>
+  );
+}
+
+function RemainAchievement(){
+  return(
+    <span className='achievement-frame'>
+      <img className='imgTag' src={lock} alt="lock" />
     </span>
   );
 }
