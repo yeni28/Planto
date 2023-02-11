@@ -72,3 +72,7 @@
 .plant_name_second{
     font-size: 0.8rem;
 }
+
+input::placeholder {
+    font-size: .9rem
+  }
