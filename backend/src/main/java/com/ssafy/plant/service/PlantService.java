@@ -68,7 +68,8 @@ public class PlantService {
 //        Date date = formatter.parse(plantRegistDto.getCreateDate());
 
         Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
-        System.out.println(plant);
+        potEntity.setPlant(plant);
+        potRepository.save(potEntity);
         return plantRepository.save(plant);
     }
 
