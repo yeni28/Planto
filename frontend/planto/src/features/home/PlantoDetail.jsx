@@ -36,7 +36,17 @@ function PlantoDetail() {
           },
       }).then((response) => {
           setPlant(response.data)
-          console.log(response)
+          console.log(response.data.plant_dict_plant_dict_id)
+          axios({
+            method: "get",
+            url: `${HOST}/api/v1/dict/detail/${response.data.plant_dict_plant_dict_id}`,
+            headers: {
+              Authorization: token,
+            },
+        }).then(function (response) {
+            setPlantDetail(response.data)
+            console.log(response.data)
+        });
       }).catch((e) =>{
         console.log(e)
       });
@@ -45,18 +55,7 @@ function PlantoDetail() {
     // 식물 데이터 받아오기!
     const [plantdetail, setPlantDetail] = useState([]);
 
-    useEffect(() => {
-        axios({
-            method: "get",
-            url: `${HOST}/api/v1/dict/detail/${plant.plant_dict_plant_dict_id}`,
-        }).then(function (response) {
-            setPlantDetail(response.data)
-        });
-        
-    }, [])
-
-    
-
+  
     
   
   // 날짜 계산
