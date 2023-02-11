@@ -62,17 +62,26 @@ function Reward() {
       </div>
 
       {/* 업적 달성 메세지 */}
-      <div>
+      <div style={{marginTop:'1.5rem'}}>
         {
           text ?
-            text.map((item) => <Descriptions description={item.achievement.description} key={item.user_achievement_id} />) :
+            text.map((item) => <Descriptions description={item.achievement.name} key={item.user_achievement_id} />) :
             null
         }
       </div>
+      {/* 구분선 */}
+      <div style={{display:'flex', marginTop:'1rem'}}>
+      <div style={{width:'30%',height:'1px', backgroundColor:'black', margin:'auto',marginTop:'1rem'}}></div>
+      <span className="font-PreSB rewardsubtitle"> 업적 </span>
+      <div style={{width:'30%',height:'1px', backgroundColor:'black', margin:'auto',marginTop:'1rem'}}></div>
+
+      </div>
 
       {/* 업적 달성 개수 */}
-      <div className='font-PreM'>
-        {countAchievement}/20
+      <div style={{textAlign:'center'}}>
+        <div>
+          <span className='font-PreSB'>{countAchievement}/</span><span className='font-PreR '>20</span>
+        </div>
       </div>
 
       <div className='achievement-frame'>
@@ -112,8 +121,8 @@ function RemainAchievement() {
 function Descriptions({ description }) {
   return (
     <span>
-      <h1 className='font-PreM'>
-        {description}
+      <h1 className='font-PreR rewardText'>
+      ✔️ '{description}'를 획득했습니다
       </h1>
     </span>
   );

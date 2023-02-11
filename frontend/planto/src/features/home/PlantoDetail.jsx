@@ -25,22 +25,38 @@ function PlantoDetail() {
     const [plant, setPlant] = useState([]);
     const token = window.localStorage.getItem('token');
 
-
+    // DB에 저장된 데이터 받아오기
     useEffect(() => {
       axios({
           method: "get",
+          //
           url: `${HOST}/api/v1/plant/3`,
           headers: {
             Authorization: token,
           },
       }).then((response) => {
           setPlant(response.data)
-          console.log(response)
+          console.log(response.data.plant_dict_plant_dict_id)
+          axios({
+            method: "get",
+            url: `${HOST}/api/v1/dict/detail/${response.data.plant_dict_plant_dict_id}`,
+            headers: {
+              Authorization: token,
+            },
+        }).then(function (response) {
+            setPlantDetail(response.data)
+            console.log(response.data)
+        });
       }).catch((e) =>{
         console.log(e)
       });
       
   }, [])
+    // 식물 데이터 받아오기!
+    const [plantdetail, setPlantDetail] = useState([]);
+
+  
+    
   
   // 날짜 계산
   const dday = new Date(`${plant.createDate}`)
@@ -53,13 +69,6 @@ function PlantoDetail() {
     
   },[dday])
   
-  // setInterval(function(){
-
-  //   const today = new Date().getTime();
-  //   const gap = dday - today
-  //   const day = Math.ceil(gap/(1000*60*60*24))
-  //   document.
-  // },1000)
 
   return (
     <div className="plantodetaildiv" >
@@ -82,7 +91,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
             </div>
             {/* <img src={`https://firebasestorage.googleapis.com/v0/b/planto-e2910.appspot.com/o/${plant.imagePath}?alt=media`}/> */}
             <div className='plantoDetailName font-PreSB'> {plant.name}</div>
-            <div> {plant.plant} </div>
+            <div className='plantoDetailName2 font-PreSB'> {plantdetail.name} </div>
           </div>
           {/* 호감도 표현 */}
           <div className='likeboxwrap' style={{marginBottom:'1rem'}}>
@@ -134,17 +143,17 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
                     <div className='infocondition'>
                         <img src={temp} alt="temp" className='infoIcon'></img>
                         <p className='font-PreM infotext' style={{marginLeft:'0.4rem',marginTop:'0.15rem'}}>온도</p>
-                        <p className='font-PreM infotext' style={{marginLeft:'5rem',marginTop:'0.15rem'}}>{plant.temperatureMin}°C~{plant.temperatureMax}°C</p>
+                        <p className='font-PreM infotext' style={{marginLeft:'5rem',marginTop:'0.15rem'}}>{plantdetail.temperatureMin}°C~{plantdetail.temperatureMax}°C</p>
                     </div>
                     <div className='infocondition'>
                         <img src={humid} alt="humid" className='infoIcon'></img>
                         <p className='font-PreM infotext' style={{marginLeft:'0.4rem',marginTop:'0.15rem'}}>습도</p>
-                        <p className='font-PreM infotext' style={{marginLeft:'5rem',marginTop:'0.15rem'}}>{plant.humidityMin}%~{plant.humidityMax}%</p>
+                        <p className='font-PreM infotext' style={{marginLeft:'5rem',marginTop:'0.15rem'}}>{plantdetail.humidityMin}%~{plantdetail.humidityMax}%</p>
                     </div>
                     <div className='infocondition'>
                         <img src={lux} alt="lux" className='infoIcon'></img>
                         <p className='font-PreM infotext' style={{marginLeft:'0.4rem',marginTop:'0.15rem'}}>조도</p>
-                        <p className='font-PreM infotext' style={{marginLeft:'4.5rem',marginTop:'0.15rem'}}>{plant.lightMin}~{plant.lightMax}(lux)</p>
+                        <p className='font-PreM infotext' style={{marginLeft:'4.5rem',marginTop:'0.15rem'}}>{plantdetail.lightMin}~{plantdetail.lightMax}(lux)</p>
                     </div>
                 </div>
             </div>

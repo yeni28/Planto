@@ -17,6 +17,14 @@
     color:white;
     text-shadow: 1px 2px 30px black;
 }
+.plantoDetailName2{
+    margin-top: -.2rem;
+    text-align: center;
+    font-size: 1rem;
+    color:white;
+    opacity: 0.4;
+    text-shadow: 1px 2px 30px black;
+}
 
 /* 호감도 */
 .likeboxwrap{
@@ -24,6 +32,7 @@
 }
 
 .likebox{
+    margin-top: 1rem;
     margin-left:2rem;
     padding: .7rem;
     width:20rem;
@@ -87,3 +96,4 @@
     font-size:1.2rem;
     color:#329e5d;
 }
+
