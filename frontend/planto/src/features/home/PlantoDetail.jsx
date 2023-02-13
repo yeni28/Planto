@@ -18,9 +18,13 @@ import './PlantoDetail.css'
 import ProgressContainer from '../components/Progressbar';
 // 모달
 import ModalLike from '../components/ModalLike'
+import { useLocation } from 'react-router-dom';
 
 function PlantoDetail() {
-  
+  // potID
+  const location = useLocation();
+  const plantId = location.state.plantId
+
   // palnt ID 받아오기
 
 
@@ -43,7 +47,7 @@ function PlantoDetail() {
         axios({
             method: "get",
             //
-            url: `${HOST}/api/v1/plant/2`,
+            url: `${HOST}/api/v1/plant/${plantId}`,
             headers: {
               Authorization: token,
             },

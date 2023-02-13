@@ -41,7 +41,7 @@ function Main(){
         }, [])
 
         // 플랜토 유무
-        const [isPlanto, setIsPlanto] = useState();
+        const [planto, setPlanto] = useState([]);
         useEffect(() => {
           axios({
               method: "get",
@@ -50,7 +50,7 @@ function Main(){
                 Authorization: token,
               },
           }).then(function (response) {
-              setIsPlanto(response.data)
+              setPlanto(response.data)
               console.log(response.data)
           }).catch((e) =>{
               console.log(e)
@@ -58,8 +58,13 @@ function Main(){
           
         }, [])
         
-    
-
+    // const plantoList = planto.map((v)=>(<MainPlantoList potId={v[0]} plant={v[1]} user={v[2]} />))
+    // const MainPlantoList = (props) =>{
+    //   return (
+    //     <div>
+    //     </div>
+    //   )
+    // }
 
     return(
         <div>
@@ -73,8 +78,8 @@ function Main(){
             </div>
 
             <div>
-              {setIsPlanto !== null ?
-              <MainPlanto />:
+              {setPlanto.length !== 0 ?
+              <MainPlanto plantos={planto}/>:
               <MainNone/>}
             </div>
             
