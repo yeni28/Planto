@@ -93,13 +93,6 @@ function Plant_enroll() {
         <span className='font-PreSB enrollTitle'> 나의 식물 등록 </span>
       </div>
       {/* 사진등록 */}
-      {/* 
-      <div>
-        <form>
-          <button>Add </button>
-          <input type="file" style={{display:"none"}}/>
-        </form>
-      </div> */}
 
       <div onClick={handleButtonClick} >
         <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
