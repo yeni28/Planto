@@ -79,7 +79,7 @@ function Plant({plant}){
           <p className="font-PreL">이 식물을 등록할까요?</p>
         </div>
         </ModalEnroll>
-          <div className='plant_card' onClick={()=>openModal({plantName})}style={{marginBottom:'1.2rem',}}>
+          <div className='plant_card ' onClick={()=>openModal({plantName})}style={{marginBottom:'1.2rem',}}>
             <div className="plant_image"> 
               <div className="img_circle" style={{
               backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${plant.imagePath}")`
