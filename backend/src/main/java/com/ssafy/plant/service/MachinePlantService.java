@@ -30,11 +30,21 @@ public class MachinePlantService {
         ObjectMapper objectMapper = new ObjectMapper();
         map = objectMapper.readValue(payload.toString(), map.getClass());
 
-        long serialNo = Integer.parseInt(map.get("device_number"));
+        long serialNo = Long.parseLong(map.get("device_number"));
         int touch_status = Integer.parseInt(map.get("touch"));
         int attack = Integer.parseInt(map.get("attack"));
 
-        PotEntity pot = potRepository.findByPotId(serialNo);
+        PotEntity pot = potRepository.findByPotId(1234L);
+        System.out.println("================================");
+        try{
+            System.out.println(pot.getClass().getName());
+            System.out.println(pot);
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+        System.out.println("================================");
+
         Plant plant = pot.getPlant();
         int touch = plant.getTouch();
         attack += plant.getAttack();
