@@ -4,7 +4,7 @@ import './ModalLike.css'
 
 const ModalLike = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header, Like, Prank,Touch,randomItem } = props;
+  const { open, close, header, Like, Prank,Touch,randomItem, Tips } = props;
   const navigate = useNavigate()
 
 
@@ -31,6 +31,8 @@ const ModalLike = (props) => {
               </div>
             </main>
             <footer>
+              {console.log(Tips)}
+              {Tips}
               {/* 여기에 TIPS 들어가면돼요! */}
               <div ></div>
             </footer>

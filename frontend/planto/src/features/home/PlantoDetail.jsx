@@ -26,11 +26,15 @@ function PlantoDetail() {
 
   // plant 받아오기
     const [plant, setPlant] = useState([]);
-    const token = window.localStorage.getItem('token');
     const [character, setCharacter] = useState("");
     const [plantoAd, setPlantoAd] = useState("");
+    const [tips ,setTips] = useState('');
+
     // DB에 저장된 데이터 받아오기
     useEffect(() => {
+      const token = window.localStorage.getItem('token');
+      const TIP = ['Touch는 호감도를 올려줘요!','플랜토의 성향에 따라 기본 표정이 달라져요','LOVELY 플랜토는 사랑이 가득해요','플랜토의 다양한 표정을 모아보세요'];
+
       axios({
           method: "get",
           //
@@ -40,6 +44,7 @@ function PlantoDetail() {
           },
       }).then((response) => {
           setPlant(response.data)
+          setTips(TIP[Math.floor(Math.random() * 4)])
           console.log(response.data.liking)
           console.log(response.data)
           
@@ -77,7 +82,6 @@ function PlantoDetail() {
   // 호감도
   const like = plant.liking
     
-  
   // 날짜 계산
   const dday = new Date(`${plant.createDate}`)
   const [days, setDays] = useState(0);
@@ -97,17 +101,7 @@ function PlantoDetail() {
   const closeModal = () => {
       setModalOpen(false);
     };
-
-// 랜덤 TIP 출력
-
-// const TIP = new Array('Touch는 호감도를 올려줘요!','플랜토의 성향에 따라 기본 표정이 달라져요','LOVELY 플랜토는 사랑이 가득해요','플랜토의 다양한 표정을 모아보세요',);
-// document.write(randomItem(TIP),'');
-// const [tips ,setTips] = useState('');
-// function randomItem(a){
-//   return a[Math.floor(Math.random()*a.length)]
-//   setTips(a);
-// }
-
+  
   return (
     <div className="plantodetaildiv" >
       <div className="detailback"style={{width:'100vw',height:'100vh',
@@ -140,7 +134,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
               </div>
           <div>
           {/* 호감도 모달 */}
-          <ModalLike open={modalOpen} close={closeModal} header="이름 확인" Like={like} Prank={plant.attack} Touch={plant.touch} character={character}>
+          <ModalLike open={modalOpen} close={closeModal} header="이름 확인" Like={like} Prank={plant.attack} Touch={plant.touch} character={character} Tips={tips}>
             <div className="modalText">
         
               <div className="font-PreL likeheader">
