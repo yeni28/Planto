@@ -22,10 +22,6 @@ export default function Login(){
             }} 
             src={LoginImg} alt="카카오로그인"></img>
         </button>
-
-
-        <br></br>
-            <a href={KAKAO_AUTH_URL}>카카오로 시작하기</a>
         </div>
     )
 }
