@@ -1,18 +1,24 @@
 package com.ssafy.plant.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import com.ssafy.plant.domain.DictEntity;
 import com.ssafy.plant.dto.DictDTO;
 import com.ssafy.plant.repository.DictRepository;
 import com.ssafy.plant.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -48,5 +54,30 @@ public class DictController {
     @GetMapping("/water")
     public ResponseEntity<List<DictDTO>> dictWater(){
         return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictWater());
+    }
+
+    @GetMapping("/recom/{plantDictId}")
+    public ResponseEntity<String> recomPlant(@PathVariable Long plantDictId) throws JsonProcessingException {
+        System.out.println("스프링 ----> 장고");
+        System.out.println("스프링 ----> 장고");
+        System.out.println("스프링 ----> 장고");
+
+        List<DictDTO> myDict = dictService.getDictList();
+        ObjectMapper mapper = new ObjectMapper();
+        String myString = mapper.writeValueAsString(myDict);
+        System.out.println(myString);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        String url = "http://localhost:8000/plantos/recom/";
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("plantDict",myString);
+        HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+        System.out.println(response.getBody());
+        System.out.println(response.getStatusCodeValue());
+        return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 }
