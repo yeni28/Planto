@@ -32,7 +32,7 @@ public class UserAchievementService {
     }
 
     public UserAchievementDTO setAchievement(User user, String name){
-        AchievementEntity achievement = achievementRepository.findByName(name);
+        AchievementEntity achievement = achievementRepository.findByImageName(name);
 
         UserAchievementEntity userAchievementEntity = UserAchievementEntity
                 .builder()
