@@ -15,6 +15,7 @@ import { HOST } from "../login/OAuth"
 import axios from 'axios';
 
 import './PlantoDetail.css'
+import ProgressContainer from '../components/Progressbar';
 
 function PlantoDetail() {
   
@@ -30,7 +31,7 @@ function PlantoDetail() {
       axios({
           method: "get",
           //
-          url: `${HOST}/api/v1/plant/3`,
+          url: `${HOST}/api/v1/plant/1`,
           headers: {
             Authorization: token,
           },
@@ -46,6 +47,7 @@ function PlantoDetail() {
         }).then(function (response) {
             setPlantDetail(response.data)
             console.log(response.data)
+         
         });
       }).catch((e) =>{
         console.log(e)
@@ -55,7 +57,8 @@ function PlantoDetail() {
     // 식물 데이터 받아오기!
     const [plantdetail, setPlantDetail] = useState([]);
 
-  
+  // 호감도
+  const like = plant.liking
     
   
   // 날짜 계산
@@ -69,6 +72,7 @@ function PlantoDetail() {
     
   },[dday])
   
+
 
   return (
     <div className="plantodetaildiv" >
@@ -105,6 +109,11 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
                 
                 <div className='font-PreM plantodetailsubtitle'>  
                 플랜토와 얼마나 친해졌나요? </div>
+                <div style={{position:'absolute', top:'4.2rem',left:'3rem'}}>
+                  <ProgressContainer 
+                  like ={like}
+                  />
+                </div>
                 <div style={{position:'absolute', top:'5rem', left:'16rem'}}>
                 <button className="font-PreM likecheckbtn"> 더 보기 </button>
                 </div>
