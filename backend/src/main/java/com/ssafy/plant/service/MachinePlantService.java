@@ -20,16 +20,12 @@ public class MachinePlantService {
 
     @Autowired
     PlantRepository plantRepository;
-
     @Autowired
     PotRepository potRepository;
-
     @Autowired
     AchievementRepository achievementRepository;
-
     @Autowired
     UserAchievementRepository userAchievementRepository;
-
     @Autowired
     LikingService likingService;
 
@@ -58,11 +54,9 @@ public class MachinePlantService {
         if (touch != 0 && touch % 10 == 0 && liking < 100){
             liking += 1;
             touch += 1;
-            checkLiking(pot.getPotId(), liking);
         } else if (attack != 0 && attack % 10 == 0 && liking > 0){
             attack += 1;
             liking -= 1;
-            checkLiking(pot.getPotId(), liking);
         }
 
         User user = pot.getUser();
@@ -76,6 +70,10 @@ public class MachinePlantService {
         // 2번 플렌토가 화가 났습니다.
         if (liking <= 30){
             saveAchievement(user, userAchievementEntity, 2);
+            if (liking >= 25) {
+                // 화가난 플랜토
+                likingService.sendLiking(serialNo, 0);
+            }
         }
         // 3번 플랜토의 이마에 혹이 생겼습니다.
         if (attack >= 50){
@@ -93,8 +91,16 @@ public class MachinePlantService {
         // 9번 플랜토가 행복해졌습니다
         if (liking >= 70){
             saveAchievement(user, userAchievementEntity, 9);
+            if (liking < 75) {
+                // 사랑받는 플랜토
+                likingService.sendLiking(serialNo, 2);
+            }
         }
 
+        // 기본 플랜토
+        if ((liking > 30 && liking < 35) || (liking < 70 && liking > 65)){
+            likingService.sendLiking(serialNo, 1);
+        }
 
         plant.setTemperature((int)Double.parseDouble(map.get("temperature")));
         plant.setHumidity((int)Double.parseDouble(map.get("humidity")));
@@ -106,21 +112,6 @@ public class MachinePlantService {
 
         System.out.println(plant);
         plantRepository.save(plant);
-    }
-
-    public void checkLiking(long potId, int liking) throws JsonProcessingException {
-        //         기분 나쁜 플랜토
-        if (liking < 30){
-            likingService.sendLiking(potId, 0);
-
-//         기본 플랜토
-        } else if(liking < 70){
-            likingService.sendLiking(potId, 1);
-
-//         사랑받는 플랜토
-        } else{
-            likingService.sendLiking(potId, 2);
-        }
     }
 
     public void saveAchievement(User user, List<UserAchievementEntity> userAchievementEntity, int achievement_id){
