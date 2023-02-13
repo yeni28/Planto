@@ -5,10 +5,12 @@ import './index.css';
 // 
 import { RecoilRoot } from 'recoil';
 
+
+
 // 메인 페이지
 import App from './features/home/App';
 import Main from './features/home/Main';
-import MainPlanto from './features/home/mainPlanto';
+import MainPlanto from './features/home/MainPlanto';
 import PlantoDetail from './features/home/PlantoDetail';
 // 사전 페이지
 import Dict from './features/dictionary/DictPage';
@@ -26,8 +28,10 @@ import Reward from './features/reward/Reward';
 import KakaoLogin from './features/login/KakaoLogin';
 import Search from './features/components/SearchBar';
 
+// 접근
+import  PrivateRoute from './PrivateRouter'
 
-
+const token = window.localStorage.getItem('token');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,8 +40,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App/>}></Route>
-        <Route path="/main/none" element={<Main/>}></Route>
-        <Route path="/main/planto" element={<MainPlanto/>}></Route>
+        <Route path="/main" element={<PrivateRoute component={<Main/>} authenticated={token} />}></Route>
         <Route path="/main/planto/:serialnumber" element={<PlantoDetail/>}></Route>
         {/* 사전 */}
         <Route path="/dictionary" element={<Dict/>}></Route>
@@ -50,10 +53,10 @@ root.render(
         <Route path="/dictionary/expert" element={<Expert/>}></Route>
         <Route path="/kakaoLogin" element={<KakaoLogin/>}></Route>
         {/* 등록 */}
-        <Route path="/enrollment" element={<Enroll/>}></Route>
-        <Route path="/enrollment/plant" element={<EnrollPlant/>}></Route>
+        <Route path="/enrollment" element={<PrivateRoute component={<Enroll/>}authenticated={token}/>}></Route>
+        <Route path="/enrollment/plant" element={<PrivateRoute component={<EnrollPlant/>}authenticated={token}/>}></Route>
         {/* 검색 */}
-        <Route path="/enrollment/plant/search" element={<Search/>}></Route>
+        <Route path="/enrollment/plant/search"element={<PrivateRoute component={<Search/>}authenticated={token}/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

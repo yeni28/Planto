@@ -30,7 +30,7 @@ function KakaoLogin() {
             // 로컬스토리지에 토큰이 있으면 메인페이지로 이동
             // 없으면 로그인 페이지로 리다이렉트
             if (token) {
-                navigate('/main/none')
+                navigate('/main')
             } else {
                 navigate('/')
             }
