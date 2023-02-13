@@ -108,8 +108,6 @@ public class DictApi {
             XmlPlantDetailResponse apiResponse = (XmlPlantDetailResponse) unmarshaller.unmarshal(new StringReader(detailXml)); // unmarshall 메서드 호출
             XmlPlantDetailResponse.Body.Item detail = apiResponse.getBody().getItem();
 
-            System.out.println(detailXml);
-
             String [] temperature = detail.getGrwhTpCodeNm().split("~");
 
             int temperatureMin = Integer.parseInt(temperature[0]);
