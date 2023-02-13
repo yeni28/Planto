@@ -29,7 +29,6 @@ public class DictService {
     public List<DictDTO> getDictList() {
         List<DictEntity> dictEntities = dictRepository.findAll();
         List<DictDTO> dictDTOs = new ArrayList<>();
-
         for (DictEntity entity : dictEntities) {
             DictDTO dictDTO = entity.entityToDto();
             dictDTOs.add(dictDTO);
