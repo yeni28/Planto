@@ -1,5 +1,6 @@
 package com.ssafy.plant.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssafy.plant.dto.PotDTO;
 import lombok.*;
 
@@ -18,10 +19,12 @@ public class PotEntity {
     private long potId;
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "plant_id")
     private Plant plant;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
 
