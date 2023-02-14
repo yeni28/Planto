@@ -29,7 +29,7 @@ public class PlantController {
     public ResponseEntity<String> createPlant(PlantRegistDto dto, @PathVariable Long potId) throws IOException {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(dto);
-        Plant plant = plantService.식물등록(dto, potId);
+        plantService.식물등록(dto, potId);
         return ResponseEntity.status(HttpStatus.CREATED).body("식물등록완료");
     }
 

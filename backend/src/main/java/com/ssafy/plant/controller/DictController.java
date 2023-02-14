@@ -56,28 +56,4 @@ public class DictController {
         return ResponseEntity.status(HttpStatus.OK).body(dictService.getDictWater());
     }
 
-    @GetMapping("/recom/{plantDictId}")
-    public ResponseEntity<String> recomPlant(@PathVariable Long plantDictId) throws JsonProcessingException {
-        System.out.println("스프링 ----> 장고");
-        System.out.println("스프링 ----> 장고");
-        System.out.println("스프링 ----> 장고");
-
-        List<DictDTO> myDict = dictService.getDictList();
-        ObjectMapper mapper = new ObjectMapper();
-        String myString = mapper.writeValueAsString(myDict);
-        System.out.println(myString);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
-        String url = "http://localhost:8000/plantos/recom/";
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("plantDict",myString);
-        HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-        System.out.println(response.getBody());
-        System.out.println(response.getStatusCodeValue());
-        return ResponseEntity.status(HttpStatus.OK).body("ok");
-    }
 }
