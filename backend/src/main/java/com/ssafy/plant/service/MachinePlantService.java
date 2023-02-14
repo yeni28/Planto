@@ -72,7 +72,7 @@ public class MachinePlantService {
             saveAchievement(user, userAchievementEntity, 2);
             if (liking >= 25) {
                 // 화가난 플랜토
-                likingService.sendLiking(serialNo, 0);
+                likingService.sendLiking(serialNo, 2);
             }
         }
         // 3번 플랜토의 이마에 혹이 생겼습니다.
@@ -93,13 +93,13 @@ public class MachinePlantService {
             saveAchievement(user, userAchievementEntity, 9);
             if (liking < 75) {
                 // 사랑받는 플랜토
-                likingService.sendLiking(serialNo, 2);
+                likingService.sendLiking(serialNo, 1);
             }
         }
 
         // 기본 플랜토
         if ((liking > 30 && liking < 35) || (liking < 70 && liking > 65)){
-            likingService.sendLiking(serialNo, 1);
+            likingService.sendLiking(serialNo, 0);
         }
 
         plant.setTemperature((int)Double.parseDouble(map.get("temperature")));
