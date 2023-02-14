@@ -69,8 +69,9 @@ public class PlantService {
 
         Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
         potEntity.setPlant(plant);
+        plantRepository.save(plant);
         potRepository.save(potEntity);
-        return plantRepository.save(plant);
+        return plant;
     }
 
     @Transactional
