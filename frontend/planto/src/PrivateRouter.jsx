@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ authenticated, component:Component}) => {
-
+  const token = window.localStorage.getItem("token")
   return(
-      authenticated?Component:<Navigate to="/" {...alert("로그인이 필요합니다.")}></Navigate>
+      authenticated || token?Component:<Navigate to="/" {...alert("로그인이 필요합니다.")}></Navigate>
   )
 }
 
