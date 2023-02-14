@@ -78,7 +78,7 @@ function Main(){
             </div>
 
             <div>
-              {setPlanto.length !== 0 ?
+              {planto.length !== 0 ?
               <MainPlanto plantos={planto}/>:
               <MainNone/>}
             </div>
