@@ -58,9 +58,9 @@ function Pot_enroll() {
           <div className='info-wrapper'>
             <div className='info'>
               <span>
-                <strong className='hTag'>나의 플랜토 정보 입력</strong>
+                <strong className='hTag font-PreM'>나의 플랜토 정보 입력</strong>
                 <br />
-                <span className='pTag'>추가 정보를 입력해 플랜토를 시작합니다!</span>
+                <span className='pTag font-PreR'>추가 정보를 입력해 플랜토를 시작합니다!</span>
               </span>
             </div>
             <BsArrowRightCircleFill onClick={() => setPlant()} className='circle-right-btn'/>

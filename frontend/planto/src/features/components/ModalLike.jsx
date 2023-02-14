@@ -31,10 +31,9 @@ const ModalLike = (props) => {
               </div>
             </main>
             <footer>
-              {console.log(Tips)}
-              {Tips}
-              {/* 여기에 TIPS 들어가면돼요! */}
-              <div ></div>
+              <div className="font-PreR">
+              {Tips}!
+              </div>
             </footer>
           </section>
         ) : null}

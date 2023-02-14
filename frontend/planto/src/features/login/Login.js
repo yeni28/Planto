@@ -15,7 +15,7 @@ export default function Login(){
     
     return(
         <div> 
-            <button onClick={KakaoLogin}>
+            <button onClick={KakaoLogin} className="kakaobtn">
             <img
             style={{
                 width:300,

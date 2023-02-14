@@ -76,7 +76,10 @@ function Plant_enroll() {
         // Content-Type을 반드시 이렇게 하여야 한다.
       },
       data: formData,
-    }).then((result)=>{console.log('요청 성공')})
+    }).then((result)=>{
+      console.log('요청 성공')
+      navigate('/main')
+    })
     .catch((error)=>{console.log('요청 실패')})
   }
 

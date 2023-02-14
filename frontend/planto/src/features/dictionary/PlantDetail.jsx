@@ -19,7 +19,7 @@ function PlantDetail() {
   const navigate = useNavigate();
 
   return (
-    <div style={{backgroundColor:'#FAF8F8', padding:'2.7rem'}}>
+    <div style={{backgroundColor:'#FAF8F8', padding:'2.7rem', height:'100vh'}}>
         <div>
             <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'1%', left:'1%'}}>
             <img src={BackG} alt="back_green" style={{width:"4rem"}} />
@@ -75,11 +75,7 @@ function PlantDetail() {
             <p className='font-PreSB infoTitle'>TIP</p>
             <PlantCarousel/>
         </div>
-        {/* 비슷한 식물(AI추천) */}
-        <div style={{marginTop:'2.5rem'}}>
-            <p className='font-PreSB infoTitle'>비슷한 식물</p>
-         
-        </div>
+
         <BottomNav/>
     </div>
   )
