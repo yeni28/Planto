@@ -5,10 +5,12 @@ import back from '../../assets/background/detailback.png'
 import temp from '../../assets/icons/temp.png'
 import humid from '../../assets/icons/humid.png'
 import lux from '../../assets/icons/lux.png'
+import pre from '../../assets/icons/back_white.png'
 // 이미지2
 import nowtem from '../../assets/icons/nowtem.png'
 import nowhum from '../../assets/icons/nowhum.png'
 import nowsun from '../../assets/icons/nowsun.png'
+
 
 //  api주소
 import { HOST } from "../login/OAuth"
@@ -18,12 +20,14 @@ import './PlantoDetail.css'
 import ProgressContainer from '../components/Progressbar';
 // 모달
 import ModalLike from '../components/ModalLike'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function PlantoDetail() {
   // potID
   const location = useLocation();
   const plantId = location.state.plantId
+  const navigate = useNavigate();
+
 
   // palnt ID 받아오기
 
@@ -128,6 +132,11 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
         <div>
           {/* 상단 */}
           <div>
+            <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'1%', left:'1%'}}>
+            <img src={pre} alt="back" style={{width:"4rem"}} />
+            </button>
+        </div>
+          <div>
             {/* 이미지 */}
             <div style={{
             width:'10rem',
@@ -187,7 +196,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
           {/*  현재 상태 */}
           <div>
                 <p className='font-PreR infonowtitle '> 현재 식물의 상태를 확인하세요 </p>
-                <div className="infobox2">
+                <div className="infobox3">
                     <div className='infonowcondition'>
                         <p className='font-PreSB infotitle' style={{marginTop:'0.15rem'}}>온도</p>
                         <img src={nowtem} alt="temp" className='infoIcon2'></img>

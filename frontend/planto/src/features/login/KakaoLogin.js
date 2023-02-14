@@ -46,8 +46,8 @@ function KakaoLogin() {
 
     return (
     <div>
-    
-    KakaoLogin
+
+        {/* 수정 */}
 
     </div>
   )

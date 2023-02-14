@@ -7,6 +7,9 @@ import Example from '../../assets/background/backimg.png'
 import { HOST } from "../login/OAuth"
 import axios from 'axios';
 
+import godetail from '../../assets/icons/godetail.png'
+
+
 
 function MainPlanto({plantos}) {
   const  userName = window.localStorage.getItem('username')
@@ -65,14 +68,14 @@ useEffect(() => {
 }, [plantDict, token])
 
 // 호감도
-const like = plant.liking
+const like = plant?.liking
 
 const plantoList = plantos.map((planto)=>{
   return(
-    <div key={planto.potId}>
+    <div key={planto?.potId}>
     
     <div className="PlantoCard">
-  {/* 이미지 */}
+      {/* 이미지 */}
       <div style={{
       width:'5rem',
       height:'5rem',
@@ -83,9 +86,9 @@ const plantoList = plantos.map((planto)=>{
       }}>
       </div>
       {/* 텍스트 */}
-      <div>
-      <div className='font-PreSB'> {planto.plant?.name}</div>
-  ````<div className=' font-PreSB'> {planto.plantDict?.name} </div>
+      <div style={{width:'10rem',marginLeft:'.3rem'}}>
+        <div className='font-PreSB'> {planto.plant?.name}</div>
+        <div className=' font-PreSB'> {planto.plant.plantDict?.name} </div>
         <div> 
           {planto.plant?.liking}%
         </div>
@@ -93,7 +96,7 @@ const plantoList = plantos.map((planto)=>{
       {/* 버튼 */}
       <Link to={`/main/planto/${planto?.potId}`} state={{plantId:planto.plant?.plantId}}>
         <div>    
-           디테일을 봐요
+           <img src={godetail} style={{width:'7rem'}}></img>
         </div>
       </Link>
     </div>
