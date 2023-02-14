@@ -15,17 +15,13 @@ export default function Login(){
     
     return(
         <div> 
-            <button onClick={KakaoLogin}>
+            <button onClick={KakaoLogin} className="kakaobtn">
             <img
             style={{
                 width:300,
             }} 
             src={LoginImg} alt="카카오로그인"></img>
         </button>
-
-
-        <br></br>
-            <a href={KAKAO_AUTH_URL}>카카오로 시작하기</a>
         </div>
     )
 }

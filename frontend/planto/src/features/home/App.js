@@ -1,23 +1,30 @@
-import './App.css';
+import './App.module.css';
 import Login from '../login/Login';
-
-
+import Back from '../../assets/background/appback.jpg'
+import Logo from '../../assets/icons/logo.png'
 function App() {
-  // const name = "KAKAO NAME"
-  // const user = {
-  //   name: "네이버로 이동",
-  //   url:"https://naver.com",
-  // }
-  return ( <div className='App'>
-    <h3 className='font-PreM py-12'>
-      책상 위에서 만나는<br></br>
-      나만의 반려 식물<br></br>
-      {/* 반가워요 {name}. */}
-    </h3>
-    
-    {/* <a href={user.url}>{user.name}</a> */}
 
-    <Login/>
+  return ( 
+  
+  <div className='App'>
+    <div className="appback"style={{width:'100vw',height:'100vh',
+    paddingTop:'10rem', backgroundImage:`url("${Back}")`,backgroundSize:'cover',textAlign: ' center'
+    }}>      
+      <div>
+        <img src={Logo} alt="logo"
+        style={{
+          width:'3rem',
+          margin:'auto',
+          marginBottom:'1rem',
+        }}></img>
+        <div className='font-PreM apptext ' style={{marginBottom:'1.5rem'}}>
+          <p style={{fontSize:'1.5rem',fontFamily: 'RIDIBatang'}}> 마음을 나누는 </p>
+          <p style={{fontSize:'1.5rem',fontFamily: 'RIDIBatang'}}> 나만의 반려식물, 플랜토 </p>
+          
+        </div>
+        <Login/>
+      </div>
+     </div>
   </div>
   );
   

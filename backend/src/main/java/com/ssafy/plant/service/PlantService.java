@@ -74,8 +74,9 @@ public class PlantService {
 //        // 문자열 -> Date
 //        Date date = formatter.parse(plantRegistDto.getCreateDate());
         potEntity.setPlant(plant);
+        plantRepository.save(plant);
         potRepository.save(potEntity);
-        return plantRepository.save(plant);
+        return plant;
     }
 
     @Transactional

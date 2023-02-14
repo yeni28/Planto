@@ -1,4 +1,15 @@
 .infobox2{
+    display: block;
+    margin: auto;
+    height: 8.5rem;
+    padding: 1rem;
+    background-color:white;
+    border-radius: 1rem;
+    /* box-shadow:0px 0px 0.5rem rgba(0, 0, 0, .1); */
+}
+/* plantoDetail의 현재 상태 */
+.infobox3{
+    display: flex;
     margin: auto;
     height: 8.5rem;
     padding: 1rem;
