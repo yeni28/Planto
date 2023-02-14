@@ -14,7 +14,7 @@ const BottomNav=()=>{
 
         <nav className="wrapper">
             <div className="navbox I1">
-                <NavLink to="/main/none"  style={({isActive})=>({color: isActive ?'#5D9451':'#A4A4A4'})}>
+                <NavLink to="/main"  style={({isActive})=>({color: isActive ?'#5D9451':'#A4A4A4'})}>
                 <RiLeafLine className="navIcon" size="27" style={({isActive})=>({color: isActive ?'#5D9451':'#A4A4A4'})} />
                 <p className=" font-PreR" style={{marginTop:'0.2rem'}}>플랜토</p>
                 </NavLink>

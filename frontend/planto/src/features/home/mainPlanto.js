@@ -8,7 +8,7 @@ import { HOST } from "../login/OAuth"
 import axios from 'axios';
 
 
-function MainPlanto() {
+function MainPlanto({plantos}) {
   const  userName = window.localStorage.getItem('username')
   const  serialnumber = window.localStorage.getItem('potSerial')
   const navigate = useNavigate();
@@ -67,42 +67,46 @@ useEffect(() => {
 // 호감도
 const like = plant.liking
 
+const plantoList = plantos.map((planto)=>{
+  return(
+    <div key={planto.potId}>
+    
+    <div className="PlantoCard">
+  {/* 이미지 */}
+      <div style={{
+      width:'5rem',
+      height:'5rem',
+      borderRadius:'15rem',
+      backgroundSize:'cover',
+      backgroundPosition:'center',
+      backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/planto-e2910.appspot.com/o/${planto.plant?.imagePath}?alt=media")`
+      }}>
+      </div>
+      {/* 텍스트 */}
+      <div>
+      <div className='font-PreSB'> {planto.plant?.name}</div>
+  ````<div className=' font-PreSB'> {planto.plantDict?.name} </div>
+        <div> 
+          {planto.plant?.liking}%
+        </div>
+      </div>
+      {/* 버튼 */}
+      <Link to={`/main/planto/${planto?.potId}`} state={{plantId:planto.plant?.plantId}}>
+        <div>    
+           디테일을 봐요
+        </div>
+      </Link>
+    </div>
+  </div>
+
+  )
+})
+
   return (
     <div>
-
-            <div>
-              <div className="PlantoCard">
-            {/* 이미지 */}
-                <div style={{
-                width:'5rem',
-                height:'5rem',
-                borderRadius:'15rem',
-                backgroundSize:'cover',
-                backgroundPosition:'center',
-                backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/planto-e2910.appspot.com/o/${plant.imagePath}?alt=media")`
-                }}>
-                </div>
-                {/* 텍스트 */}
-                <div>
-                <div className='font-PreSB'> {plant.name}</div>
-            <div className=' font-PreSB'> {plantdetail.name} </div>
-                  <div> 
-                    {like}%
-                  </div>
-                </div>
-                {/* 버튼 */}
-                <Link to={`/planto/${serialnumber}`}>
-                  <div>    
-                     디테일을 봐요
-                  </div>
-                </Link>
-              </div>
-              <button className="main_add_btn font-PreSB " onClick={() => {navigate("/enrollment");}}> + </button>
-            </div>
-
-            <BottomNav/>
-
-        </div>
+      {plantoList}
+      <button className="main_add_btn font-PreSB " onClick={() => {navigate("/enrollment");}}> + </button>   
+    </div>
   )
 }
 
