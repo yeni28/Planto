@@ -107,8 +107,31 @@ function Plant_enroll() {
 
       <div onClick={handleButtonClick} >
         {imgUrl ? 
-        <img src={imgUrl} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>:
-        <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
+        <div style={{
+          width:'13rem',
+          height:'13rem',
+          margin: 'auto',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url(${imgUrl})`
+          }}>
+          </div>:
+        <div style={{
+          width:'13rem',
+          height:'13rem',
+          margin: 'auto',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url(${AddPic})`
+          }}>
+          </div>
+        // <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
         }
         
       </div>
