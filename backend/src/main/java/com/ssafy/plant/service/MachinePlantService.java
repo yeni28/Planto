@@ -54,7 +54,7 @@ public class MachinePlantService {
         if (touch != 0 && touch % 10 == 0 && liking < 100){
             liking += 1;
             touch += 1;
-        } else if (attack != 0 && attack % 10 == 0 && liking > 0){
+        } else if (attack != 0 && attack % 20 == 0 && liking > 0){
             attack += 1;
             liking -= 1;
         }
