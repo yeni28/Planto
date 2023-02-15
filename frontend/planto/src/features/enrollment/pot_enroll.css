@@ -26,8 +26,8 @@
     height: 60px;
     color: #329E5D;
     position: absolute;
-    right: 10%;
-    top: 11%;
+    right: 9%;
+    top: 14%;
     width: 50px;
 }
 
@@ -50,18 +50,18 @@
     margin: 0 5%;
     border-radius: 40px;
     background-color: #FFF9E9;
-    padding: 3% 5%;
+    padding: 3% 7%;
     display: flex;
     flex-wrap: nowrap;
 }
 
 .info-wrapper .hTag {
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: #329E5D;
 }
 
 .info-wrapper .pTag{
-    font-size: 0.7em;
+    font-size: 1em;
 }
 
 .info{

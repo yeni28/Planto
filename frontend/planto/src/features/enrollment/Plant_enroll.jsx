@@ -28,6 +28,7 @@ const fileState = atom({
 function Plant_enroll() {
   const [plantnickname, setPlantNickName] = useState('');
   const [file, setFile] = useRecoilState(fileState);
+  const [imgUrl, setImgUrl] = useState()
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,7 +52,13 @@ function Plant_enroll() {
   };
   
   const handleChange = e => {
-    setFile(e.target.files[0])
+    let reader = new FileReader();
+    let file = e.target.files[0]
+    setFile(file)
+    reader.onloadend = () =>{
+      setImgUrl(reader.result);
+    }
+    reader.readAsDataURL(file);
     console.log(e.target.files[0]);
   };
   
@@ -67,6 +74,7 @@ function Plant_enroll() {
     formData.append('name', plantnickname)
     formData.append('createDate',startDate)
     formData.append('plantDictId',plantDictid)
+    setFile()
     axios({
       method:'post',
       url:`${HOST}/api/v1/plant/${pot_serial}`,
@@ -98,7 +106,11 @@ function Plant_enroll() {
       {/* 사진등록 */}
 
       <div onClick={handleButtonClick} >
+        {imgUrl ? 
+        <img src={imgUrl} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>:
         <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
+        }
+        
       </div>
       <input type="file"
              ref={fileInput}
