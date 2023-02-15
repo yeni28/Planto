@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import { useNavigate , useLocation} from 'react-router-dom'
 // 달력
 import DatePicker from "react-datepicker";
@@ -14,13 +14,21 @@ import BackG from '../../assets/icons/back_g.png'
 // url 요청
 import {HOST} from "../login/OAuth";
 import axios from 'axios';
+import { atom, useRecoilState } from 'recoil';
 
 // import Uploader from './Uploader';
 
 
+const fileState = atom({
+  key: 'file', // unique ID (with respect to other atoms/selectors)
+  default: '', // default value (aka initial value)
+});
+
+
 function Plant_enroll() {
   const [plantnickname, setPlantNickName] = useState('');
-  const [file, setFile] = useState();
+  const [file, setFile] = useRecoilState(fileState);
+  const [imgUrl, setImgUrl] = useState()
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +52,13 @@ function Plant_enroll() {
   };
   
   const handleChange = e => {
-    setFile(e.target.files[0])
+    let reader = new FileReader();
+    let file = e.target.files[0]
+    setFile(file)
+    reader.onloadend = () =>{
+      setImgUrl(reader.result);
+    }
+    reader.readAsDataURL(file);
     console.log(e.target.files[0]);
   };
   
@@ -60,6 +74,7 @@ function Plant_enroll() {
     formData.append('name', plantnickname)
     formData.append('createDate',startDate)
     formData.append('plantDictId',plantDictid)
+    setFile()
     axios({
       method:'post',
       url:`${HOST}/api/v1/plant/${pot_serial}`,
@@ -91,7 +106,34 @@ function Plant_enroll() {
       {/* 사진등록 */}
 
       <div onClick={handleButtonClick} >
-        <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
+        {imgUrl ? 
+        <div style={{
+          width:'13rem',
+          height:'13rem',
+          margin: 'auto',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url(${imgUrl})`
+          }}>
+          </div>:
+        <div style={{
+          width:'13rem',
+          height:'13rem',
+          margin: 'auto',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url(${AddPic})`
+          }}>
+          </div>
+        // <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
+        }
+        
       </div>
       <input type="file"
              ref={fileInput}
@@ -139,7 +181,7 @@ function Plant_enroll() {
         {/* 등록버튼 */}
 
         {/* 등록하기 클릭하면! 백으로 데이터 보내주기 => DB저장 */}
-        <button className='font-PreM enrollBtn' onClick={() => onClickData()}> 등록하기 </button>
+        <button className='font-PreM enrollBtn' onClick={onClickData}> 등록하기 </button>
       </div>
 
       <BottomNav/>

@@ -8,7 +8,7 @@ import { HOST } from "../login/OAuth"
 import axios from 'axios';
 
 import godetail from '../../assets/icons/godetail.png'
-
+import question from'../../assets/icons/question.png'
 
 
 function MainPlanto({plantos}) {
@@ -28,32 +28,8 @@ function MainPlanto({plantos}) {
   
   const token = window.localStorage.getItem('token');
 
-  // DB에 저장된 데이터 받아오기
-  useEffect(() => {
-    // 실시간 데이터 받아오기
-    function getPlantData(){
-      
-      axios({
-          method: "get",
-          //
-          url: `${HOST}/api/v1/plant/2`,
-          headers: {
-            Authorization: token,
-          },
-      }).then((response) => {
-          setPlant(response.data)
-          setPlantDict(response.data.plant_dict_plant_dict_id)
-          
-          
-      }).catch((e) =>{
-        console.log(e)
-      });
-    }
 
-  
-    getPlantData();
-}, [token])
-
+// 등록된 식물 데이터 받아오기
 useEffect(() => {
   axios({
     method: "get",
@@ -70,42 +46,75 @@ useEffect(() => {
 // 호감도
 const like = plant?.liking
 
+// potID를 넣어서 plantenroll로 이동
+function enrollPlant (potId){
+  navigate('/enrollment/plant', { state :{ serialNo : potId}})
+}
+
 const plantoList = plantos.map((planto)=>{
   return(
-    <div key={planto?.potId}>
     
-    <div className="PlantoCard">
-      {/* 이미지 */}
-      <div style={{
-      width:'5rem',
-      height:'5rem',
-      borderRadius:'15rem',
-      backgroundSize:'cover',
-      backgroundPosition:'center',
-      backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/planto-e2910.appspot.com/o/${planto.plant?.imagePath}?alt=media")`
-      }}>
-      </div>
-      {/* 텍스트 */}
-      <div style={{width:'10rem',marginLeft:'.3rem'}}>
-        <div className='font-PreSB'> {planto.plant?.name}</div>
-        <div className=' font-PreSB'> {planto.plant.plantDict?.name} </div>
-        <div> 
-          {planto.plant?.liking}%
-        </div>
-      </div>
-      {/* 버튼 */}
-      <Link to={`/main/planto/${planto?.potId}`} state={{plantId:planto.plant?.plantId}}>
-        <div>    
-           <img src={godetail} style={{width:'7rem'}}></img>
-        </div>
-      </Link>
-    </div>
-  </div>
+      <div key={planto?.potId}>
+      
+      <div>
+        {console.log(planto)}
+        { planto.plant !== null 
+        
+        ? 
+        <div className="PlantoCard">
+          {/* 이미지 */}
+          <div style={{
+          width:'5rem',
+          height:'5rem',
+          marginLeft:'.3rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/planto-e2910.appspot.com/o/${planto.plant?.imagePath}?alt=media")`
+          }}>
+          </div>
+          {/* 텍스트 */}
+          <div style={{width:'10rem',marginLeft:'.5rem'}}>
+            <div className='font-PreSB plantoname'> {planto.plant?.name}</div>
+            <div className=' font-PreR plantsubname'> {planto.plant.plantDict?.name} </div>
 
+          </div>
+          {/* 버튼 */}
+          <Link to={`/main/planto/${planto?.potId}`} state={{plantId:planto.plant?.plantId}}>
+            <div>    
+              <img src={godetail} style={{width:'3.2rem', marginRight:"1rem"}}></img>
+            </div>
+          </Link>
+        </div>
+        : 
+        
+        <div className="PlantoCard2">
+            <div>
+            <img src={question} style={{width:'7.7rem', marginLeft:'-.7rem'}}></img>
+        
+            </div>
+            <div style={{ marginLeft:'-.7rem'}}>
+              <span className='font-PreM'> 
+              <p className='font-PreB nonplanttext' > 플랜토에 식물이 없습니다.</p>
+              <p className='font-PreL nonplantsubtext'>식물을 등록하고 소통을 시작하세요. </p>
+              <div className="enrollbtn"onClick={() => enrollPlant(planto.potId)}> 
+                <p className='font-PreL ' style={{textAlign:'center'}}>
+                등록하기
+                </p>
+              </div>
+              </span>
+            </div>
+        </div>
+        }
+    </div>
+    
+   
+  </div>
   )
 })
 
   return (
+    
     <div>
       {plantoList}
       <button className="main_add_btn font-PreSB " onClick={() => {navigate("/enrollment");}}> + </button>   
