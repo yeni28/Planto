@@ -50,24 +50,31 @@ public class PlantService {
 
     @Transactional
     public Plant 식물등록(PlantRegistDto plantRegistDto, Long potId) throws IOException {
-        UUID uuid = UUID.randomUUID();
-        String imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
-        System.out.println("이미지 파일 이름" + imageFileName);
+        System.out.println("191919191911919191");
+        String imageFileName;
+        if (plantRegistDto.getFile() == null) {
+            System.out.println("널널널널");
+            imageFileName = "normalplant.jpg";
+        } else {
+            UUID uuid = UUID.randomUUID();
+            imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
+            System.out.println("이미지 파일 이름" + imageFileName);
 
-        Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
-        InputStream content = new ByteArrayInputStream(plantRegistDto.getFile().getBytes());
-        bucket.create(imageFileName, content, plantRegistDto.getFile().getContentType());
-
+            Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
+            InputStream content = new ByteArrayInputStream(plantRegistDto.getFile().getBytes());
+            bucket.create(imageFileName, content, plantRegistDto.getFile().getContentType());
+        }
+        System.out.println(imageFileName);
         // plant 테이블에 저장
         DictEntity dictEntity = dictRepository.findByPlantDictId(plantRegistDto.getPlantDictId());
         PotEntity potEntity = potRepository.findByPotId(potId);
+
+        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
 
 //        // 포맷터
 //        SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
 //        // 문자열 -> Date
 //        Date date = formatter.parse(plantRegistDto.getCreateDate());
-
-        Plant plant = plantRegistDto.toEntity(imageFileName, potEntity, dictEntity);
         potEntity.setPlant(plant);
         plantRepository.save(plant);
         potRepository.save(potEntity);

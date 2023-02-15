@@ -24,11 +24,16 @@ const fileState = atom({
   default: '', // default value (aka initial value)
 });
 
+const imgUrlState = atom({
+  key: 'imgUrl',
+  default: '',
+})
 
 function Plant_enroll() {
   const [plantnickname, setPlantNickName] = useState('');
   const [file, setFile] = useRecoilState(fileState);
-  const [imgUrl, setImgUrl] = useState()
+
+  const [imgUrl, setImgUrl] = useRecoilState(imgUrlState);
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,11 +75,15 @@ function Plant_enroll() {
   const onClickData = () =>{
     console.log(fileInput)
     const formData = new FormData();
-    formData.append('file',file)
+    if (file != undefined) {
+      formData.append('file',file)
+    }  else {
+      formData.delete('file')
+    }
     formData.append('name', plantnickname)
     formData.append('createDate',startDate)
     formData.append('plantDictId',plantDictid)
-    setFile()
+
     axios({
       method:'post',
       url:`${HOST}/api/v1/plant/${pot_serial}`,
@@ -86,9 +95,15 @@ function Plant_enroll() {
       data: formData,
     }).then((result)=>{
       console.log('요청 성공')
+      setFile()
+      setImgUrl()
       navigate('/main')
     })
-    .catch((error)=>{console.log('요청 실패')})
+    .catch((error)=>{
+      setFile()
+      setImgUrl()
+      console.log('요청 실패')})
+
   }
 
 
@@ -107,8 +122,31 @@ function Plant_enroll() {
 
       <div onClick={handleButtonClick} >
         {imgUrl ? 
-        <img src={imgUrl} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>:
-        <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
+        <div style={{
+          width:'13rem',
+          height:'13rem',
+          margin: 'auto',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url(${imgUrl})`
+          }}>
+          </div>:
+        <div style={{
+          width:'13rem',
+          height:'13rem',
+          margin: 'auto',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+          borderRadius:'15rem',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          backgroundImage: `url(${AddPic})`
+          }}>
+          </div>
+        // <img src={AddPic} alt="add Picture" style={{width:'15rem', margin:'auto'}}></img>
         }
         
       </div>
