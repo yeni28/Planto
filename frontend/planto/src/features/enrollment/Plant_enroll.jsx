@@ -108,7 +108,7 @@ function Plant_enroll() {
 
 
   return (
-    <div style={{padding:'1rem' }}>
+    <div style={{padding:'1rem', paddingBottom:'10rem' }}>
       {/* 뒤로가기 */}
       <div>
         <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'0.3%'}}>
