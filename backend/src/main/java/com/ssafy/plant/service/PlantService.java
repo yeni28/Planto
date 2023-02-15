@@ -50,8 +50,10 @@ public class PlantService {
 
     @Transactional
     public Plant 식물등록(PlantRegistDto plantRegistDto, Long potId) throws IOException {
+        System.out.println("191919191911919191");
         String imageFileName;
-        if (plantRegistDto == null) {
+        if (plantRegistDto.getFile() == null) {
+            System.out.println("널널널널");
             imageFileName = "normalplant.jpg";
         } else {
             UUID uuid = UUID.randomUUID();
@@ -62,7 +64,7 @@ public class PlantService {
             InputStream content = new ByteArrayInputStream(plantRegistDto.getFile().getBytes());
             bucket.create(imageFileName, content, plantRegistDto.getFile().getContentType());
         }
-
+        System.out.println(imageFileName);
         // plant 테이블에 저장
         DictEntity dictEntity = dictRepository.findByPlantDictId(plantRegistDto.getPlantDictId());
         PotEntity potEntity = potRepository.findByPotId(potId);
