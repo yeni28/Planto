@@ -19,12 +19,12 @@ public class Schedulers {
     @Autowired
     LikingService likingService;
 
-//    @Scheduled(cron = "*/10 * * * * *")
-//    public void getWeather(){
-//        String weathers = weatherService.getWeather();
-//        outboundGateway.sendToMqtt(weathers, "STM");
-//    }
-//
+    @Scheduled(cron = "*/10 * * * * *")
+    public void getWeather(){
+        String weathers = weatherService.getWeather();
+        outboundGateway.sendToMqtt(weathers, "STM");
+    }
+
 //    @Scheduled(cron = "*/10 * * * * *")
 //    public void sendLiking() throws JsonProcessingException {
 //        likingService.sendLiking(123, 2);
