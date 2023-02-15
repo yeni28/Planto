@@ -70,7 +70,11 @@ function Plant_enroll() {
   const onClickData = () =>{
     console.log(fileInput)
     const formData = new FormData();
-    formData.append('file',file)
+    if (file != undefined) {
+      formData.append('file',file)
+    }  else {
+      formData.delete('file')
+    }
     formData.append('name', plantnickname)
     formData.append('createDate',startDate)
     formData.append('plantDictId',plantDictid)
