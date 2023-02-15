@@ -67,7 +67,7 @@ function Main(){
     // }
 
     return(
-        <div>
+        <div style={{ backgroundColor: '#FAF8F8',height:'100vh' }}>
             <div className="Myplanto_title">
                 <span className="font-PreR"> My</span>
                 <span className="font-PreEB"> Planto </span>
