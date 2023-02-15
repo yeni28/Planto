@@ -44,7 +44,7 @@ root.render(
         <Route path="/main/planto/:serialnumber" element={<PlantoDetail/>}></Route>
         {/* 사전 */}
         <Route path="/dictionary" element={<Dict/>}></Route>
-        <Route path="/reward" element={<Reward/>}></Route>
+        <Route path="/reward" element={<PrivateRoute component={<Reward/>}authenticated={token}/>}></Route>
         <Route path="/dictionary/:plantId" element={<PlantDetail/>}></Route>
         {/* 해시태그 페이지 */}
         <Route path="/dictionary/darkhouse" element={<DarkHouse/>}></Route>

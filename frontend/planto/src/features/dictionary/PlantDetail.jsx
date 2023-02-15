@@ -19,7 +19,7 @@ function PlantDetail() {
   const navigate = useNavigate();
 
   return (
-    <div style={{backgroundColor:'#FAF8F8', padding:'2.7rem', height:'100vh'}}>
+    <div style={{backgroundColor:'#FAF8F8', padding:'2.7rem', paddingBottom:'10rem'}}>
         <div>
             <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'1%', left:'1%'}}>
             <img src={BackG} alt="back_green" style={{width:"4rem"}} />
