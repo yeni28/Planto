@@ -30,3 +30,25 @@
   width:100%;
   
 }
+.mobile{
+  width:1rem;
+}
+
+/* 웹일떄 */
+@media (min-width:650px) {
+  .mobile{
+    display: none;
+  }
+  .web{
+    
+  }
+}
+/* 모바일일때 */
+@media  (max-width:650px) {
+  .mobile{
+  }
+  .web{
+    display: none;
+
+  }
+}
