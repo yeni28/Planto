@@ -95,10 +95,10 @@ const plantoList = plantos.map((planto)=>{
             </div>
             <div style={{ marginLeft:'-.7rem'}}>
               <span className='font-PreM'> 
-              <p className='font-PreB nonplanttext' > 플랜토에 식물이 없습니다.</p>
+              <p className='font-PreSB nonplanttext' > 플랜토에 식물이 없습니다.</p>
               <p className='font-PreL nonplantsubtext'>식물을 등록하고 소통을 시작하세요. </p>
               <div className="enrollbtn"onClick={() => enrollPlant(planto.potId)}> 
-                <p className='font-PreL ' style={{textAlign:'center'}}>
+                <p className='font-PreL enrollbtntext ' style={{textAlign:'center'}}>
                 등록하기
                 </p>
               </div>
