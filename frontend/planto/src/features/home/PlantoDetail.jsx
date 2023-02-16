@@ -243,9 +243,9 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
 
           </div>
           {/* 기능성 정보 */}
-          <div style={{height:'7rem'}}>
-
+          <div style={{height:'3rem'}}>
           </div>
+
         </div>
       </div>
       <BottomNav/>
