@@ -30,3 +30,45 @@
   width:100%;
   
 }
+
+
+/* 웹일떄 */
+@media (min-width:650px) {
+  .mobile{
+    display: none;
+  }
+  .web{
+    
+  }
+}
+/* 모바일일때 */
+@media  (max-width:650px) {
+  .mobile{
+  }
+  .web{
+    display: none;
+
+  }
+}
+
+.web{
+  padding:5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.webtitle{
+  font-size: 7vw;
+  color:#329E5D;
+  text-align: center;
+}
+.websubtext{
+  font-size: 1.2vw;
+  color:#a4a4a4
+
+}
+.webqr{
+  align-items: center;
+  margin-top:3vh;
+}
