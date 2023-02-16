@@ -48,7 +48,7 @@ const like = plant?.liking
 
 // potID를 넣어서 plantenroll로 이동
 function enrollPlant (potId){
-  navigate('/enrollment/plant', { state :{ serialNo : potId}})
+  navigate('/enrollment/plant', { state :{ potId : potId}})
 }
 
 const plantoList = plantos.map((planto)=>{

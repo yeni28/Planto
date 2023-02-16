@@ -58,6 +58,7 @@
 .img_square{
     width: 5rem;
     height: 5rem;
+    border-radius: 15rem;
     background-size: cover;
     background-position: center;
     vertical-align: middle;

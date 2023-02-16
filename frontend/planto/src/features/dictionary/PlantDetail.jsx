@@ -31,7 +31,7 @@ function PlantDetail() {
                 marginBottom:'0.5rem',
                 width:'10rem',
                 height:'10rem',
-                borderRadius:'1rem',
+                borderRadius:'15rem',
                 backgroundSize:'cover',
                 backgroundPosition:'center',
                 backgroundImage: `url("https://www.nongsaro.go.kr/cms_contents/301/${plant.imagePath}")`,
