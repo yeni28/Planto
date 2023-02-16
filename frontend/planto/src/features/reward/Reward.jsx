@@ -56,8 +56,8 @@ function Reward() {
           </div>
         </div>
 
-        <div className='reward_img'>
-          <img src={user.profileImageUrl} alt="사용자 이미지" />
+        <div>
+          <img className='reward_img' src={user.profileImageUrl} alt="사용자 이미지" />
         </div>
       </div>
 
