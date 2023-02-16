@@ -64,7 +64,7 @@ public class MachinePlantService {
         List<UserAchievementEntity> userAchievementEntity = userAchievementRepository.findByUser(user);
 
         // 1번 웃는 플랜토
-        if (touch >= 15){
+        if (touch >= 5){
             saveAchievement(user, userAchievementEntity, 1);
         }
         // 2번 플렌토가 화가 났습니다.
