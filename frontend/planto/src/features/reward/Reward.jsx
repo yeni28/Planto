@@ -43,7 +43,7 @@ function Reward() {
   }
   
   return (
-    <div style={{ backgroundColor: '#FAF8F8', padding: '1.2rem'  }}>
+    <div style={{ backgroundColor: '#FAF8F8', padding: '1.2rem',height:'100vmax'  }}>
       <div className='reward_top_wrapped'>
         <div className='reward_text'>
           <div className="Myplanto_title">
