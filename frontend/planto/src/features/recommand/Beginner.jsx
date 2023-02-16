@@ -4,7 +4,6 @@ import {Link, useNavigate} from 'react-router-dom'
 
 import BottomNav from '../nav/BottomNav'
 import MoveTopBtn from '../components/MoveTopBtn'
-import "./Beginner.css"
 // 이미지
 import TopRecommand from './TopRecommand';
 import BackWhite from '../../assets/icons/back_white.png'

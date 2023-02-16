@@ -37,16 +37,16 @@ function Plant_enroll() {
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
+
   const plantname = location.state !== null ? location.state.plantName : "";
   const plantDictid = location.state !== null ? location.state.plantDictId : "";
-  
   // 검색 창으로 이동
   const goToSearch = () =>{
     navigate("/enrollment/plant/search")
   }
   console.log({plantnickname})
   // 화분 id 
-  const pot_serial =  window.localStorage.getItem('potSerial')
+  const pot_serial =  window.localStorage.getItem('potSerial') !== null ?window.localStorage.getItem('potSerial') :location.state.serialNo 
   console.log(pot_serial)
 
   // 사진등록
