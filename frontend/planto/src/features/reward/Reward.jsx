@@ -5,6 +5,10 @@ import { HOST } from '../login/OAuth'
 import axios from 'axios'
 import lock from '../../assets/icons/lock.png'
 import { useRef } from 'react'
+// 
+// 모달
+// import ModalReward from '../components/odalReward'
+// import { useLocation, useNavigate } from 'react-router-dom';
 
 function Reward() {
   const [achievements, setAchievements] = useState()
@@ -69,6 +73,25 @@ function Reward() {
             null
         }
       </div>
+      {/* 모달 */}
+      {/* <ModalReward open={modalOpen} close={closeModal} header="이름 확인" Like={like} Prank={plant.attack} Touch={plant.touch} character={character} Tips={tips}>
+          <div className="modalText">
+            <div className="font-PreL likeheader">
+              <p className='font-PreM' style={{fontSize:"1.3rem"}}>
+              플랜토 {plant.name}는
+              </p>
+              <p>
+              <span className='font-PreEB plantochar'>{character}</span>
+              <span className='font-PreM'> 입니다.</span>
+              </p>
+              <p style={{color:'#A1F5B1'}}>
+              {plantoAd}
+              </p>
+            </div>
+          </div>
+        </ModalReward> */}
+
+
       {/* 구분선 */}
       <div style={{display:'flex', marginTop:'1rem'}}>
       <div style={{width:'30%',height:'1px', backgroundColor:'black', margin:'auto',marginTop:'1rem'}}></div>
