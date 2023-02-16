@@ -45,3 +45,13 @@
 .rewardsubtitle{
     font-size: 1.5rem;
 }
+
+.rewardname{
+    font-size:1.6rem;
+    color:black;
+}
+.rewardsub{
+    font-size: 1.1rem;
+    word-break: break-all;
+    color:#a4a4a4;
+}

@@ -7,8 +7,8 @@ import lock from '../../assets/icons/lock.png'
 import { useRef } from 'react'
 // 
 // 모달
-// import ModalReward from '../components/odalReward'
-// import { useLocation, useNavigate } from 'react-router-dom';
+import ModalReward from './ModalReward'
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Reward() {
   const [achievements, setAchievements] = useState()
@@ -36,6 +36,8 @@ function Reward() {
       }
     });
   }, [])
+
+
 
   const user = {
     name: window.localStorage.getItem('username'),
@@ -74,22 +76,6 @@ function Reward() {
         }
       </div>
       {/* 모달 */}
-      {/* <ModalReward open={modalOpen} close={closeModal} header="이름 확인" Like={like} Prank={plant.attack} Touch={plant.touch} character={character} Tips={tips}>
-          <div className="modalText">
-            <div className="font-PreL likeheader">
-              <p className='font-PreM' style={{fontSize:"1.3rem"}}>
-              플랜토 {plant.name}는
-              </p>
-              <p>
-              <span className='font-PreEB plantochar'>{character}</span>
-              <span className='font-PreM'> 입니다.</span>
-              </p>
-              <p style={{color:'#A1F5B1'}}>
-              {plantoAd}
-              </p>
-            </div>
-          </div>
-        </ModalReward> */}
 
 
       {/* 구분선 */}
@@ -106,6 +92,9 @@ function Reward() {
           <span className='font-PreSB'>{countAchievement}/</span><span className='font-PreR '>20</span>
         </div>
       </div>
+      
+
+
 
       <div className='achievement-frame'>
         {/* 보유한 업적 */}
@@ -126,10 +115,49 @@ function Reward() {
 
 
 function Achievement({ achievement }) {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+    console.log(setModalOpen)
+  };
+  
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  
   return (
-    <span className='achievement-frame'>
-      <img className='imgTag' src={`/achievements/${achievement.imageName}.png`} alt={achievement.imageName} />
-    </span>
+     <span>
+
+        <ModalReward open={modalOpen} close={closeModal} header="이름 확인" 
+         name={achievement.name} description={achievement.description} img={achievement.imageName}
+         date={achievement.created} 
+         >
+          <div className="modalText">
+            <div className=" likeheader">
+              <img className='imgTag' style={{margin:'auto', marginBottom:'1.2rem', width:'5rem', height:'5rem'}}src={`/achievements/${achievement.imageName}.png`} alt={achievement.imageName} />
+              <p className='font-PreSB rewardname' style={{ textAlign:'center'}}>
+              {achievement.name}
+              </p>
+              <div style={{width:"3rem", margin:'auto',borderBottom:'2px solid white',marginBottom:'.8rem',marginTop:'.5rem',opacity:'0.5'}}></div>
+              <p className="font-PreM rewardsub"style={{color:'#329E5D', textAlign:'center'}}>
+              {achievement.description}
+              </p>
+
+              <p>
+              {achievement.created}
+              </p>
+            </div>
+          </div>
+        </ModalReward>
+
+        <span className='achievement-frame' onClick={()=>openModal({achievement})} >
+          {/* 모달 */}
+          <img className='imgTag' src={`/achievements/${achievement.imageName}.png`} alt={achievement.imageName} />
+        </span>
+      </span>
   );
 }
 
