@@ -50,16 +50,12 @@ public class PlantService {
 
     @Transactional
     public Plant 식물등록(PlantRegistDto plantRegistDto, Long potId) throws IOException {
-        System.out.println("191919191911919191");
         String imageFileName;
         if (plantRegistDto.getFile() == null) {
-            System.out.println("널널널널");
             imageFileName = "normalplant.jpg";
         } else {
             UUID uuid = UUID.randomUUID();
             imageFileName = uuid + "-" + plantRegistDto.getFile().getOriginalFilename();
-            System.out.println("이미지 파일 이름" + imageFileName);
-
             Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
             InputStream content = new ByteArrayInputStream(plantRegistDto.getFile().getBytes());
             bucket.create(imageFileName, content, plantRegistDto.getFile().getContentType());
