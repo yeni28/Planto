@@ -75,7 +75,7 @@ const searched = plants.filter((item)=> item.name.includes(userInput))
       style={{
         marginLeft:'0.4rem', marginBottom:'1rem',color:'#329e5d',
       }}> 식물 찾기</p>
-      <div >
+      <div  >
         {searched.map((item)=>(<Plant plant={item} key={item.plantDictId}/>))}
         {/* {plants.map(plant=>(<Plant plant={plant} key={plant.plantDictId}/>))} */}
       </div>
@@ -86,7 +86,7 @@ const searched = plants.filter((item)=> item.name.includes(userInput))
       <BottomNav/>
 
     
-  </div>
+    </div>
 )
 }
 

@@ -83,7 +83,7 @@ function Plant_enroll() {
     formData.append('name', plantnickname)
     formData.append('createDate',startDate)
     formData.append('plantDictId',plantDictid)
-
+    
     axios({
       method:'post',
       url:`${HOST}/api/v1/plant/${pot_serial}`,

@@ -8,7 +8,6 @@
 @tailwind utilities;
 
 
-
 .appbody {
   background: url(../../assets/background/appback.jpg) no-repeat center;
   background-size: cover;
@@ -44,6 +43,7 @@
 /* 모바일일때 */
 @media  (max-width:650px) {
   .mobile{
+
   }
   .web{
     display: none;
@@ -51,7 +51,7 @@
   }
 }
 
-.web{
+.web2{
   padding:5vw;
   display: flex;
   justify-content: center;

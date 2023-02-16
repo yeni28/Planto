@@ -39,7 +39,7 @@ function Reward() {
   }
   
   return (
-    <div style={{ backgroundColor: '#FAF8F8', padding: '1.2rem' ,height:'100vh' }}>
+    <div style={{ backgroundColor: '#FAF8F8', padding: '1.2rem',height:'100vmax'  }}>
       <div className='reward_top_wrapped'>
         <div className='reward_text'>
           <div className="Myplanto_title">
@@ -56,8 +56,8 @@ function Reward() {
           </div>
         </div>
 
-        <div className='reward_img'>
-          <img src={user.profileImageUrl} alt="사용자 이미지" />
+        <div>
+          <img className='reward_img' src={user.profileImageUrl} alt="사용자 이미지" />
         </div>
       </div>
 
