@@ -125,8 +125,9 @@ function PlantoDetail() {
     };
   
   return (
-    <div className="plantodetaildiv" >
-      <div className="detailback"style={{width:'100vw',height:'100vh',
+    <div className="plantodetaildiv"  >
+      <div className="detailback"style={{width:'100vw',paddingBottom:'10rem',height:
+      '100vmax',
 padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
 }}>
         <div>
@@ -135,7 +136,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
             <button onClick={()=>navigate(-1)}style={{position:'fixed',top:'1%', left:'1%'}}>
             <img src={pre} alt="back" style={{width:"4rem"}} />
             </button>
-        </div>
+          </div>
           <div>
             {/* 이미지 */}
             <div style={{
