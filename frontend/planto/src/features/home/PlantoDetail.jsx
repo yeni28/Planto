@@ -126,7 +126,7 @@ function PlantoDetail() {
   
   return (
     <div className="plantodetaildiv"  >
-      <div className="detailback"style={{width:'100vw',paddingBottom:'10rem',height:
+      <div className="detailback"style={{width:'100vw',paddingBottom:'12rem',height:
       '100vmax',
 padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
 }}>
@@ -222,7 +222,7 @@ padding:'1rem', backgroundImage:`url("${back}")`,backgroundSize:'cover',
             {/* 저장된 식물 ID를 토대로 디테일 구현 */}
             <div>
                 <p className='font-PreR infonowtitle'>식물이 원하는 환경이에요</p>
-                <div className="infobox">
+                <div className="infobox" style={{marginBottom:'10rem'}}>
                     <div className='infocondition'>
                         <img src={temp} alt="temp" className='infoIcon'></img>
                         <p className='font-PreM infotext' style={{marginLeft:'0.4rem',marginTop:'0.15rem'}}>온도</p>
