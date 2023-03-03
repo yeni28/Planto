@@ -29,7 +29,7 @@
 <table>
  <tr>
     <td align="center"><a href="https://github.com/HHyos"><img src="README.assets/hyo.png" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/"><img src="README.assets/Silver.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/yen.png" width="80px;" alt=""></td>
     <td align="center"><a href="https://github.com/"><img src="README.assets/one.png" width="80px;" alt=""></td>
     <td align="center"><a href="https://github.com/"><img src="README.assets/sun.png" width="80px;" alt=""></td>
     <td align="center"><a href="https://github.com/"><img src="README.assets/young.png" width="80px;" alt=""></td>
