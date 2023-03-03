@@ -24,6 +24,38 @@
 
 - **2023.01.09(월) ~ 2023.02.17(금)**
 
+## ☃️ **Team**
+
+<table>
+ <tr>
+    <td align="center"><a href="https://github.com/HHyos"><img src="README.assets/hyo.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/예은.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/원재.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/태영.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/영진.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/채연.png" width="80px;" alt=""></td>
+  </tr>
+  <tr>
+    <td align="center">팀장, Frontend</td>
+    <td align="center">Frontend</td>
+    <td align="center">Frontend</td>
+    <td align="center">Backend</td>
+    <td align="center">Backend</td>
+    <td align="center">Backend</td>
+  </tr>
+     <tr>
+    <td align="center"><a href="https://github.com/"><sub><b>신혜원</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>김채리</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>허건녕</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>손광진</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>이동욱</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>이재환</b></td>
+  </tr>
+
+</table>
+     
+<br>
+
 - [설계서](#설계서)
 - [프로젝트 규칙](#프로젝트-규칙)
 
