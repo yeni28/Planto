@@ -29,27 +29,27 @@
 <table>
  <tr>
     <td align="center"><a href="https://github.com/HHyos"><img src="README.assets/hyo.png" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/"><img src="README.assets/예은.png" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/"><img src="README.assets/원재.png" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/"><img src="README.assets/태영.png" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/"><img src="README.assets/영진.png" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/"><img src="README.assets/채연.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/silver.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/one.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/sun.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/young.png" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/"><img src="README.assets/hyeon.png" width="80px;" alt=""></td>
   </tr>
   <tr>
-    <td align="center">팀장, Frontend</td>
+    <td align="center">팀장, HW</td>
     <td align="center">Frontend</td>
-    <td align="center">Frontend</td>
     <td align="center">Backend</td>
     <td align="center">Backend</td>
-    <td align="center">Backend</td>
+    <td align="center">HW</td>
+    <td align="center">HW</td>
   </tr>
      <tr>
-    <td align="center"><a href="https://github.com/"><sub><b>신혜원</b></td>
-    <td align="center"><a href="https://github.com/"><sub><b>김채리</b></td>
-    <td align="center"><a href="https://github.com/"><sub><b>허건녕</b></td>
-    <td align="center"><a href="https://github.com/"><sub><b>손광진</b></td>
-    <td align="center"><a href="https://github.com/"><sub><b>이동욱</b></td>
-    <td align="center"><a href="https://github.com/"><sub><b>이재환</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>황효상</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>김예은</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>정원재</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>김태영</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>양영진</b></td>
+    <td align="center"><a href="https://github.com/"><sub><b>황채연</b></td>
   </tr>
 
 </table>
