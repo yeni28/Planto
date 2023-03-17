@@ -157,7 +157,7 @@
 
 ## &#128215; 아키텍처
 
-<img src="README.assets/aci.png"  width="800">
+<img src="README.assets/aki.png"  width="800">
     
 <br>   <br>
 
