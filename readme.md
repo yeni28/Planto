@@ -24,7 +24,7 @@
 - [Planto 보러가기](https://resisted-barracuda-447.notion.site/Planto-5e6748bbcb7b407ba6080f2777010cb7)
 
 
-https://user-images.githubusercontent.com/57944215/226175553-3892f9a4-c152-44ed-8fd2-87173f154013.mp4
+<td align="center"><a href="https://github.com/"><img src="README.assets/어두워짐.gif" width="80px;" alt=""></td>
 
 <br>
 ## 🕘 **프로젝트 진행 기간**
