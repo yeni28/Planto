@@ -249,8 +249,9 @@ https://resisted-barracuda-447.notion.site/351a24c618464248942f7d8927ccbe20
   - 현재 로그인되어있는 계정과 연동된 Planto의 정보를 확인할 수 있는 화면
   
   - 센서 데이터를 수집한 환경 데이터와 사용자와 상호작용을 통해 쌓은 호감도를 시각화하여 보여줌
-     
-![image](https://github.com/yeni28/Planto/assets/79498424/7b0995cf-4691-4bd9-8279-68d6d9ebddea)
+ 
+ ![image](https://github.com/yeni28/Planto/assets/79498424/8a8814b9-0386-45ea-9805-c0987dddb4ae)
+
      
 #### 6. 업적 시스템
 
